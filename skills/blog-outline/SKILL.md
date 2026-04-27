@@ -3,11 +3,15 @@ name: blog-outline
 description: >
   SERP-informed outline generation with H2/H3 heading hierarchy, competitive
   content gap analysis, section-by-section word count targets, chart and image
-  placement markers, FAQ question planning, and internal linking zones. Lighter
-  than a full content brief - generates article skeleton and structure only,
-  ready for /blog write to consume. Use when user says "outline", "blog outline",
-  "content outline", "structure blog", "plan sections", "article skeleton",
-  "heading structure", "SERP analysis", "competitive outline", "plan article".
+  placement markers, FAQ question planning, and internal linking zones.
+  Skeleton only: structure, H2/H3 hierarchy, word counts, FAQ slots. Use
+  blog-brief instead if you need full competitive analysis, statistics
+  research, and image suggestions. Lighter than a full content brief,
+  generates article skeleton and structure only, ready for /blog write to
+  consume. Use when user says "outline", "blog outline", "content outline",
+  "structure blog", "plan sections", "article skeleton", "heading structure",
+  "SERP analysis", "competitive outline", "plan article".
+user-invokable: true
 ---
 
 # Blog Outline Generator -- SERP-Informed Structure Planning

@@ -1,6 +1,9 @@
 ---
 name: blog-localize
 description: >
+  Cultural adaptation for translated content. Run AFTER blog-translate
+  completes. Adjusts brand examples, CTAs, legal references, and formality
+  for the target market (German, French, Japanese, Spanish, etc.).
   Deep cultural adaptation of translated blog posts. Goes beyond translation
   to swap brand examples, adapt CTAs, substitute legal references, localize
   statistic sources where possible, and adjust formality (Sie/du, tu/vous,

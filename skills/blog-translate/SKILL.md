@@ -6,7 +6,9 @@ description: >
   preserve markdown structure, frontmatter, schema JSON-LD, image and chart
   embeds, and citation capsules. Localizes keywords, meta tags, numbers,
   dates, currencies, and quote styles per locale. Flags machine-translation
-  artifacts for review.
+  artifacts for review. Run BEFORE blog-localize: this handles language
+  conversion; localize handles cultural adaptation after translation
+  completes.
   Use when user says "translate blog", "blog translate", "uebersetzen",
   "traduire", "traducir", "translate post", "blog auf Deutsch", "blog en
   espanol".

@@ -1,12 +1,17 @@
 ---
 name: blog-geo
 description: >
-  AI citation optimization audit scoring blog posts for ChatGPT, Perplexity,
-  and Google AI Overview citability. Evaluates passage-level citability, Q&A
-  formatting, entity clarity, structured data, and AI crawler accessibility.
-  Generates citation capsules and a 0-100 AI Citation Readiness score. Use when
-  user says "geo", "ai citation", "ai optimization", "citation audit", "aeo",
-  "perplexity optimization", "chatgpt citation".
+  AI citation readiness audit ONLY (does not touch Google rankings, use
+  blog-rewrite for combined Google+AI work). Use whenever the user wants
+  their content to rank in ChatGPT, Perplexity, Claude, Gemini, or Google
+  AI Overviews. AI citation optimization audit scoring blog posts for
+  ChatGPT, Perplexity, and Google AI Overview citability. Evaluates
+  passage-level citability, Q&A formatting, entity clarity, structured
+  data, and AI crawler accessibility. Generates citation capsules and a
+  0-100 AI Citation Readiness score. Use when user says "geo", "ai
+  citation", "ai optimization", "citation audit", "aeo", "perplexity
+  optimization", "chatgpt citation".
+user-invokable: true
 ---
 
 # Blog GEO -- AI Citation Optimization Audit

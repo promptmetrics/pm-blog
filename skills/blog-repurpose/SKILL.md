@@ -6,6 +6,7 @@ description: >
   discussion posts, email newsletter excerpts. Adapts tone for each platform.
   Use when user says "repurpose", "blog repurpose", "share blog", "social media",
   "twitter thread", "linkedin post", "youtube script", "reddit post".
+user-invokable: true
 ---
 
 # Blog Repurpose -- Cross-Platform Content Adaptation

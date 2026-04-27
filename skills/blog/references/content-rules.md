@@ -1,5 +1,25 @@
 # Content Structure Rules -- Dual Optimization
 
+## Contents
+
+- [Answer-First Formatting (Strong AI Citation Improvement)](#answer-first-formatting-strong-ai-citation-improvement)
+- [Title Optimization](#title-optimization)
+- [Summary Box Requirement](#summary-box-requirement)
+- [Heading Hierarchy](#heading-hierarchy)
+- [Sentence Rules](#sentence-rules)
+- [Paragraph Rules](#paragraph-rules)
+- [Readability Targets](#readability-targets)
+- [Visual Content Rules](#visual-content-rules)
+- [Anti-Pattern Detection](#anti-pattern-detection)
+- [Content Length Guidelines](#content-length-guidelines)
+- [Citation & Statistics Rules (GEO)](#citation--statistics-rules-geo)
+- [Information Gain -- The Key Differentiator](#information-gain----the-key-differentiator)
+- [Meta Description Formula](#meta-description-formula)
+- [Citation Format](#citation-format)
+- [Citation Tiers](#citation-tiers)
+- [Self-Promotion Rules](#self-promotion-rules)
+- [Internal Linking](#internal-linking)
+
 ## Answer-First Formatting (Strong AI Citation Improvement)
 
 The most impactful single optimization. Every H2 section must open with a

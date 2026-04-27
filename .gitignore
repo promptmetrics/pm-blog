@@ -58,3 +58,31 @@ output/
 # Working documents
 definitive-resesarch-blueprint-for-claude-blog.md
 .github-audit/
+
+# Obsidian vault metadata and scratch artifacts
+.obsidian/
+*.canvas
+docs/superpowers/
+
+# Working images, GIFs, screenshots (not part of the plugin)
+Pasted image *.png
+image-example-*.png
+*-cover-16x9.gif
+*-cover-square.png
+*-cover-16x9.png
+cosmic-brain-cover.gif
+wiki-graph-grow.gif
+welcome-canvas.gif
+workflow-loop.gif
+
+# Working video clips
+short01-*.mp4
+
+# Dated scratch notes at repo root
+2026-*.md
+2026-*.txt
+Ranking Plan.md
+whats-new.html
+
+# Hex-named cached GIFs (auto-downloaded artifacts)
+[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.gif

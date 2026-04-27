@@ -8,7 +8,6 @@ description: >
   currency, and quote formatting. Invoke from `blog-translate` and
   `blog-multilingual` orchestrators when a single source-to-target language
   translation is needed. One agent invocation handles one target language.
-model: sonnet
 tools:
   - Read
   - Write

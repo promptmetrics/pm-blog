@@ -1,21 +1,17 @@
 ---
 name: blog
 description: >
-  Full-lifecycle blog engine with 27 commands, 12 content templates, 5-category
-  100-point scoring, and 5 specialized agents. Optimized for Google rankings
-  (December 2025 Core Update, E-E-A-T) and AI citations (GEO/AEO). Writes,
-  rewrites, analyzes, outlines, audits, and repurposes blog content with
-  answer-first formatting, sourced statistics, Pixabay/Unsplash/Pexels images,
-  AI image generation via Gemini, built-in SVG chart generation, JSON-LD schema
-  generation, and freshness signals. Includes FLOW framework prompts, semantic
-  topic-cluster planning + execution, and multilingual publishing.
+  Full-lifecycle blog engine with 28 sub-skills, 12 content templates, 5-category
+  100-point scoring, and 5 specialized agents. Routes user requests to the right
+  sub-skill: writing, rewriting, analysis, outlines, audits, schema, charts,
+  images, repurposing, AI-citation optimization, FLOW framework prompts,
+  topic-cluster execution, and multilingual publishing. Optimized for Google
+  rankings (December 2025 Core Update, E-E-A-T) and AI citations (GEO/AEO).
   Supports any platform (WordPress, Next.js MDX, Hugo, Ghost, Astro, Jekyll,
-  11ty, Gatsby, HTML). Use when user says "blog", "write blog", "blog post",
-  "blog strategy", "content brief", "editorial calendar", "analyze blog",
-  "rewrite blog", "update blog", "blog SEO", "blog optimization", "content plan",
-  "blog outline", "seo check", "schema markup", "repurpose", "geo audit",
-  "blog audit", "citation readiness", "topic cluster", "multilingual blog",
-  "translate blog", "blog flow", "FLOW framework".
+  11ty, Gatsby, HTML). Use when user says "blog", "write a blog", "blog post",
+  "blog strategy", "content brief", "editorial calendar", "blog audit",
+  "blog optimization", "topic cluster", "multilingual blog", "FLOW framework",
+  or any /blog subcommand. Sub-skill descriptions cover narrower triggers.
 license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for quality scoring
 metadata:

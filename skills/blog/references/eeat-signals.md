@@ -1,5 +1,18 @@
 # Author E-E-A-T Requirements
 
+## Contents
+
+- [Named Author Attribution](#named-author-attribution)
+- [Author Bio Structure](#author-bio-structure)
+- [Author Page Requirements](#author-page-requirements)
+- [Person Schema Properties](#person-schema-properties)
+- [Experience Signal Markers](#experience-signal-markers)
+- [Trust Indicators](#trust-indicators)
+- [September 2025 QRG Key Principle](#september-2025-qrg-key-principle)
+- [E-E-A-T Scoring Rubric](#e-e-a-t-scoring-rubric)
+- [E-E-A-T Applies to ALL Queries (December 2025)](#e-e-a-t-applies-to-all-queries-december-2025)
+- [E-E-A-T Signals by Content Type](#e-e-a-t-signals-by-content-type)
+
 ## Named Author Attribution
 
 Every blog post requires a named human author. Anonymous or generic attribution
