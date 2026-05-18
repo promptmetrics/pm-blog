@@ -158,6 +158,34 @@ def test_cli_refuses_non_allowed_basename(tmp_path: Path):
     assert "not in allowlist" in result.stderr.lower()
 
 
+def test_cli_refuses_path_traversal_attempts(tmp_path: Path):
+    """AUTH-003 (v1.9.1): paths attempting traversal must fail-closed.
+
+    The basename allowlist {BRAND.md, VOICE.md, DISCOURSE.md} already
+    blocks the common cases because basename('../../etc/passwd') is
+    'passwd', not an allowed name. This test locks the behavior in so
+    a future basename-resolution change cannot silently break it.
+    """
+    # Set up a real allowed file at the tmp_path root so traversal could
+    # in theory escape elsewhere; the helper should still refuse.
+    (tmp_path / "BRAND.md").write_text("legitimate content\n", encoding="utf-8")
+
+    traversal_inputs = [
+        "../../../etc/passwd",
+        "/etc/passwd",
+        "../../etc/shadow",
+        str(tmp_path / "../etc/passwd"),
+        # In-the-middle traversal targeting an allowed basename
+        str(tmp_path) + "/../" + "BRAND.md",
+    ]
+    for hostile in traversal_inputs:
+        result = _run([sys.executable, str(HELPER), hostile])
+        assert result.returncode != 0, (
+            f"helper must refuse traversal input: {hostile!r}\n"
+            f"stdout: {result.stdout}\nstderr: {result.stderr}"
+        )
+
+
 def test_cli_refuses_symlink(tmp_path: Path):
     real = tmp_path / "real_BRAND.md"
     real.write_text("data", encoding="utf-8")
