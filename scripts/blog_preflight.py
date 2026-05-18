@@ -457,10 +457,34 @@ class _MetaParser(HTMLParser):
             self.article_text_chars += len(re.findall(r"\b\w+\b", data))
 
 
+class _PreflightNoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Refuse automatic redirect-following in Gate 5 link checks (VULN-804).
+
+    Default urllib follows 30x silently; a draft containing a redirect
+    chain via attacker.example -> 169.254.169.254 would let preflight
+    probe internal hosts. Refuse on the first hop; treat as broken link.
+    """
+    def http_error_301(self, req, fp, code, msg, headers):  # noqa: D401
+        return None
+    http_error_302 = http_error_301
+    http_error_303 = http_error_301
+    http_error_307 = http_error_301
+    http_error_308 = http_error_301
+
+
+_PREFLIGHT_NO_REDIRECT_OPENER = urllib.request.build_opener(_PreflightNoRedirectHandler())
+
+
 def _http_head(url: str) -> int:
+    """HEAD request that refuses to follow redirects (VULN-804)."""
+    # VULN-002 (v1.9.1): explicit scheme check inside _http_head as
+    # defense-in-depth. The upstream call site is supposed to filter
+    # already, but matching the policy here closes the gap.
+    if not url.startswith(("http://", "https://")):
+        return 0
     try:
         req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=HEAD_TIMEOUT) as resp:
+        with _PREFLIGHT_NO_REDIRECT_OPENER.open(req, timeout=HEAD_TIMEOUT) as resp:
             return resp.status
     except Exception:
         return 0
@@ -500,7 +524,7 @@ def gate_5_asset_link_integrity(draft_dir: Path) -> dict:
 
     # og:image specifically must resolve to a local hero.<ext> when canonical points to a host
     if parser.og_image:
-        if parser.og_image.startswith("http"):
+        if parser.og_image.startswith(("http://", "https://")):
             hero_files = list(draft_dir.glob("hero.*"))
             hero_files = [h for h in hero_files if h.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}]
             if not hero_files:
