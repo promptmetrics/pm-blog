@@ -68,6 +68,15 @@ main() {
     for skill_dir in "${SCRIPT_DIR}/skills/"*/; do
         skill_name="$(basename "${skill_dir}")"
         [ "$skill_name" = "blog" ] && continue
+        # VULN-IAC-003 (v1.9.1): defense-in-depth name validation. The
+        # repo is single-owner and a clean clone cannot produce odd names,
+        # but a tampered repo with a symlink like `skills/../../etc` would
+        # hand us '..' here. Refuse anything outside the expected charset
+        # rather than mkdir + cp into the parent.
+        if ! printf '%s' "$skill_name" | grep -Eq '^[a-z0-9-]+$'; then
+            echo "  ! refusing skill with unexpected name: ${skill_name}" >&2
+            continue
+        fi
         mkdir -p "${SKILL_DIR}/${skill_name}"
         if [ -f "${skill_dir}SKILL.md" ]; then
             cp "${skill_dir}SKILL.md" "${SKILL_DIR}/${skill_name}/SKILL.md"
