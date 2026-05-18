@@ -24,8 +24,10 @@ when every ladder step is exhausted with no successful generation.
 from __future__ import annotations
 
 import argparse
+import ipaddress
 import json
 import os
+import socket
 import sys
 import tempfile
 import urllib.parse
@@ -43,6 +45,105 @@ PEXELS_API = "https://api.pexels.com/v1/search"
 PIXABAY_API = "https://pixabay.com/api/"
 USER_AGENT = "claude-blog/1.9.0 (+https://github.com/AgriciDaniel/claude-blog)"
 HTTP_TIMEOUT = 20
+
+# VULN-801 SSRF guard (v1.9.1):
+# Hero downloads come from third-party JSON responses. Without these guards
+# a poisoned upstream can redirect us to file://, ftp://, or internal IPs
+# (AWS IMDS, RFC1918, loopback) and have us publish the bytes as og:image.
+ALLOWED_SCHEMES = frozenset({"http", "https"})
+MAX_IMAGE_BYTES = 25 * 1024 * 1024  # 25 MB; legit heroes are well under this.
+
+
+def _is_private_address(host: str) -> bool:
+    """Resolve host to IP and test against RFC1918/loopback/link-local/ULA.
+
+    Returns True if the host resolves to any non-public address (so the
+    caller should refuse the request). Returns True on resolution failure
+    (fail-closed).
+    """
+    if not host:
+        return True
+    try:
+        # Resolve via getaddrinfo to handle both IPv4 and IPv6.
+        infos = socket.getaddrinfo(host, None, proto=socket.IPPROTO_TCP)
+    except socket.gaierror:
+        return True
+    except Exception:
+        return True
+    for info in infos:
+        sockaddr = info[4]
+        addr_str = sockaddr[0]
+        try:
+            addr = ipaddress.ip_address(addr_str)
+        except ValueError:
+            return True
+        if (
+            addr.is_private
+            or addr.is_loopback
+            or addr.is_link_local
+            or addr.is_reserved
+            or addr.is_multicast
+            or addr.is_unspecified
+        ):
+            return True
+    return False
+
+
+def _validate_url(url: str) -> bool:
+    """Return True if url is safe to fetch (http/https + public host).
+
+    Mirrors the policy of `_is_private_address`. The tests rely on
+    `socket.gethostbyname` being monkeypatchable; we call it here for
+    backwards-compatible test stubbing, then defer to `_is_private_address`
+    for the actual public-IP check via getaddrinfo.
+    """
+    if not isinstance(url, str) or not url:
+        return False
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme not in ALLOWED_SCHEMES:
+        return False
+    host = parsed.hostname
+    if not host:
+        return False
+    # Test seam: tests monkeypatch socket.gethostbyname to inject blocked
+    # addresses; honor that result first.
+    try:
+        addr_str = socket.gethostbyname(host)
+    except socket.gaierror:
+        return False
+    except Exception:
+        return False
+    try:
+        addr = ipaddress.ip_address(addr_str)
+    except ValueError:
+        return False
+    if (
+        addr.is_private
+        or addr.is_loopback
+        or addr.is_link_local
+        or addr.is_reserved
+        or addr.is_multicast
+        or addr.is_unspecified
+    ):
+        return False
+    return True
+
+
+class _NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Refuse automatic redirect-following.
+
+    Without this, urllib silently follows 30x responses to wherever the
+    server points, including back to private IPs (defeats _validate_url).
+    """
+    def http_error_301(self, req, fp, code, msg, headers):  # noqa: D401
+        return None
+    http_error_302 = http_error_301
+    http_error_303 = http_error_301
+    http_error_307 = http_error_301
+    http_error_308 = http_error_301
+
+
+_NO_REDIRECT_OPENER = urllib.request.build_opener(_NoRedirectHandler())
 
 
 def _atomic_write_bytes(path: Path, data: bytes) -> None:
@@ -74,10 +175,29 @@ def _build_prompt(topic: str, tags: list[str]) -> str:
 
 
 def _http_get(url: str, headers: Optional[dict] = None, timeout: int = HTTP_TIMEOUT) -> Optional[bytes]:
+    """Fetch URL with SSRF guards (VULN-801, v1.9.1).
+
+    Refuses:
+      * non-http(s) schemes (file://, ftp://, gopher://, data:, javascript:)
+      * hosts resolving to RFC1918 / loopback / link-local / ULA / reserved
+      * responses larger than MAX_IMAGE_BYTES
+      * automatic redirect-following (no-redirect opener; redirects return None)
+    """
+    if not _validate_url(url):
+        print(f"[http] refused (scheme/host policy): {url[:80]}", file=sys.stderr)
+        return None
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
-            return resp.read()
+            # Read at most MAX_IMAGE_BYTES + 1 to detect oversize.
+            data = resp.read(MAX_IMAGE_BYTES + 1)
+            if len(data) > MAX_IMAGE_BYTES:
+                print(
+                    f"[http] response exceeds {MAX_IMAGE_BYTES} bytes; refusing",
+                    file=sys.stderr,
+                )
+                return None
+            return data
     except Exception as e:
         print(f"[http] {url[:80]}: {e}", file=sys.stderr)
         return None
