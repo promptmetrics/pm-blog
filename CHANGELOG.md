@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `${CLAUDE_PLUGIN_DATA}/BRAND.md`, for the multi-writer brand/voice layer.
 - `skills/blog-brand/SKILL.md`: new `/blog brand sync` sub-command and a
   precedence rule so `init`/`update` never clobber a sync-managed BRAND.md.
+- `skills/blog/SKILL.md`: new "Writer Resolution & Brand/Voice
+  Materialization" orchestrator step, gated on `${CLAUDE_PLUGIN_DATA}`/
+  `${CLAUDE_PLUGIN_ROOT}` being set, that runs the brand sync and
+  materializes per-writer VOICE.md and synced BRAND.md to the project root
+  before the existing v1.8.0 auto-load step runs unchanged.
 
 ### Changed
 - **Breaking**: `skills/blog-persona/SKILL.md` drops `/blog persona list`

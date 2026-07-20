@@ -47,8 +47,8 @@ Perplexity, Google AI Overviews, Gemini).
 | `/blog cannibalization [dir]` | Detect keyword cannibalization across posts |
 | `/blog factcheck <file>` | Verify statistics against cited sources |
 | `/blog image [generate\|edit\|setup]` | AI image generation and editing via Gemini |
-| `/blog persona [create\|list\|use\|show]` | Manage writing personas and voice profiles |
-| `/blog brand [init\|show\|update]` | Generate BRAND.md + VOICE.md context files auto-loaded by all sub-skills |
+| `/blog persona [create\|show]` | Manage the resolved writer's persona and voice profile |
+| `/blog brand [init\|show\|update\|sync]` | Generate/sync BRAND.md + VOICE.md context files auto-loaded by all sub-skills |
 | `/blog discourse <topic>` | Research what people are actually saying about a topic in last 30 days; produces DISCOURSE.md (v1.8.0, API-free) |
 | `/blog taxonomy [suggest\|sync\|audit]` | Tag/category management across CMS platforms |
 | `/blog notebooklm <question>` | Query NotebookLM for source-grounded research |
@@ -386,6 +386,54 @@ Chart generation is built-in - no external dependencies required for full functi
 - `/seo` - Full SEO audit of published blog pages
 - `/seo-schema` - Schema markup validation and generation
 - `/seo-geo` - AI citation optimization audit
+
+## Writer Resolution & Brand/Voice Materialization
+
+Runs before the "Auto-loaded Project-Root Context" section below, on every
+command the orchestrator handles. Two independent, fail-open
+materializations that populate `BRAND.md`/`VOICE.md` at the project root
+from plugin-data sources before the unmodified v1.8.0 load step reads them.
+
+**Step 0 (env gate).** If `${CLAUDE_PLUGIN_DATA}` or `${CLAUDE_PLUGIN_ROOT}`
+is unset, skip this entire section silently and fall through to the
+existing v1.8.0 behavior unchanged. This keeps dev-clone and non-plugin
+usage working exactly as before.
+
+**Step 1 (sync).** Invoke `scripts/sync-brand.sh`. This is non-blocking
+and TTL-gated (default 900s); it exits 0 on every failure path, so a
+network issue or missing config never stalls the command.
+
+```bash
+if [ -n "${CLAUDE_PLUGIN_DATA:-}" ] && [ -n "${CLAUDE_PLUGIN_ROOT:-}" ]; then
+    sh "${CLAUDE_PLUGIN_ROOT}/scripts/sync-brand.sh" || true
+fi
+```
+
+**Step 2 (writer identity).** Resolve the writer from
+`${CLAUDE_PLUGIN_DATA}/.user-name`. If the file does not exist, prompt the
+user once for their name, normalize it to kebab-case, and cache it there.
+Every subsequent command on this machine reuses the cached value; see
+`skills/blog-persona/SKILL.md`'s First-Run Writer Capture for the full
+kebab-case rule and how to re-trigger the prompt.
+
+**Step 3 (materialize VOICE.md).** If
+`${CLAUDE_PLUGIN_DATA}/personas/<writer>/VOICE.md` exists for the resolved
+writer, atomically copy it to project-root `VOICE.md` (write to a temp
+file in the same directory, then rename over the target). If it does not
+exist yet (first run for this writer), do nothing: never create an empty
+file, and never clobber an existing hand-authored project-root `VOICE.md`.
+
+**Step 4 (materialize BRAND.md).** If `${CLAUDE_PLUGIN_DATA}/BRAND.md`
+exists (populated by Step 1's sync), atomically copy it to project-root
+`BRAND.md` the same way. If it does not exist (sync never configured or
+never succeeded), do nothing: never clobber a hand-authored local
+`BRAND.md` when sync isn't configured.
+
+Steps 3 and 4 are independent and both fail open. Whatever combination of
+skipped/succeeded results from them, the orchestrator falls through
+immediately after to the existing, completely unmodified "Auto-loaded
+Project-Root Context" section below, which loads `BRAND.md`/`VOICE.md`/
+`DISCOURSE.md` exactly as it did before this section existed.
 
 ## Auto-loaded Project-Root Context (v1.8.0)
 
