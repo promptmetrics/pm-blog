@@ -1,9 +1,9 @@
 #!/usr/bin/env pwsh
-# claude-blog installer for Windows
+# pm-blog installer for Windows
 # Installs the blog skill ecosystem to ~/.claude/skills/ and ~/.claude/agents/
 #
 # One-command install:
-#   iex (irm https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.ps1)
+#   iex (irm https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.ps1)
 
 $ErrorActionPreference = "Stop"
 
@@ -15,7 +15,7 @@ function Main {
     Write-Color Cyan @"
 
    ╔══════════════════════════════════════╗
-   ║         claude-blog Installer        ║
+   ║          pm-blog Installer           ║
    ║  Blog Content Engine for Claude Code ║
    ╚══════════════════════════════════════╝
 
@@ -29,9 +29,9 @@ function Main {
     if ($MyInvocation.MyCommand.Path -and (Test-Path (Join-Path (Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) "skills") "blog"))) {
         $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
     } else {
-        Write-Color White "Cloning claude-blog..."
-        $TempDir = Join-Path ([System.IO.Path]::GetTempPath()) "claude-blog-install-$([System.Guid]::NewGuid().ToString('N').Substring(0,8))"
-        git clone --depth 1 https://github.com/AgriciDaniel/claude-blog.git $TempDir 2>$null
+        Write-Color White "Cloning pm-blog..."
+        $TempDir = Join-Path ([System.IO.Path]::GetTempPath()) "pm-blog-install-$([System.Guid]::NewGuid().ToString('N').Substring(0,8))"
+        git clone --depth 1 https://github.com/promptmetrics/pm-blog.git $TempDir 2>$null
         $ScriptDir = $TempDir
     }
 
@@ -135,7 +135,7 @@ function Main {
     Write-Color White "Installing Python dependencies..."
     $reqFile = Join-Path $ScriptDir "requirements.txt"
     if (Test-Path $reqFile) {
-        $pipLog = Join-Path ([System.IO.Path]::GetTempPath()) "claude-blog-pip-$([System.Guid]::NewGuid().ToString('N').Substring(0,8)).log"
+        $pipLog = Join-Path ([System.IO.Path]::GetTempPath()) "pm-blog-pip-$([System.Guid]::NewGuid().ToString('N').Substring(0,8)).log"
         # Resolve python: prefer python3, fall back to python. Avoid the `??`
         # null-coalescing operator (PowerShell 7+ only) so this works on the
         # default Windows PowerShell 5.1.

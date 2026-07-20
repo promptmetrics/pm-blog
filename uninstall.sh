@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# claude-blog uninstaller
+# pm-blog uninstaller
 # Cleanly removes all blog skills, agents, templates, and scripts
 
 main() {
     local SKILL_DIR="${HOME}/.claude/skills"
     local AGENT_DIR="${HOME}/.claude/agents"
 
-    echo "=== Uninstalling claude-blog ==="
+    echo "=== Uninstalling pm-blog ==="
     echo ""
 
     # Remove main skill (includes references, templates, scripts)
@@ -68,7 +68,7 @@ main() {
     done
 
     echo ""
-    echo "=== claude-blog uninstalled ==="
+    echo "=== pm-blog uninstalled ==="
     echo ""
     echo "Restart Claude Code to complete removal."
 }

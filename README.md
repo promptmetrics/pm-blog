@@ -144,11 +144,11 @@ irm https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.ps1 | i
 ```bash
 # Download, verify SHA-256, then run if the hash matches.
 curl -fsSL -o install.sh https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh
-echo "029388e448dd29bed259b130c2be42e2f6a16d4d5b6801a61bfb4f49b621fc04  install.sh" | sha256sum -c
+echo "69fa9814540bda4d2926b8240625737e71de22738e1022bed944f7c632cc7d32  install.sh" | sha256sum -c
 bash install.sh
 ```
 
-The SHA-256 above is for the current `install.sh` at HEAD on `main`. Verify against [the canonical file](https://github.com/promptmetrics/pm-blog/blob/main/install.sh) before running. The `install.ps1` companion hash is `6d03f353e5d844c4fe5c7c0b2500bd1e2aad02468cd544013bab876735cebf98`. Hashes are updated in this README on every installer change.
+The SHA-256 above is for the current `install.sh` at HEAD on `main`. Verify against [the canonical file](https://github.com/promptmetrics/pm-blog/blob/main/install.sh) before running. The `install.ps1` companion hash is `fed21d9e03dfefa42e3c69a495367d5874c6f4e35209bc2f86f59e89eec80fd6`. Hashes are updated in this README on every installer change.
 
 Restart Claude Code after installation to activate.
 

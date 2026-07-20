@@ -1,5 +1,5 @@
 #!/usr/bin/env pwsh
-# claude-blog uninstaller for Windows
+# pm-blog uninstaller for Windows
 # Cleanly removes all blog skills, agents, templates, and scripts
 
 $ErrorActionPreference = "Stop"
@@ -12,7 +12,7 @@ function Main {
     $SkillDir = Join-Path (Join-Path $env:USERPROFILE ".claude") "skills"
     $AgentDir = Join-Path (Join-Path $env:USERPROFILE ".claude") "agents"
 
-    Write-Color Cyan "=== Uninstalling claude-blog ==="
+    Write-Color Cyan "=== Uninstalling pm-blog ==="
     Write-Host ""
 
     # Remove main skill (includes references, templates, scripts)
@@ -75,7 +75,7 @@ function Main {
     }
 
     Write-Host ""
-    Write-Color Cyan "=== claude-blog uninstalled ==="
+    Write-Color Cyan "=== pm-blog uninstalled ==="
     Write-Host ""
     Write-Color Yellow "Restart Claude Code to complete removal."
 }
