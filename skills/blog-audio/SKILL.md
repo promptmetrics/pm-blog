@@ -13,7 +13,7 @@ user-invokable: true
 argument-hint: "[generate|voices|setup] [file-or-text] [--mode summary|full|dialogue] [--voice name]"
 license: MIT
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
 ---
 

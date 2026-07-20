@@ -16,7 +16,7 @@ user-invokable: true
 argument-hint: "[generate|edit|setup] [description-or-path]"
 license: MIT
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
   mcp-package: "@ycse/nanobanana-mcp"
 ---

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validate that nanobanana-mcp is properly configured for claude-blog.
+Validate that nanobanana-mcp is properly configured for pm-blog.
 
 Checks project .mcp.json first, then falls back to global ~/.claude/settings.json.
 
@@ -83,7 +83,7 @@ def find_mcp_config() -> tuple:
 
 
 def main() -> int:
-    print("claude-blog - Image Generation Setup Validation")
+    print("pm-blog - Image Generation Setup Validation")
     print("=" * 48)
     results = []
 

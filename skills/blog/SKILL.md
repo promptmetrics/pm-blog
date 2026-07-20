@@ -15,7 +15,7 @@ description: >
 license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for quality scoring
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
 user-invokable: true
 argument-hint: "[write|rewrite|analyze|brief|calendar|cannibalization|strategy|outline|seo-check|schema|repurpose|geo|image|audit|factcheck|persona|brand|discourse|taxonomy|notebooklm|audio|google|update|cluster|multilingual|translate|localize|locale-audit|flow] [topic-or-file]"
@@ -132,9 +132,9 @@ Every blog post targets these 6 optimization pillars:
 
 ### How the 6 Pillars map to the FLOW framework (v1.7.0)
 
-claude-blog adopts the FLOW evidence-led model (`github.com/AgriciDaniel/flow`, CC BY 4.0). The 6 Pillars stay as-is; they become the operational expression of FLOW's principles. Mapping:
+pm-blog adopts the FLOW evidence-led model (`github.com/AgriciDaniel/flow`, CC BY 4.0). The 6 Pillars stay as-is; they become the operational expression of FLOW's principles. Mapping:
 
-| Pillar | FLOW concept it implements | claude-blog adds beyond FLOW |
+| Pillar | FLOW concept it implements | pm-blog adds beyond FLOW |
 |--------|---------------------------|------------------------------|
 | Answer-First Formatting | "Extraction-readable" passages for AI Overviews and assistant citations | Concrete 40-60 word format spec |
 | Real Sourced Data | The FLOW evidence triple: year anchor in prose + inline citation (publisher + title) + URL with retrieval date | Tier 1-3 source classification, `blog-factcheck` automation |
@@ -143,7 +143,7 @@ claude-blog adopts the FLOW evidence-led model (`github.com/AgriciDaniel/flow`, 
 | Content Structure | "AI-readable document" with clear headings, direct answers, source labels | 50-150 word chunk rule, proper H hierarchy enforcement |
 | Freshness Signals | Year anchor in prose; source retrieval dates | dateModified schema, 30-day freshness threshold, `blog-audit` decay detection |
 
-The FLOW evidence triple is enforced AT DRAFTING time inside `blog-write` (not just at audit). For the full alignment doc (5-surface model, FLOW stages mapped to skills, what claude-blog adds), load `references/flow-alignment.md`. For the upstream FLOW framework itself, load `skills/blog-flow/references/flow-framework.md` or run `/blog flow` for prompt-driven workflows.
+The FLOW evidence triple is enforced AT DRAFTING time inside `blog-write` (not just at audit). For the full alignment doc (5-surface model, FLOW stages mapped to skills, what pm-blog adds), load `references/flow-alignment.md`. For the upstream FLOW framework itself, load `skills/blog-flow/references/flow-framework.md` or run `/blog flow` for prompt-driven workflows.
 
 ## Quality Gates
 
@@ -242,7 +242,7 @@ Load on-demand as needed (21 references; 13 original + 5 v1.8.0 methodology + 2 
 - `references/internal-linking.md`: Link architecture, anchor text, hub-and-spoke model
 - `references/video-embeds.md`: YouTube video embedding patterns, quality criteria, VideoObject schema
 - `references/cta-placement.md`: Call-to-action placement and conversion-optimization patterns
-- `references/flow-alignment.md`: 5-surface model + FLOW stages mapped to claude-blog skills
+- `references/flow-alignment.md`: 5-surface model + FLOW stages mapped to pm-blog skills
 - `references/ai-slop-detection.md`: two-tier first-order + second-order reflex methodology for AI-content detection (v1.8.0)
 - `references/editorial-heuristics.md`: ordinal 0-4 rubric with P0-P3 severity (v1.8.0, adapted from Nielsen heuristics)
 - `references/cognitive-load.md`: per-section concept-density model with `scripts/cognitive_load.py` (v1.8.0)

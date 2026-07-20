@@ -11,7 +11,7 @@ argument-hint: "[stage] [url|topic]"
 license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for the sync script
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
   category: blog
 ---

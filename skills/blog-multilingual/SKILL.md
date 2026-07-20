@@ -12,9 +12,9 @@ description: >
 user-invokable: true
 argument-hint: "<topic> --languages <comma-separated-codes>"
 license: MIT
-compatibility: Requires claude-blog (blog-write). Optional integration with claude-seo (seo-hreflang) for richer hreflang validation.
+compatibility: Requires pm-blog (blog-write). Optional integration with claude-seo (seo-hreflang) for richer hreflang validation.
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
   category: blog
 ---
@@ -39,9 +39,9 @@ Invoked internally by this orchestrator:
 
 | Component | Source | Required |
 |-----------|--------|----------|
-| `blog-write` | claude-blog (this plugin) | Yes |
-| `blog-translate` | claude-blog (this plugin) | Yes |
-| `blog-localize` | claude-blog (this plugin) | Yes (when `--localize` is on, default) |
+| `blog-write` | pm-blog (this plugin) | Yes |
+| `blog-translate` | pm-blog (this plugin) | Yes |
+| `blog-localize` | pm-blog (this plugin) | Yes (when `--localize` is on, default) |
 | `seo-hreflang` | claude-seo (sibling plugin) | No, falls back to a self-contained generator |
 
 If `seo-hreflang` is not installed, the orchestrator emits hreflang tags using
@@ -284,7 +284,7 @@ Breadcrumb) is wanted on each version.
 
 | Scenario | Action |
 |----------|--------|
-| `blog-write` missing | Error: "This skill requires `blog-write`. Reinstall claude-blog." |
+| `blog-write` missing | Error: "This skill requires `blog-write`. Reinstall pm-blog." |
 | One translation fails | Complete the rest, report partial results, suggest a retry command |
 | Source language equals a target | Skip that target, log a notice |
 | More than 10 target languages | Warn about wall-clock time, proceed if confirmed |

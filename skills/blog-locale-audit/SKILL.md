@@ -11,9 +11,9 @@ description: >
 user-invokable: true
 argument-hint: "<directory>"
 license: MIT
-compatibility: Standalone within claude-blog. Optional richer hreflang validation via claude-seo seo-hreflang.
+compatibility: Standalone within pm-blog. Optional richer hreflang validation via claude-seo seo-hreflang.
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
   category: blog
 ---

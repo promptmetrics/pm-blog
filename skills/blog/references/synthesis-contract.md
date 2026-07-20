@@ -1,6 +1,6 @@
 # Synthesis Contract: 6 LAWs for Research-Synthesis Output
 
-When `blog-researcher`, `blog-discourse`, `blog-brief`, or any other research-producing sub-skill emits synthesis prose (a brief, a "what people are saying" summary, a competitive landscape), these six rules apply. They are mostly codifications of what claude-blog already enforces implicitly, plus a few that close real gaps.
+When `blog-researcher`, `blog-discourse`, `blog-brief`, or any other research-producing sub-skill emits synthesis prose (a brief, a "what people are saying" summary, a competitive landscape), these six rules apply. They are mostly codifications of what pm-blog already enforces implicitly, plus a few that close real gaps.
 
 Adapted from `last30days-skill` v3.2.1 (Matt Van Horn, MIT). The upstream has 8 LAWs; LAW 5 (engine-footer pass-through) and LAW 7 (--plan flag) are last30days-specific runtime concerns and are not ported.
 
@@ -32,7 +32,7 @@ Never cite a source with a title you did not see in the source itself. If the SE
 
 Use ` - ` (hyphen surrounded by spaces) or punctuation (period, comma, semicolon, colon, parentheses) instead of `—` or `–` or ` -- `. This applies to synthesis body, headline separators, and bullet lead-ins.
 
-**Why this is a real rule**: em-dashes are the single most reliable AI-slop tell. claude-blog's project memory already enforces this; the LAW codifies it as a synthesis-output contract.
+**Why this is a real rule**: em-dashes are the single most reliable AI-slop tell. pm-blog's project memory already enforces this; the LAW codifies it as a synthesis-output contract.
 
 **Exception**: quoted content where the source literally used an em-dash. Preserve the source's punctuation in quotes.
 
@@ -103,4 +103,4 @@ The difference: the good version names a number, names a source, says what the s
 
 ## Attribution
 
-The 6 LAWs above are adapted from `last30days-skill` v3.2.1's VOICE CONTRACT LAW section (Matt Van Horn, MIT, https://github.com/mvanhorn/last30days-skill). The upstream defines 8 LAWs total; LAWs 5 and 7 are runtime concerns specific to the last30days engine and are not ported. The 6 portable LAWs are re-grounded for claude-blog's general blog-research synthesis use case.
+The 6 LAWs above are adapted from `last30days-skill` v3.2.1's VOICE CONTRACT LAW section (Matt Van Horn, MIT, https://github.com/mvanhorn/last30days-skill). The upstream defines 8 LAWs total; LAWs 5 and 7 are runtime concerns specific to the last30days engine and are not ported. The 6 portable LAWs are re-grounded for pm-blog's general blog-research synthesis use case.

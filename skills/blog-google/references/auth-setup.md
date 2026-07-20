@@ -42,7 +42,7 @@ Navigate to **APIs & Services > Library** and enable:
 ## Step 4: Create a Service Account (Tier 1)
 
 1. **IAM & Admin > Service Accounts > Create Service Account**
-2. Name: `claude-blog` (or similar)
+2. Name: `pm-blog` (or similar)
 3. Skip optional permissions steps
 4. Click on the created service account > **Keys > Add Key > Create new key > JSON**
 5. Download and store securely (e.g., `~/.config/claude-seo/service_account.json`)

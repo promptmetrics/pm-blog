@@ -16,9 +16,9 @@ description: >
 user-invokable: true
 argument-hint: "<file> --locale <locale-code>"
 license: MIT
-compatibility: Standalone within claude-blog. Invoked by blog-multilingual.
+compatibility: Standalone within pm-blog. Invoked by blog-multilingual.
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
   category: blog
 ---

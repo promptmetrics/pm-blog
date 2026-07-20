@@ -1,7 +1,7 @@
 ---
 name: blog-cluster
 description: >
-  Semantic topic cluster planning and automated execution engine for claude-blog.
+  Semantic topic cluster planning and automated execution engine for pm-blog.
   Performs SERP-based keyword research, groups keywords by search intent and
   SERP overlap, builds a hub-and-spoke cluster architecture, generates an
   interactive SVG cluster map, and executes the full cluster by orchestrating
@@ -12,9 +12,9 @@ description: >
   "cluster plan", "cluster execute", "pillar content", "hub and spoke",
   "content ecosystem", "cluster map".
 license: MIT
-compatibility: Requires Claude Code and claude-blog (provides blog-write, blog-chart, blog-image)
+compatibility: Requires Claude Code and pm-blog (provides blog-write, blog-chart, blog-image)
 metadata:
-  author: AgriciDaniel
+  author: PromptMetrics
   version: "1.9.1"
   category: blog
 user-invokable: true
@@ -32,7 +32,7 @@ keyword. Three layers: Semantic Clustering (the brain), Cluster Architecture
 > Original repository: https://github.com/Drfiya/semantic-cluster-engine
 > This port keeps the Plan + Execute architecture and the cluster context
 > innovation, removes brand-specific (ScienceExperts.ai) styling and image
-> prompts, and routes through claude-blog's existing sub-skills.
+> prompts, and routes through pm-blog's existing sub-skills.
 
 ## Commands
 
@@ -49,7 +49,7 @@ keyword. Three layers: Semantic Clustering (the brain), Cluster Architecture
 - `references/cluster-architecture.md` (hub-and-spoke specs, schema strategy, link-density rules)
 - `references/execution-workflow.md` (execution order, context injection, scorecard, failure handling)
 
-## Cross-references to existing claude-blog skills
+## Cross-references to existing pm-blog skills
 
 | Skill | When this skill calls it |
 |-------|--------------------------|
@@ -180,7 +180,7 @@ All plan and execute artifacts go into a single subdirectory of the current work
 }
 ```
 
-Note: volume estimates are relative indicators (high, medium, low) derived from SERP signals, not absolute search volumes. For precise data, the user should consult Ahrefs, SEMrush, or DataForSEO (claude-blog provides the `seo-dataforseo` companion sibling).
+Note: volume estimates are relative indicators (high, medium, low) derived from SERP signals, not absolute search volumes. For precise data, the user should consult Ahrefs, SEMrush, or DataForSEO (pm-blog provides the `seo-dataforseo` companion sibling).
 
 #### `cluster-map.html` (XSS-safe)
 
@@ -309,14 +309,14 @@ Return a concise summary to the user with totals, the scorecard path, and the ne
 | Seed keyword too narrow (fewer than 5 keyword variants) | Offer a smaller cluster (pillar plus 2 to 3 spokes) or suggest broadening. |
 | WebSearch unavailable | Fall back to Claude's reasoning for keyword expansion and grouping. Note the reduced accuracy in the scorecard. |
 | `blog-write` fails for one post | Log, skip, continue. Mark the gap in the scorecard. |
-| `blog-write` not installed | Return: "blog-cluster requires claude-blog. Install it before running this skill." |
+| `blog-write` not installed | Return: "blog-cluster requires pm-blog. Install it before running this skill." |
 | `cluster-plan.json` malformed | Validate JSON and report parse errors with line numbers. |
 | User cancels execution | Save progress; resume on next invocation with already-written posts auto-detected. |
 | `nanobanana-mcp` not configured | Skip hero image generation; warn once at start of execute, not per post. |
 
 ---
 
-## Differentiation from related claude-blog skills
+## Differentiation from related pm-blog skills
 
 | Skill | Role | What blog-cluster adds |
 |-------|------|------------------------|
