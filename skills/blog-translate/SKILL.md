@@ -15,10 +15,10 @@ description: >
 user-invokable: true
 argument-hint: "<file> --to <comma-separated-codes>"
 license: MIT
-compatibility: Standalone within claude-blog. Invoked by blog-multilingual.
+compatibility: Standalone within pm-blog. Invoked by blog-multilingual.
 metadata:
-  author: AgriciDaniel
-  version: "1.9.1"
+  author: PromptMetrics
+  version: "0.1.0"
   category: blog
 ---
 

@@ -1,6 +1,6 @@
 # Research Quality: Rubric, Pre-Flight Traps, Clustering, Freshness
 
-claude-blog already enforces source-tier hygiene (Tier 1 to 3) and the FLOW evidence triple (year anchor + inline citation + URL with retrieval date). This reference adds four research-discipline layers adapted from `last30days-skill` (Matt Van Horn, MIT, https://github.com/mvanhorn/last30days-skill):
+pm-blog already enforces source-tier hygiene (Tier 1 to 3) and the FLOW evidence triple (year anchor + inline citation + URL with retrieval date). This reference adds four research-discipline layers adapted from `last30days-skill` (Matt Van Horn, MIT, https://github.com/mvanhorn/last30days-skill):
 
 1. A **5-dimension quality rubric** for scoring research outputs
 2. **Topic pre-flight checks** for catching keyword-trap topics before search burns time

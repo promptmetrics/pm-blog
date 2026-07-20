@@ -11,7 +11,7 @@ description: >
   voice doc", "BRAND.md", "VOICE.md", "establish editorial brand",
   "brand guidelines for blog".
 user-invokable: true
-argument-hint: "[init|show|update]"
+argument-hint: "[init|show|update|sync]"
 license: MIT
 ---
 
@@ -39,6 +39,7 @@ When neither file exists, behavior is unchanged from v1.7.1. Backward compatible
 | `/blog brand init` | Interactive interview, writes BRAND.md and VOICE.md to project root |
 | `/blog brand show` | Display current contents (or report missing) |
 | `/blog brand update` | Re-run the interview with current values as defaults |
+| `/blog brand sync` | Pull the latest BRAND.md from the configured private repo |
 
 ## Init Workflow
 
@@ -197,9 +198,38 @@ Write to project root as:
 
 Same as Init, but pre-fills every answer with the current value. The user can press enter to accept or type a new value. After collecting all answers, overwrite both files with the new contents and update the `Last updated:` line.
 
+## Sync Workflow
+
+`/blog brand sync` invokes `scripts/sync-brand.sh`, which pulls `BRAND.md`
+from the private repo configured in `${CLAUDE_PLUGIN_DATA}/brand-sync.json`
+into `${CLAUDE_PLUGIN_DATA}/BRAND.md`. The same sync also runs automatically,
+non-blocking and TTL-gated, as Step 1 of the orchestrator's Writer
+Resolution step (see `skills/blog/SKILL.md`) before every command that
+consumes brand context. Running `/blog brand sync` by hand just forces an
+immediate refresh instead of waiting for the TTL to expire.
+
+**No-push rule**: this skill never writes to the private repo. A human
+edits `BRAND.md` and pushes it to the private repo directly; sync is
+pull-only in both directions of this codebase.
+
+**Precedence rule**: when sync is enabled (`brand-sync.json` has
+`"enabled": true` and a non-empty `repo`), `/blog brand init` and
+`/blog brand update` must NOT write `BRAND.md` to the project root
+directly, since the next sync (or the next orchestrator run) would
+overwrite it with the synced copy. Instead, run the interview as normal,
+then print the drafted `BRAND.md` content and instruct the user to paste
+it into the private repo themselves. `VOICE.md` is unaffected by this
+rule; it is always writer-local and never synced.
+
 ## Integration with the blog orchestrator
 
-When `/blog write`, `/blog rewrite`, `/blog brief`, `/blog outline`, `/blog calendar`, or `/blog strategy` runs, the orchestrator (`skills/blog/SKILL.md`) checks for `BRAND.md` and `VOICE.md` at the project root. If present, the contents are injected into the system prompt for downstream agents (`blog-researcher`, `blog-writer`, `blog-seo`, `blog-reviewer`).
+The orchestrator's Writer Resolution & Brand/Voice Materialization step
+(`skills/blog/SKILL.md`) runs first, before the check described below: it
+resolves the writer identity, runs the brand sync, and materializes
+`BRAND.md`/`VOICE.md` from `${CLAUDE_PLUGIN_DATA}` to the project root if a
+synced or writer-specific source exists.
+
+After that step, when `/blog write`, `/blog rewrite`, `/blog brief`, `/blog outline`, `/blog calendar`, or `/blog strategy` runs, the orchestrator (`skills/blog/SKILL.md`) checks for `BRAND.md` and `VOICE.md` at the project root. If present, the contents are injected into the system prompt for downstream agents (`blog-researcher`, `blog-writer`, `blog-seo`, `blog-reviewer`).
 
 If absent, behavior is unchanged. The orchestrator does not prompt the user to create them; they are opt-in context.
 
@@ -225,3 +255,5 @@ If no persona exists when `/blog brand init` runs, the voice questions still pro
 - **Files already exist on init**: ask whether to overwrite or run update instead.
 - **Persona referenced but missing**: ask whether to leave the persona reference blank or create one.
 - **Reader provides minimal answers**: prompt for at least 2 audience bullets and 3 editorial rules; refuse to write skeletons.
+- **Init/update run while sync is enabled**: apply the precedence rule above; print the drafted BRAND.md for the user to paste into the private repo instead of writing it locally.
+- **Sync fails or is unreachable**: `scripts/sync-brand.sh` always exits 0; report that sync did not update, point at `${CLAUDE_PLUGIN_DATA}/.brand-sync.log` for details, and continue with whatever BRAND.md already exists locally (or none).

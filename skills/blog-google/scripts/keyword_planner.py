@@ -51,7 +51,7 @@ def _build_ads_client() -> Optional[object]:
     if not HAS_GOOGLE_ADS:
         print(
             "Error: google-ads library required. Install with: "
-            "pip install 'claude-blog[ads]' (or pip install google-ads).",
+            "pip install 'pm-blog[ads]' (or pip install google-ads).",
             file=sys.stderr,
         )
         return None

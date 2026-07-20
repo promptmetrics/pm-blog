@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# claude-blog installer
+# pm-blog installer
 # Installs the blog skill ecosystem to ~/.claude/skills/ and ~/.claude/agents/
 #
 # One-command install:
-#   curl -sL https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.sh | bash
+#   curl -sL https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh | bash
 
 # Declared outside main() so the EXIT trap can access it after main() returns
 TEMP_DIR=""
@@ -17,7 +17,7 @@ main() {
 
     echo ""
     echo "  ╔══════════════════════════════════════╗"
-    echo "  ║         claude-blog Installer        ║"
+    echo "  ║          pm-blog Installer           ║"
     echo "  ║  Blog Content Engine for Claude Code ║"
     echo "  ╚══════════════════════════════════════╝"
     echo ""
@@ -26,11 +26,11 @@ main() {
     if [ -f "${BASH_SOURCE[0]:-}" ] && [ -d "$(dirname "${BASH_SOURCE[0]}")/skills/blog" ]; then
         SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     else
-        echo "→ Cloning claude-blog..."
+        echo "→ Cloning pm-blog..."
         TEMP_DIR="$(mktemp -d)"
         trap 'rm -rf "${TEMP_DIR}"' EXIT
-        git clone --depth 1 https://github.com/AgriciDaniel/claude-blog.git "${TEMP_DIR}/claude-blog" 2>/dev/null
-        SCRIPT_DIR="${TEMP_DIR}/claude-blog"
+        git clone --depth 1 https://github.com/promptmetrics/pm-blog.git "${TEMP_DIR}/pm-blog" 2>/dev/null
+        SCRIPT_DIR="${TEMP_DIR}/pm-blog"
     fi
 
     # Check prerequisites
@@ -137,7 +137,7 @@ main() {
     if [ -f "${SCRIPT_DIR}/requirements.txt" ] && command -v pip3 &>/dev/null; then
         echo "→ Installing Python dependencies..."
         local pip_log
-        pip_log="$(mktemp -t claude-blog-pip-XXXXXX.log)"
+        pip_log="$(mktemp -t pm-blog-pip-XXXXXX.log)"
         if pip3 install --quiet -r "${SCRIPT_DIR}/requirements.txt" 2>"${pip_log}"; then
             rm -f "${pip_log}"
         else

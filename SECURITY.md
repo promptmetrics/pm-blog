@@ -1,6 +1,6 @@
 # Security Policy
 
-`claude-blog` is a Claude Code skill plugin. This document covers how to
+`pm-blog` is a Claude Code skill plugin. This document covers how to
 report vulnerabilities, what is in scope, the trust boundaries the project
 acknowledges, and the design decisions behind dual-use technology choices.
 
@@ -9,7 +9,7 @@ acknowledges, and the design decisions behind dual-use technology choices.
 If you find a security issue, please **do not open a public GitHub issue**.
 Instead:
 
-1. Open a [GitHub Security Advisory](https://github.com/AgriciDaniel/claude-blog/security/advisories/new)
+1. Open a [GitHub Security Advisory](https://github.com/promptmetrics/pm-blog/security/advisories/new)
    on this repo (preferred), OR contact the maintainer directly via the
    email shown in the GitHub profile linked from `.claude-plugin/plugin.json`
    `author.url`.
@@ -253,8 +253,8 @@ The repo's `CHANGELOG.md` references the security commits.
    Project-mode setup writes only `${GOOGLE_AI_API_KEY}` env-expansion.
 5. **Prefer git clone + checkout-tag over curl-pipe-bash**:
    ```
-   git clone https://github.com/AgriciDaniel/claude-blog.git
-   cd claude-blog && git checkout v1.7.0
+   git clone https://github.com/promptmetrics/pm-blog.git
+   cd pm-blog && git checkout v1.7.0
    ./install.sh
    ```
    This lets you inspect the install script before it runs.

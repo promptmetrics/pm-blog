@@ -2,13 +2,12 @@
   <img src="assets/banner.svg" alt="Claude Blog: AI Blog Writing and SEO Optimization Skill for Claude Code. Animated terminal-style banner with pixel-art CLAUDE BLOG wordmark, breathing orange gradient, scanning command palette, and pulsing status indicators" width="100%">
 </p>
 
-# AI Blog Writing & SEO Optimization Skill for Claude Code (`claude-blog`)
+# AI Blog Writing & SEO Optimization Skill for Claude Code (`pm-blog`)
 
 <p align="center">
   <a href="https://agentskills.io"><img src="https://img.shields.io/badge/Agent%20Skills-Compatible-blue" alt="Agent Skill"></a>
-  <a href="https://github.com/AgriciDaniel/claude-blog/releases"><img src="https://img.shields.io/github/v/release/AgriciDaniel/claude-blog?label=public%20release" alt="Version"></a>
-  <a href="https://github.com/AgriciDaniel/claude-blog/actions"><img src="https://img.shields.io/github/actions/workflow/status/AgriciDaniel/claude-blog/ci.yml?branch=main&label=public%20CI" alt="CI"></a>
-  <a href="https://www.skool.com/ai-marketing-hub-pro"><img src="https://img.shields.io/badge/AI%20Marketing%20Hub-Pro%20community-purple" alt="Community"></a>
+  <a href="https://github.com/promptmetrics/pm-blog/releases"><img src="https://img.shields.io/github/v/release/promptmetrics/pm-blog?label=release" alt="Version"></a>
+  <a href="https://github.com/promptmetrics/pm-blog/actions"><img src="https://img.shields.io/github/actions/workflow/status/promptmetrics/pm-blog/ci.yml?branch=main&label=CI" alt="CI"></a>
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License: MIT">
   <img src="https://img.shields.io/badge/Python-3.11%2B-blue" alt="Python 3.11+">
   <img src="https://img.shields.io/badge/Sub--Skills-30-orange" alt="Sub-Skills">
@@ -23,36 +22,29 @@
   <strong><a href="https://youtu.be/7Q4GaSgUFHo">Watch the 12:48 v1.9.1 walkthrough on YouTube</a></strong> · See the 5-gate Blog Delivery Contract run live, including a 6-minute live demo of the <a href="https://claude-blog.md/blog/chatgpt-codex-vs-claude-code-2026">Codex vs Claude sample blog</a> being generated end-to-end.
 </p>
 
-> **Two versions of this skill.** Choose the one that fits how you work:
->
-> - 🌐 **Public open-source**: [`AgriciDaniel/claude-blog`](https://github.com/AgriciDaniel/claude-blog). MIT-licensed, public releases, open to anyone. Use this if you want the stable, downloadable, no-membership-required version.
-> - 🔒 **Community private mirror** (this repo): [`AI-Marketing-Hub/claude-blog`](https://github.com/AI-Marketing-Hub/claude-blog). Early access to in-development work (v1.9.0+ Blog Delivery Contract, hero ladder, mutation-tested regression coverage), and direct collaboration with the [AI Marketing Hub Pro](https://www.skool.com/ai-marketing-hub-pro) community. Requires membership.
->
-> The badges above track the **public** repo (`AgriciDaniel/claude-blog`) since the private mirror is not visible to shields.io. The publishing workflow (private dev, review, public release) is documented in [`docs/PUBLISHING.md`](docs/PUBLISHING.md).
+> **Blog:** [See how claude-blog works](https://agricidaniel.com/blog/claude-code-blog-writer) (original author's writeup; this fork is maintained independently by PromptMetrics, see [Authors & Fork Notice](#authors--fork-notice)).
 
-> **Blog:** [See how claude-blog works](https://agricidaniel.com/blog/claude-code-blog-writer)
-
-**claude-blog is a Claude Code skill suite that writes, optimizes, and audits blog content at scale.** Every article is dual-optimized for Google rankings (December 2025 Core Update, E-E-A-T) and AI citation platforms (ChatGPT, Perplexity, AI Overviews). A v1.9.0 5-gate Delivery Contract scores every draft against a 100-point rubric and blocks anything below 90 from reaching you.
+**pm-blog is a Claude Code skill suite that writes, optimizes, and audits blog content at scale.** Every article is dual-optimized for Google rankings (December 2025 Core Update, E-E-A-T) and AI citation platforms (ChatGPT, Perplexity, AI Overviews). A v1.9.0 5-gate Delivery Contract scores every draft against a 100-point rubric and blocks anything below 90 from reaching you.
 
 ## Key takeaways
 
-- **What it is**: a full-lifecycle blog engine: 30 sub-skills, 5 agents, 12 content templates, 21 on-demand references, 9 root-level Python scripts, 160 passing tests.
+- **What it is**: a full-lifecycle blog engine: 30 sub-skills, 5 agents, 12 content templates, 21 on-demand references, 9 root-level Python scripts, 187 passing tests.
 - **Who it is for**: solo bloggers, marketing teams, agencies, and Claude Code skill builders who want production-grade content output, not one-shot drafts.
 - **Core promise**: every draft passes a 5-gate delivery contract (Capability, Format, Visual, Content Review, Asset Integrity) or the writer iterates up to 3 times before escalating to you.
 - **What makes it different**: it eats its own dogfood. Version-coherence is CI-enforced across 14 surfaces, prose-hygiene runs on every PR, three mutation-tested regression suites lock the v1.9.0 fixes, and `blog-reviewer` is a BLOCKING gate, not advisory.
 - **Today**: v1.9.0, released 2026-05-18. Works on Next.js MDX, Astro, Hugo, Jekyll, WordPress, Ghost, 11ty, Gatsby, and static HTML.
 
-## Who is claude-blog for?
+## Who is pm-blog for?
 
-claude-blog serves three audiences with one engine:
+pm-blog serves three audiences with one engine:
 
 **Solo bloggers and creators** who want to ship one high-quality post per week without spending three hours on the SEO checklist. The orchestrator handles research, outline, draft, schema, internal linking, and citation verification in a single `/blog write` invocation.
 
 **Marketing teams and agencies** managing many posts across topics, languages, and platforms. The skill ships topic-cluster planning (`/blog cluster`), multilingual one-command publishing (`/blog multilingual`), cannibalization detection (`/blog cannibalization`), and persona-driven voice profiles (`/blog persona`) so the same engine produces consistent content across the team.
 
-**Claude Code skill builders** who want a production-grade reference for skill architecture, agent dispatch, delivery contracts, and CI gating. The repo demonstrates the Agent Skills open standard at Tier 4 complexity with 160 tests, version-coherence enforcement, installer-sync regression tests, and the v1.9.0 5-gate contract pattern. Read the source for inspiration; fork the patterns into your own skills.
+**Claude Code skill builders** who want a production-grade reference for skill architecture, agent dispatch, delivery contracts, and CI gating. The repo demonstrates the Agent Skills open standard at Tier 4 complexity with 187 tests, version-coherence enforcement, installer-sync regression tests, and the v1.9.0 5-gate contract pattern. Read the source for inspiration; fork the patterns into your own skills.
 
-## What does claude-blog produce?
+## What does pm-blog produce?
 
 Every draft ships as 8 artifacts in a single folder. A condensed specimen of the `.md` output:
 
@@ -86,7 +78,7 @@ Alongside the `.md`, the contract also produces: rendered `.html` (XSS-safe JSON
 - [Demo](#demo)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
-- [How does claude-blog compare?](#how-does-claude-blog-compare)
+- [How does pm-blog compare?](#how-does-pm-blog-compare)
 - [Features](#features)
 - [Delivery contract (v1.9.0)](#delivery-contract-v190)
 - [Architecture](#architecture)
@@ -115,54 +107,48 @@ Alongside the `.md`, the contract also produces: rendered `.html` (XSS-safe JSON
 
 ## Quick Start
 
-> ℹ️ **Which version are you installing?**
->
-> - **Not an AI Marketing Hub Pro member?** Install from the public repo: [`AgriciDaniel/claude-blog`](https://github.com/AgriciDaniel/claude-blog). All the install commands below work there. Just swap `AI-Marketing-Hub/claude-blog` for `AgriciDaniel/claude-blog` and the plugin slug `claude-blog@ai-marketing-hub-claude-blog` for `claude-blog@agricidaniel-claude-blog`. Public releases ship there; this private mirror runs ahead.
-> - **Pro member?** The commands below install the **community version** with early access to in-development features. They require an authenticated `gh auth login` (or GitHub PAT) session with access to the `AI-Marketing-Hub` org. If `/plugin marketplace add` fails with a 404, your account is not in the org yet. DM in the [Skool community](https://www.skool.com/ai-marketing-hub-pro) to get added.
-
 **Plugin Install (Claude Code 1.0.33+):**
 
 ```bash
 # Add marketplace (one-time)
-/plugin marketplace add AI-Marketing-Hub/claude-blog
+/plugin marketplace add promptmetrics/pm-blog
 
 # Install plugin
-/plugin install claude-blog@ai-marketing-hub-claude-blog
+/plugin install pm-blog@pm-blog
 ```
 
-**Recommended: clone, verify, then install** (lets you inspect `install.sh` and pin a release tag):
+**Recommended: clone, verify, then install** (lets you inspect `install.sh` before running it):
 
 ```bash
-git clone https://github.com/AI-Marketing-Hub/claude-blog.git
-cd claude-blog
-git checkout v1.9.0          # pin to a release tag (latest as of 2026-05-18)
+git clone https://github.com/promptmetrics/pm-blog.git
+cd pm-blog
 chmod +x install.sh && ./install.sh
 ```
 
 **One-Command Install (Unix/macOS):**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/AI-Marketing-Hub/claude-blog/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh | bash
 ```
 
 **One-Command Install (Windows PowerShell):**
 
 ```powershell
-irm https://raw.githubusercontent.com/AI-Marketing-Hub/claude-blog/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.ps1 | iex
 ```
 
-> Piping `curl` or `irm` to a shell gives the script execution authority on your machine. The clone-then-checkout-tag flow is safer because you can inspect what runs. Both flows authenticate against the private repo using your existing `gh auth` / GitHub credentials.
+> Piping `curl` or `irm` to a shell gives the script execution authority on your machine. The clone-then-inspect flow is safer because you can review what runs before it does.
 
 **Verify installer integrity (recommended, VULN-IAC-001 hardening):**
 
 ```bash
 # Download, verify SHA-256, then run if the hash matches.
-curl -fsSL -o install.sh https://raw.githubusercontent.com/AI-Marketing-Hub/claude-blog/main/install.sh
-echo "029388e448dd29bed259b130c2be42e2f6a16d4d5b6801a61bfb4f49b621fc04  install.sh" | sha256sum -c
+curl -fsSL -o install.sh https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh
+echo "69fa9814540bda4d2926b8240625737e71de22738e1022bed944f7c632cc7d32  install.sh" | sha256sum -c
 bash install.sh
 ```
 
-The SHA-256 above is for the current `install.sh` at HEAD on `main`. Verify against [the canonical file](https://github.com/AI-Marketing-Hub/claude-blog/blob/main/install.sh) before running. The `install.ps1` companion hash is `6d03f353e5d844c4fe5c7c0b2500bd1e2aad02468cd544013bab876735cebf98`. Hashes are updated in this README on every installer change.
+The SHA-256 above is for the current `install.sh` at HEAD on `main`. Verify against [the canonical file](https://github.com/promptmetrics/pm-blog/blob/main/install.sh) before running. The `install.ps1` companion hash is `fed21d9e03dfefa42e3c69a495367d5874c6f4e35209bc2f86f59e89eec80fd6`. Hashes are updated in this README on every installer change.
 
 Restart Claude Code after installation to activate.
 
@@ -175,7 +161,7 @@ Restart Claude Code after installation to activate.
 </p>
 
 <p align="center">
-  <img src="assets/diagrams/03-sub-skill-map-B.svg" alt="claude-blog sub-skill ecosystem: orchestrator hub at the center with 30 sub-skills organized into 8 thematic clusters (writing, strategy, quality, AI and search, multilingual, research, media, distribution); panel sizes auto-scale to skill counts" width="100%">
+  <img src="assets/diagrams/03-sub-skill-map-B.svg" alt="pm-blog sub-skill ecosystem: orchestrator hub at the center with 30 sub-skills organized into 8 thematic clusters (writing, strategy, quality, AI and search, multilingual, research, media, distribution); panel sizes auto-scale to skill counts" width="100%">
 </p>
 
 | Command | Description |
@@ -210,12 +196,14 @@ Restart Claude Code after installation to activate.
 | `/blog discourse <topic>` | API-free last-30-days discourse research; produces DISCOURSE.md |
 
 > **30 sub-skill directories total**: 29 user-invokable (28 distinct slash commands + `/blog update` aliased to rewrite) + 1 internal-only (`blog-chart`, invoked by blog-write/blog-rewrite for inline SVG charts). `blog-image` is user-invokable AND callable internally.
+>
+> **For PromptMetrics-operated installs**: `BRAND.md` is synced automatically from a private repo (not included in this public fork) rather than authored locally; see `/blog brand sync`.
 
-## How does claude-blog compare?
+## How does pm-blog compare?
 
-claude-blog is a structured pipeline. Direct LLM prompting is a one-shot. Hosted SaaS tools are closed-source. Here is the honest tradeoff matrix:
+pm-blog is a structured pipeline. Direct LLM prompting is a one-shot. Hosted SaaS tools are closed-source. Here is the honest tradeoff matrix:
 
-| Capability | claude-blog | Direct Claude / ChatGPT prompt | Copy.ai / Jasper | Build it yourself |
+| Capability | pm-blog | Direct Claude / ChatGPT prompt | Copy.ai / Jasper | Build it yourself |
 |---|:---:|:---:|:---:|:---:|
 | Full article in one command, with iteration loop | ✅ (5-gate contract, up to 3 retries) | ⚠️ one-shot | ✅ | ❌ |
 | Sourced statistics with verification | ✅ `/blog factcheck` fetches source URLs | ❌ hallucinates | ❌ | ⚠️ manual |
@@ -228,7 +216,7 @@ claude-blog is a structured pipeline. Direct LLM prompting is a one-shot. Hosted
 | Persistent brand and voice context | ✅ BRAND.md + VOICE.md auto-loaded | ❌ per-prompt | ⚠️ limited | ❌ |
 | Open-source, MIT, no usage cost | ✅ free | ❌ subscription | ❌ subscription | ✅ |
 
-claude-blog is not better at everything. Direct prompting is faster for a single throwaway draft. Hosted SaaS is easier for non-developers. DIY is more flexible for unique pipelines. claude-blog fits where you want production-grade content at scale without a SaaS subscription.
+pm-blog is not better at everything. Direct prompting is faster for a single throwaway draft. Hosted SaaS is easier for non-developers. DIY is more flexible for unique pipelines. pm-blog fits where you want production-grade content at scale without a SaaS subscription.
 
 ## Features
 
@@ -331,10 +319,10 @@ Hero image ladder: Banana MCP, direct Gemini API, premium stock (Unsplash, Pexel
 ## Architecture
 
 <p align="center">
-  <img src="assets/diagrams/01-architecture-B.svg" alt="claude-blog system architecture: left-to-right pipeline from user command through orchestrator routing, sub-skill execution, and agent dispatch to the 5-gate delivery contract before reaching the user" width="100%">
+  <img src="assets/diagrams/01-architecture-B.svg" alt="pm-blog system architecture: left-to-right pipeline from user command through orchestrator routing, sub-skill execution, and agent dispatch to the 5-gate delivery contract before reaching the user" width="100%">
 </p>
 
-claude-blog ships as one orchestrator plus 29 sub-skills, 5 agents, 21 references, 12 templates, and 9 root-level scripts. The orchestrator routes user commands to sub-skills, which spawn agents and call scripts via Bash.
+pm-blog ships as one orchestrator plus 29 sub-skills, 5 agents, 21 references, 12 templates, and 9 root-level scripts. The orchestrator routes user commands to sub-skills, which spawn agents and call scripts via Bash.
 
 | Layer | Count | Where |
 |---|---:|---|
@@ -344,7 +332,7 @@ claude-blog ships as one orchestrator plus 29 sub-skills, 5 agents, 21 reference
 | On-demand references | 21 | `skills/blog/references/*.md` |
 | Content templates | 12 | `skills/blog/templates/*.md` |
 | Root-level Python scripts | 9 | `scripts/*.py` |
-| Tests | 160 | `tests/test_*.py` |
+| Tests | 187 | `tests/test_*.py` |
 
 Full directory tree, data flow diagrams, scoring methodology, and extension points: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
@@ -356,7 +344,7 @@ Full directory tree, data flow diagrams, scoring methodology, and extension poin
 
 ### Quality gates (CI-enforced on every PR)
 
-1. **pytest**: 160 tests across security, behavioral, regression, and delivery-contract suites.
+1. **pytest**: 187 tests across security, behavioral, regression, and delivery-contract suites.
 2. **Plugin validation**: `claude plugin validate .` plus hand-rolled JSON/regex checks.
 3. **Stale-path lint**: catches drift in `references/` and `templates/` cross-references.
 4. **Prose hygiene**: `scripts/lint_prose.py` (fence-aware, backtick-aware) enforces the CONTRIBUTING.md no-em-dash, no-en-dash, no-` -- ` rule.
@@ -372,37 +360,34 @@ claude plugin validate .
 
 ## Frequently Asked Questions
 
-### What is claude-blog?
-claude-blog is a Claude Code skill suite for writing, optimizing, and auditing blog content. It runs 30 sub-skills and 5 agents through a 5-gate delivery contract so that every article meets a 90/100 quality bar before it reaches you.
+### What is pm-blog?
+pm-blog is a Claude Code skill suite for writing, optimizing, and auditing blog content. It runs 30 sub-skills and 5 agents through a 5-gate delivery contract so that every article meets a 90/100 quality bar before it reaches you.
 
-### How is claude-blog different from prompting Claude or ChatGPT directly?
-Direct prompting gives you one draft from one prompt. claude-blog gives you a structured pipeline: research with sourced statistics, outline approval, draft generation, multi-pass quality scoring, AI-content detection, fact verification, schema injection, and a blocking review that iterates up to 3 times before delivery. The skill enforces what a senior editor would otherwise do manually.
+### How is pm-blog different from prompting Claude or ChatGPT directly?
+Direct prompting gives you one draft from one prompt. pm-blog gives you a structured pipeline: research with sourced statistics, outline approval, draft generation, multi-pass quality scoring, AI-content detection, fact verification, schema injection, and a blocking review that iterates up to 3 times before delivery. The skill enforces what a senior editor would otherwise do manually.
 
-### Do I need an AI Marketing Hub Pro membership to use claude-blog?
-No. The public open-source version at [`AgriciDaniel/claude-blog`](https://github.com/AgriciDaniel/claude-blog) is MIT-licensed and free for anyone with Claude Code. The private mirror at `AI-Marketing-Hub/claude-blog` is for Pro members who want early access to in-development features and direct collaboration with the community.
-
-### What blog platforms does claude-blog support?
+### What blog platforms does pm-blog support?
 Next.js MDX, Astro, Hugo, Jekyll, WordPress, Ghost, 11ty, Gatsby, and static HTML. The orchestrator auto-detects the platform from project signals and adjusts frontmatter, image embedding, and schema injection accordingly.
 
-### Does claude-blog hallucinate statistics?
+### Does pm-blog hallucinate statistics?
 No. Every cited statistic flows through `/blog factcheck`, which fetches the source URL and scores the claim confidence (exact match, paraphrase, not found). The `blog-reviewer` agent blocks publication if a citation cannot be verified or if AI-content detection flags the prose as machine-generated.
 
 ### What is the 5-gate Blog Delivery Contract?
 A code-enforced pre-presentation pipeline that runs on every draft: Capability Discovery, Format Completeness, Visual Verification at 3 viewport widths, Content Review (BLOCKING; score 90+ and zero P0), and Asset + Link Integrity. The orchestrator iterates the writer up to 3 times on any gate failure before escalating to you. Full spec in [`skills/blog/references/blog-delivery-contract.md`](skills/blog/references/blog-delivery-contract.md).
 
-### Can I use claude-blog in multiple languages?
+### Can I use pm-blog in multiple languages?
 Yes. `/blog multilingual <topic> --languages en,de,fr,es,ja` writes the post, translates it preserving frontmatter and schema, runs cultural deep-adaptation per locale, and emits hreflang tags plus a CMS-ready language map in a single command.
 
-### How do I cite claude-blog in academic work?
-See the [How to cite](#how-to-cite) section below or the [`CITATION.cff`](CITATION.cff) file in the repo root. GitHub surfaces the structured citation file via the "Cite this repository" button on the public mirror page.
+### How do I cite pm-blog in academic work?
+See the [How to cite](#how-to-cite) section below or the [`CITATION.cff`](CITATION.cff) file in the repo root. GitHub surfaces the structured citation file via the "Cite this repository" button on the repository page.
 
-### Is claude-blog secure to install?
+### Is pm-blog secure to install?
 The installer ships only Python scripts and markdown files, never executes remote code beyond what `pip install -r requirements.txt` brings in, and is reviewed against the project [`SECURITY.md`](SECURITY.md) policy on every change. The clone-then-checkout-tag install flow lets you inspect `install.sh` before running it. See [`SECURITY.md`](SECURITY.md) for the full threat model.
 
 ## Roadmap
 
 <p align="center">
-  <img src="assets/diagrams/05-roadmap-A.svg" alt="claude-blog wave roadmap on a horizontal timeline: v1.6.0 foundation (Mar 2026), v1.7.0 FLOW framework (Apr 2026), v1.8.0 impeccable methodology (May 2026), v1.9.0 delivery contract (current, May 2026), v2.0.0 multi-CMS publishing (Q3 2026), v3.0.0 blog-as-code (Q1 2027)" width="100%">
+  <img src="assets/diagrams/05-roadmap-A.svg" alt="pm-blog wave roadmap on a horizontal timeline: v1.6.0 foundation (Mar 2026), v1.7.0 FLOW framework (Apr 2026), v1.8.0 impeccable methodology (May 2026), v1.9.0 delivery contract (current, May 2026), v2.0.0 multi-CMS publishing (Q3 2026), v3.0.0 blog-as-code (Q1 2027)" width="100%">
 </p>
 
 **v1.9.1 (next)**
@@ -462,7 +447,7 @@ Detailed documentation is in [`docs/`](docs/):
 
 ## How to cite
 
-If you use claude-blog in research or production, please cite the project:
+pm-blog is a fork of claude-blog; cite the original project this way (unmodified from upstream, per MIT attribution):
 
 ```bibtex
 @software{Agrici_claude_blog_2026,
@@ -475,7 +460,7 @@ If you use claude-blog in research or production, please cite the project:
 }
 ```
 
-GitHub also surfaces the structured [`CITATION.cff`](CITATION.cff) file via "Cite this repository" on the public mirror page.
+GitHub also surfaces the structured [`CITATION.cff`](CITATION.cff) file via "Cite this repository" on the repository page.
 
 ## Security & Code of Conduct
 
@@ -486,7 +471,7 @@ GitHub also surfaces the structured [`CITATION.cff`](CITATION.cff) file via "Cit
 
 Contributions welcome. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines. Before opening a PR:
 
-1. Run `python -m pytest tests/` (all 160 must pass).
+1. Run `python -m pytest tests/` (all 187 must pass).
 2. Run `python3 scripts/lint_prose.py --root .` (zero violations).
 3. Run `claude plugin validate .` (must pass).
 4. Bump versions coherently if you touch user-visible counts or behavior (see [`docs/PUBLISHING.md`](docs/PUBLISHING.md)).
@@ -499,8 +484,6 @@ MIT License. See [`LICENSE`](LICENSE) for details.
 
 - **[Rankenstein](https://rankenstein.pro)**: GUI-based content publishing workflow; research to publish in one platform.
 - **[FLOW framework](https://github.com/AgriciDaniel/flow)**: Evidence-led Find, Optimize, Win prompts (CC BY 4.0). Integrated as a sub-skill via `/blog flow`.
-- **[Claude Ads](https://github.com/AgriciDaniel/claude-ads)** and **[Claude SEO](https://github.com/AgriciDaniel/claude-seo)**: sibling skills sharing the same brand kit (banner + diagrams generated with the brand-orange palette).
-- **[AI Marketing Hub](https://www.skool.com/ai-marketing-hub)**: Free community, 2,800+ members. Pro tier at [`ai-marketing-hub-pro`](https://www.skool.com/ai-marketing-hub-pro) hosts this skill's private mirror.
 
 ## Star history
 
@@ -514,11 +497,13 @@ MIT License. See [`LICENSE`](LICENSE) for details.
 
 If claude-blog saves you time, a star on the [public repo](https://github.com/AgriciDaniel/claude-blog) is the easiest way to say thanks (and helps other content folks find it).
 
-## Author
+## Authors & Fork Notice
 
-Built by [Daniel Agrici](https://agricidaniel.com/about), AI Workflow Architect, with Claude Code.
+**Original author:** Built by [Daniel Agrici](https://agricidaniel.com/about), AI Workflow Architect, with Claude Code, as `claude-blog`.
 
 - [Blog](https://agricidaniel.com/blog): Deep dives on AI marketing automation.
 - [YouTube](https://www.youtube.com/@AgriciDaniel): Tutorials and demos.
 - [All open-source tools](https://github.com/AgriciDaniel): Other Claude Code skills.
 - [AI Marketing Hub](https://www.skool.com/ai-marketing-hub): Free community for AI-powered marketing.
+
+**Fork maintained by:** [PromptMetrics](https://github.com/promptmetrics), forked at `claude-blog` v1.9.1 to add multi-writer BRAND.md/VOICE.md support. MIT-licensed, same as upstream; see [`LICENSE`](LICENSE).

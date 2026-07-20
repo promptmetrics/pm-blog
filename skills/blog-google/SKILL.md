@@ -14,8 +14,8 @@ user-invokable: true
 argument-hint: "[setup|pagespeed|crux|crux-history|gsc|inspect|index|ga4|nlp|youtube|keywords|report|quotas] [url|property|query]"
 license: MIT
 metadata:
-  author: AgriciDaniel
-  version: "1.9.1"
+  author: PromptMetrics
+  version: "0.1.0"
   category: blog
 ---
 

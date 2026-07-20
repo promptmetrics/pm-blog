@@ -13,8 +13,8 @@ user-invokable: true
 argument-hint: "[ask|discover|library|setup|status|cleanup] [question-or-url]"
 license: MIT
 metadata:
-  author: AgriciDaniel
-  version: "1.9.1"
+  author: PromptMetrics
+  version: "0.1.0"
   source: "https://github.com/PleasePrompto/notebooklm-skill"
 ---
 

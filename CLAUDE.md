@@ -1,8 +1,8 @@
-# Claude Blog - Blog Creation & Optimization Skill
+# pm-blog - Blog Creation & Optimization Skill
 
 ## Project Overview
 
-This repository contains **Claude Blog**, a Tier 4 Claude Code skill for blog content
+This repository contains **pm-blog**, a Tier 4 Claude Code skill for blog content
 creation, optimization, and management. It follows the Agent Skills open standard and the
 3-layer architecture (directive, orchestration, execution). 30 sub-skills, 5 specialized
 subagents, 12 content templates, and 21 reference docs are dual-optimized for Google rankings
@@ -17,7 +17,7 @@ prose hygiene via `scripts/lint_prose.py` (v1.8.4+), and the 5-gate Blog Deliver
 ## Architecture
 
 ```
-claude-blog/
+pm-blog/
   CLAUDE.md                          # Project instructions (this file)
   CONTRIBUTORS.md                    # Pro Hub Challenge attribution and integration decisions
   CHANGELOG.md                       # Keep a Changelog format
@@ -34,6 +34,8 @@ claude-blog/
   scripts/load_untrusted_root.py     # Code-enforced fence helper for BRAND/VOICE/DISCOURSE (v1.8.3)
   scripts/lint_prose.py              # Fence-aware prose-hygiene linter (v1.8.4; CI-enforced)
   scripts/sync_flow.py               # Pulls FLOW references (stdlib, sandboxed)
+  scripts/sync-brand.sh               # Pulls BRAND.md from a private repo (POSIX sh, sandboxed)
+  scripts/brand-sync.example.json     # Template for ${CLAUDE_PLUGIN_DATA}/brand-sync.json
   skills/                            # 30 sub-skills (blog/ is the orchestrator)
     blog/SKILL.md                   # Main orchestrator, routing, scoring
       references/                   # 21 on-demand knowledge files (5 in v1.8.0, 1 in v1.9.0)
@@ -94,8 +96,26 @@ claude-blog/
     blog-seo.md                     # SEO validation
     blog-reviewer.md                # Quality scoring (no Bash, post v1.7.0 hardening)
     blog-translator.md              # Multilingual translation (no Bash, v1.7.0)
-  tests/                             # pytest suite (160 tests) incl. test_blog_delivery_contract.py + test_security_guardrails.py
+  tests/                             # pytest suite (187 tests) incl. test_blog_delivery_contract.py + test_security_guardrails.py
 ```
+
+## Brand & Voice Sync (multi-writer)
+
+`BRAND.md` is synced read-only from a private repo via `scripts/sync-brand.sh`
+into `${CLAUDE_PLUGIN_DATA}/BRAND.md`, gated by
+`${CLAUDE_PLUGIN_DATA}/brand-sync.json` (TTL default 900s, non-blocking, fails
+open). `VOICE.md` is per-writer instead, keyed by the writer identity cached
+at `${CLAUDE_PLUGIN_DATA}/.user-name`, and is never synced from any repo.
+
+Both files are materialized to the project root by the orchestrator's Writer
+Resolution & Brand/Voice Materialization step
+(`skills/blog/SKILL.md`) before the existing, unmodified v1.8.0 auto-load
+step reads them via `scripts/load_untrusted_root.py`. There is no push
+path anywhere in this plugin: a human edits and pushes `BRAND.md` to the
+private repo directly.
+
+Full design: `docs/superpowers/specs/2026-07-20-pm-blog-fork-design.md`
+(local, gitignored; not shipped with the public repo).
 
 ## Commands
 
@@ -154,21 +174,11 @@ Submit at: claude.ai/settings/plugins/submit or platform.claude.com/plugins/subm
 
 ### Self-Hosted Marketplace
 ```
-/plugin marketplace add AgriciDaniel/claude-blog
-/plugin install claude-blog@AgriciDaniel-claude-blog
+/plugin marketplace add promptmetrics/pm-blog
+/plugin install pm-blog@pm-blog
 ```
 
 ### Standalone Install (no marketplace)
 ```bash
-curl -sL https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.sh | bash
+curl -sL https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh | bash
 ```
-
-## Release Blog Post
-
-After cutting a new release (git tag + `gh release create`), run:
-
-```
-/release-blog
-```
-
-This generates a blog post on https://claude-blog.md/blog/, handles cover image generation, SEO metadata, FAQ schema, internal linking, sitemap/llms.txt updates, Vercel deployment, and Google indexing.

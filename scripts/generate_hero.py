@@ -43,7 +43,7 @@ OPENVERSE_API = "https://api.openverse.engineering/v1/images/"
 UNSPLASH_API = "https://api.unsplash.com/search/photos"
 PEXELS_API = "https://api.pexels.com/v1/search"
 PIXABAY_API = "https://pixabay.com/api/"
-USER_AGENT = "claude-blog/1.9.0 (+https://github.com/AgriciDaniel/claude-blog)"
+USER_AGENT = "pm-blog/1.9.0 (+https://github.com/promptmetrics/pm-blog)"
 HTTP_TIMEOUT = 20
 
 # VULN-801 SSRF guard (v1.9.1):

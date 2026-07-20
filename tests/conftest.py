@@ -1,4 +1,4 @@
-"""Shared fixtures for claude-blog tests."""
+"""Shared fixtures for pm-blog tests."""
 
 import sys
 from pathlib import Path

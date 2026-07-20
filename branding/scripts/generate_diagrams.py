@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-claude-blog brand-kit generator.
+pm-blog brand-kit generator.
 
 Same brand system as claude-ads + claude-seo v2.x: OS-window-framed dark CRT
 terminal with BRAND-ORANGE accent palette. Applies all layout fixes proven in
@@ -35,7 +35,7 @@ ASSETS.mkdir(parents=True, exist_ok=True)
 DIAG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ============================================================================
-# BRAND-ORANGE PALETTE — unified across claude-ads + claude-seo + claude-blog
+# BRAND-ORANGE PALETTE — unified across claude-ads + claude-seo + pm-blog
 # ============================================================================
 ACCENT          = "#D97757"
 ACCENT_BRIGHT   = "#F5B095"
@@ -107,9 +107,9 @@ def window_chrome(w, title):
 '''
 
 
-def svg(viewbox_w, viewbox_h, body, corner="claude-blog · v1.9.0", win_title=None):
+def svg(viewbox_w, viewbox_h, body, corner="pm-blog · v1.9.0", win_title=None):
     if win_title is None:
-        win_title = f"claude-blog.app — {corner}"
+        win_title = f"pm-blog.app — {corner}"
     total_h = viewbox_h + TITLE_H
     chrome = window_chrome(viewbox_w, win_title)
     inner_corner = f'<text x="{viewbox_w-20}" y="{viewbox_h-12}" class="corner-mark" text-anchor="end">{corner}</text>'
@@ -162,7 +162,7 @@ def line_only(x1, y1, x2, y2, klass="conn-soft"):
 
 
 # ============================================================================
-# CLAUDE-BLOG CONTENT
+# PM-BLOG CONTENT
 # ============================================================================
 # 29 sub-skills grouped into 8 categories. (The orchestrator at skills/blog/
 # is the hub — total surface = 30 skills as advertised in plugin.json.)

@@ -1,6 +1,6 @@
-# Contributing to claude-blog
+# Contributing to pm-blog
 
-Thank you for your interest in contributing to claude-blog!
+Thank you for your interest in contributing to pm-blog!
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ Thank you for your interest in contributing to claude-blog!
 ### Project Structure
 
 ```
-claude-blog/
+pm-blog/
 ├── .claude-plugin/          # Plugin metadata
 │   ├── plugin.json          # Manifest
 │   └── marketplace.json     # Marketplace catalog entry
@@ -82,6 +82,6 @@ claude-blog/
 
 ## Reporting Issues
 
-- Bugs / feature requests: open an issue at https://github.com/AgriciDaniel/claude-blog/issues (templates in `.github/ISSUE_TEMPLATE/`).
-- Questions and ideas: use [GitHub Discussions](https://github.com/AgriciDaniel/claude-blog/discussions).
+- Bugs / feature requests: open an issue at https://github.com/promptmetrics/pm-blog/issues (templates in `.github/ISSUE_TEMPLATE/`).
+- Questions and ideas: use [GitHub Discussions](https://github.com/promptmetrics/pm-blog/discussions).
 - Security disclosures: see [SECURITY.md](SECURITY.md) for the private reporting channel; do NOT open public issues for vulnerabilities.

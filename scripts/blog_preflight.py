@@ -48,7 +48,7 @@ VIEWPORTS = [
     {"name": "desktop", "width": 1280, "height": 800},
 ]
 HEAD_TIMEOUT = 10
-USER_AGENT = "claude-blog/1.9.0 preflight (+https://github.com/AgriciDaniel/claude-blog)"
+USER_AGENT = "pm-blog/1.9.0 preflight (+https://github.com/promptmetrics/pm-blog)"
 URL_ALLOWLIST = ("localhost", "127.0.0.1", "example.com", "example.org")
 
 # VULN-802 code-enforced iteration counter (v1.9.1).

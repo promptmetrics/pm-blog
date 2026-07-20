@@ -9,6 +9,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 _No unreleased changes._
 
+## [0.1.0] - 2026-07-20
+
+PromptMetrics forked `claude-blog` at v1.9.1 (`AgriciDaniel/claude-blog`)
+into `promptmetrics/pm-blog`, to own the blog pipeline directly and add
+native multi-writer support. Version numbering starts fresh at `0.1.0`
+for this fork's own release line; see the "How to cite" section of
+`README.md` and `CITATION.cff` for the preserved original citation.
+
+### Added
+- Rebrand sweep: renamed the plugin, package, install scripts, CI config,
+  generated diagram assets, and every `skills/**` SKILL.md/reference/
+  script from `claude-blog`/`AgriciDaniel` to `pm-blog`/`PromptMetrics`.
+  Preserved untouched: `LICENSE`, `NOTICE`, `CONTRIBUTORS.md`, historical
+  CHANGELOG entries, the `upstream` git remote, the FLOW framework's CC BY
+  4.0 attribution (`github.com/AgriciDaniel/flow`, a different upstream,
+  synced via `scripts/sync_flow.py`), and third-party contributor credit
+  (`claude-blog-multilingual` by Chris Mueller). Removed the
+  AI-Marketing-Hub dual public/private-mirror distribution model entirely,
+  since pm-blog is a single PromptMetrics-owned repo, not a paid-community
+  mirror; `README.md` gains an Authors & Fork Notice section instead.
+- `scripts/sync-brand.sh` + `scripts/brand-sync.example.json`: TTL-gated,
+  non-blocking sync of `BRAND.md` from a private git repo into
+  `${CLAUDE_PLUGIN_DATA}/BRAND.md`, for the multi-writer brand/voice layer.
+- `skills/blog-brand/SKILL.md`: new `/blog brand sync` sub-command and a
+  precedence rule so `init`/`update` never clobber a sync-managed BRAND.md.
+- `skills/blog/SKILL.md`: new "Writer Resolution & Brand/Voice
+  Materialization" orchestrator step, gated on `${CLAUDE_PLUGIN_DATA}`/
+  `${CLAUDE_PLUGIN_ROOT}` being set, that runs the brand sync and
+  materializes per-writer VOICE.md and synced BRAND.md to the project root
+  before the existing v1.8.0 auto-load step runs unchanged.
+
+### Changed
+- **Breaking**: `skills/blog-persona/SKILL.md` drops `/blog persona list`
+  and `/blog persona use <name>`. One writer, resolved automatically by the
+  orchestrator, has exactly one evolving `persona.json`; there is no
+  library of named personas to list or switch between. The persona is
+  now saved at `${CLAUDE_PLUGIN_DATA}/personas/<writer>/persona.json`
+  instead of `skills/blog/references/personas/<name>.json`.
+- `.github/CODEOWNERS`: `@AgriciDaniel` replaced with `@iiizzzyyy` as sole
+  path owner.
+
+### Removed
+- `.github/FUNDING.yml`: deleted (no PromptMetrics sponsors target exists).
+
 ## [1.9.1] - 2026-05-18
 
 ### Security hardening pass (11 commits)

@@ -3,7 +3,7 @@
 ## Our Pledge
 
 We as members, contributors, and leaders pledge to make participation in the
-claude-blog community a harassment-free experience for everyone, regardless of age,
+pm-blog community a harassment-free experience for everyone, regardless of age,
 body size, visible or invisible disability, ethnicity, sex characteristics, gender
 identity and expression, level of experience, education, socio-economic status,
 nationality, personal appearance, race, caste, color, religion, or sexual identity
@@ -44,9 +44,9 @@ individual is officially representing the community in public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported
-by opening a [GitHub Security Advisory](https://github.com/AgriciDaniel/claude-blog/security/advisories/new)
+by opening a [GitHub Security Advisory](https://github.com/promptmetrics/pm-blog/security/advisories/new)
 (for private reporting) or by contacting the maintainer via
-[GitHub profile](https://github.com/AgriciDaniel).
+[GitHub profile](https://github.com/promptmetrics).
 
 All complaints will be reviewed and investigated promptly and fairly.
 

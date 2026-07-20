@@ -1,10 +1,10 @@
 # MCP Integration Guide
 
 Optional Model Context Protocol (MCP) server integrations that extend
-`claude-blog` with live data from SEO platforms, analytics services, and
+`pm-blog` with live data from SEO platforms, analytics services, and
 performance monitoring tools.
 
-**Important**: `claude-blog` works fully without any MCP servers. These
+**Important**: `pm-blog` works fully without any MCP servers. These
 integrations are optional enhancements for teams that already use these
 platforms.
 
@@ -14,7 +14,7 @@ platforms.
 
 ```
                     +---------------------------+
-                    |      claude-blog          |
+                    |      pm-blog              |
                     |    /blog commands          |
                     +------+----+----+----------+
                            |    |    |
@@ -93,7 +93,7 @@ python3 skills/blog-image/scripts/validate_image_setup.py
 
 ## DataForSEO MCP (Recommended)
 
-**DataForSEO is the recommended MCP integration for `claude-blog`.** It provides
+**DataForSEO is the recommended MCP integration for `pm-blog`.** It provides
 a single unified API covering SERP data, keyword research, backlink analysis,
 on-page auditing, domain analytics, content analysis, and AI optimization,
 replacing the need for separate Ahrefs, Semrush, GSC, and PageSpeed integrations.
@@ -551,7 +551,7 @@ Then reference them in settings:
 
 ### Content Decay Detection (GSC + Blog Audit)
 
-Combine Google Search Console data with `claude-blog`'s quality scoring to
+Combine Google Search Console data with `pm-blog`'s quality scoring to
 identify posts that need immediate attention:
 
 ```

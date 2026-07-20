@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Common issues, their causes, and fixes for `claude-blog`. Issues are grouped
+Common issues, their causes, and fixes for `pm-blog`. Issues are grouped
 by category and ordered from most to least common.
 
 ---
@@ -84,7 +84,7 @@ system."
 **Fix**:
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-irm https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.ps1 | iex
 ```
 
 ---
@@ -370,9 +370,9 @@ python3 analyze_blog.py posts/drafts/ --batch  # Only drafts
 
 If your issue is not listed here:
 
-1. **Check the version**: Ensure you have the latest `claude-blog` installed:
+1. **Check the version**: Ensure you have the latest `pm-blog` installed:
    ```bash
-   cd claude-blog && git pull && ./install.sh
+   cd pm-blog && git pull && ./install.sh
    ```
 
 2. **Verify file integrity**: Compare installed files with the repository:
@@ -385,4 +385,4 @@ If your issue is not listed here:
    ./uninstall.sh && ./install.sh
    ```
 
-4. **Open an issue**: https://github.com/AgriciDaniel/claude-blog/issues
+4. **Open an issue**: https://github.com/promptmetrics/pm-blog/issues

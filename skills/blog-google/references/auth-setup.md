@@ -15,7 +15,7 @@ Four credential tiers serve different API combinations:
 
 1. Go to [console.cloud.google.com](https://console.cloud.google.com)
 2. Click **Select a project** > **New Project**
-3. Name it (e.g., "Claude Blog") and note the project ID
+3. Name it (e.g., "pm-blog") and note the project ID
 4. Select the project after creation
 
 ## Step 2: Enable APIs
@@ -42,7 +42,7 @@ Navigate to **APIs & Services > Library** and enable:
 ## Step 4: Create a Service Account (Tier 1)
 
 1. **IAM & Admin > Service Accounts > Create Service Account**
-2. Name: `claude-blog` (or similar)
+2. Name: `pm-blog` (or similar)
 3. Skip optional permissions steps
 4. Click on the created service account > **Keys > Add Key > Create new key > JSON**
 5. Download and store securely (e.g., `~/.config/claude-seo/service_account.json`)

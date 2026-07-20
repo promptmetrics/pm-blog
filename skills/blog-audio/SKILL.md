@@ -13,8 +13,8 @@ user-invokable: true
 argument-hint: "[generate|voices|setup] [file-or-text] [--mode summary|full|dialogue] [--voice name]"
 license: MIT
 metadata:
-  author: AgriciDaniel
-  version: "1.9.1"
+  author: PromptMetrics
+  version: "0.1.0"
 ---
 
 # Blog Audio: Gemini TTS Narration for Blog Posts

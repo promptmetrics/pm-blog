@@ -1,15 +1,15 @@
 # Default owner for all files
-* @AgriciDaniel
+* @iiizzzyyy
 
 # Security-critical paths require explicit review
-skills/ @AgriciDaniel
-agents/ @AgriciDaniel
-.claude-plugin/ @AgriciDaniel
-.mcp.json @AgriciDaniel
-.mcp.example.json @AgriciDaniel
-.gitignore @AgriciDaniel
-install.sh @AgriciDaniel
-install.ps1 @AgriciDaniel
-uninstall.sh @AgriciDaniel
-uninstall.ps1 @AgriciDaniel
-.github/workflows/ @AgriciDaniel
+skills/ @iiizzzyyy
+agents/ @iiizzzyyy
+.claude-plugin/ @iiizzzyyy
+.mcp.json @iiizzzyyy
+.mcp.example.json @iiizzzyyy
+.gitignore @iiizzzyyy
+install.sh @iiizzzyyy
+install.ps1 @iiizzzyyy
+uninstall.sh @iiizzzyyy
+uninstall.ps1 @iiizzzyyy
+.github/workflows/ @iiizzzyyy

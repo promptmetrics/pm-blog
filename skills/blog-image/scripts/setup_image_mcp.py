@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Setup script for nanobanana-mcp in claude-blog.
+Setup script for nanobanana-mcp in pm-blog.
 
 Configures @ycse/nanobanana-mcp in Claude Code's global settings.json
 (default) or the project's .mcp.json (with --project flag).
@@ -24,12 +24,12 @@ MCP_PACKAGE = "@ycse/nanobanana-mcp"
 DEFAULT_MODEL = "gemini-3.1-flash-image-preview"
 PINNED_PACKAGE = "@ycse/nanobanana-mcp@1.1.1"  # latest stable as of 2026-04-27
 ENV_PLACEHOLDER = "${GOOGLE_AI_API_KEY}"
-PLUGIN_NAME = "claude-blog"
+PLUGIN_NAME = "pm-blog"
 GLOBAL_SETTINGS_PATH = Path.home() / ".claude" / "settings.json"
 
 
 def find_project_mcp_json() -> Path:
-    """Find the project-level .mcp.json by locating .claude-plugin/plugin.json with name=='claude-blog'."""
+    """Find the project-level .mcp.json by locating .claude-plugin/plugin.json with name=='pm-blog'."""
     def matches(plugin_path: Path) -> bool:
         try:
             import json as _json
@@ -250,7 +250,7 @@ def main() -> None:
         api_key = os.environ.get("GOOGLE_AI_API_KEY")
 
     if not api_key:
-        print("claude-blog - Image Generation MCP Setup")
+        print("pm-blog - Image Generation MCP Setup")
         print("=" * 45)
         print(f"\nGet your free API key at: https://aistudio.google.com/apikey")
         print()

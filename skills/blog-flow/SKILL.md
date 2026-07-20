@@ -11,8 +11,8 @@ argument-hint: "[stage] [url|topic]"
 license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for the sync script
 metadata:
-  author: AgriciDaniel
-  version: "1.9.1"
+  author: PromptMetrics
+  version: "0.1.0"
   category: blog
 ---
 
@@ -20,7 +20,7 @@ metadata:
 
 > Framework and prompts (c) Daniel Agrici, CC BY 4.0. Source: github.com/AgriciDaniel/flow
 
-FLOW is an evidence-led operating model built for the AI-search era. Claude Blog
+FLOW is an evidence-led operating model built for the AI-search era. pm-blog
 integrates the FLOW prompt library so writers can drive their workflow with
 structured, source-backed AI prompts instead of improvised queries.
 

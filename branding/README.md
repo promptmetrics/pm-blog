@@ -1,6 +1,6 @@
-# claude-blog brand system
+# pm-blog brand system
 
-Source-of-truth visual assets for the `claude-blog` skill suite. Same brand
+Source-of-truth visual assets for the `pm-blog` skill suite. Same brand
 system as `claude-ads` and `claude-seo` v2.x: OS-window-framed dark CRT
 terminal with BRAND-ORANGE accent palette unified across all three products.
 
@@ -59,7 +59,7 @@ the Inter and JetBrains Mono font stack with system-monospace fallbacks.
 
 ```html
 <img src="assets/diagrams/03-sub-skill-map-B.svg"
-     alt="claude-blog sub-skill ecosystem: orchestrator hub + 8 categories"
+     alt="pm-blog sub-skill ecosystem: orchestrator hub + 8 categories"
      width="100%">
 ```
 
@@ -100,8 +100,9 @@ diagrams are STATIC. Reading text benefits from zero competing motion.
 
 This brand system was first established in `AgriciDaniel/claude-ads`
 `branding/` and `AgriciDaniel/claude-seo` `branding/` v2.x. The
-`claude-blog` adaptation uses the shared `BRAND-ORANGE` palette (not a
-per-product accent), matching the v2.x cross-product convention.
+`pm-blog` adaptation (forked from `claude-blog`) uses the shared
+`BRAND-ORANGE` palette (not a per-product accent), matching the v2.x
+cross-product convention.
 
 The earlier per-product purple SVG kit (committed in `b7fa616`) was
 sunset in this revision in favor of the unified brand-orange system.

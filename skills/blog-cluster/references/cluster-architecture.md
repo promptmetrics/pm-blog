@@ -29,7 +29,7 @@ AI citation systems.
 ```
 
 For deeper background on link architecture and anchor distribution rules
-shared across all claude-blog skills, see `skills/blog/references/internal-linking.md`.
+shared across all pm-blog skills, see `skills/blog/references/internal-linking.md`.
 This document focuses on the cluster-specific overlay.
 
 ## Pillar (hub) anatomy

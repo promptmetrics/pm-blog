@@ -1,0 +1,7 @@
+{
+  "repo": "",
+  "branch": "main",
+  "auth": "auto",
+  "ttl_seconds": 900,
+  "enabled": true
+}
