@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-_No unreleased changes._
+### Added
+- `scripts/sync-brand.sh` + `scripts/brand-sync.example.json`: TTL-gated,
+  non-blocking sync of `BRAND.md` from a private git repo into
+  `${CLAUDE_PLUGIN_DATA}/BRAND.md`, for the multi-writer brand/voice layer.
 
 ## [1.9.1] - 2026-05-18
 
