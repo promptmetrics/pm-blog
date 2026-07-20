@@ -1,4 +1,4 @@
-"""Mechanical security and quality guardrails for the claude-blog repo.
+"""Mechanical security and quality guardrails for the pm-blog repo.
 
 These tests enforce invariants that complement the rules documented in
 CLAUDE.md. Rules in prose can drift; assertions in pytest cannot. If any of
