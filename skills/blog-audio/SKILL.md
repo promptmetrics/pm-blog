@@ -14,7 +14,7 @@ argument-hint: "[generate|voices|setup] [file-or-text] [--mode summary|full|dial
 license: MIT
 metadata:
   author: PromptMetrics
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # Blog Audio: Gemini TTS Narration for Blog Posts
