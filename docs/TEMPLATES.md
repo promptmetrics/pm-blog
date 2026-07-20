@@ -1,6 +1,6 @@
 # Content Templates
 
-Reference guide for the 12 content type templates included with `claude-blog`.
+Reference guide for the 12 content type templates included with `pm-blog`.
 Templates provide structural blueprints for different article types, ensuring
 consistent quality and optimization across all content.
 

@@ -1,6 +1,6 @@
 # Installation Guide
 
-This guide covers all installation methods for `claude-blog`, a Claude Code skill
+This guide covers all installation methods for `pm-blog`, a Claude Code skill
 ecosystem for blog content creation, optimization, and management.
 
 ## Prerequisites
@@ -11,7 +11,7 @@ ecosystem for blog content creation, optimization, and management.
 | Python | 3.11+ | Quality scoring + 5-gate delivery contract runners (analyze_blog, blog_preflight, blog_render, generate_hero, lint_prose, ...) |
 | pip | Latest | Python dependency management |
 
-Claude Code must be installed and configured before installing `claude-blog`.
+Claude Code must be installed and configured before installing `pm-blog`.
 Python is only required for the `analyze_blog.py` quality scoring script; all
 other commands work without it.
 
@@ -22,13 +22,13 @@ other commands work without it.
 ### Linux / macOS
 
 ```bash
-curl -sL https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.sh | bash
+curl -sL https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh | bash
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-iex (irm https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.ps1)
+iex (irm https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.ps1)
 ```
 
 Both installers automatically copy all skills, agents, references, templates,
@@ -39,8 +39,8 @@ and scripts to the correct Claude Code configuration directories.
 ## Standard Install (Git Clone)
 
 ```bash
-git clone https://github.com/AgriciDaniel/claude-blog.git
-cd claude-blog
+git clone https://github.com/promptmetrics/pm-blog.git
+cd pm-blog
 chmod +x install.sh
 ./install.sh
 ```
@@ -203,7 +203,7 @@ chmod +x ~/.claude/skills/blog-image/scripts/*.py
 
 ## Optional: AI Image Generation
 
-`claude-blog` can generate custom blog images via Gemini AI (hero images, inline
+`pm-blog` can generate custom blog images via Gemini AI (hero images, inline
 illustrations, social cards). This requires the nanobanana-mcp server and a free
 Google AI API key.
 
@@ -301,7 +301,7 @@ options:
 Pull the latest changes and re-run the installer:
 
 ```bash
-cd claude-blog
+cd pm-blog
 git pull
 ./install.sh
 ```
@@ -316,7 +316,7 @@ at any time. Restart Claude Code after updating.
 ### Automated Uninstall (Unix)
 
 ```bash
-# From the claude-blog repository
+# From the pm-blog repository
 chmod +x uninstall.sh
 ./uninstall.sh
 ```

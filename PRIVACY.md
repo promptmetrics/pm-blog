@@ -44,7 +44,7 @@ If any of these files contain confidential information (competitor positioning, 
 
 ## Contact
 
-For privacy questions, open an issue at: https://github.com/AgriciDaniel/claude-blog/issues
+For privacy questions, open an issue at: https://github.com/promptmetrics/pm-blog/issues
 
 ## Last Updated
 

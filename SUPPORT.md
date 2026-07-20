@@ -13,12 +13,12 @@ Full documentation is available in the [`docs/`](docs/) directory:
 
 ### Bug Reports
 
-Found a bug? [Open an issue](https://github.com/AgriciDaniel/claude-blog/issues/new/choose)
+Found a bug? [Open an issue](https://github.com/promptmetrics/pm-blog/issues/new/choose)
 using the Bug Report template.
 
 ### Feature Requests
 
-Have an idea? [Open a feature request](https://github.com/AgriciDaniel/claude-blog/issues/new/choose)
+Have an idea? [Open a feature request](https://github.com/promptmetrics/pm-blog/issues/new/choose)
 using the Feature Request template.
 
 ### Security Issues

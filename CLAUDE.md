@@ -17,7 +17,7 @@ prose hygiene via `scripts/lint_prose.py` (v1.8.4+), and the 5-gate Blog Deliver
 ## Architecture
 
 ```
-claude-blog/
+pm-blog/
   CLAUDE.md                          # Project instructions (this file)
   CONTRIBUTORS.md                    # Pro Hub Challenge attribution and integration decisions
   CHANGELOG.md                       # Keep a Changelog format
@@ -94,7 +94,7 @@ claude-blog/
     blog-seo.md                     # SEO validation
     blog-reviewer.md                # Quality scoring (no Bash, post v1.7.0 hardening)
     blog-translator.md              # Multilingual translation (no Bash, v1.7.0)
-  tests/                             # pytest suite (160 tests) incl. test_blog_delivery_contract.py + test_security_guardrails.py
+  tests/                             # pytest suite (187 tests) incl. test_blog_delivery_contract.py + test_security_guardrails.py
 ```
 
 ## Commands
@@ -154,21 +154,11 @@ Submit at: claude.ai/settings/plugins/submit or platform.claude.com/plugins/subm
 
 ### Self-Hosted Marketplace
 ```
-/plugin marketplace add AgriciDaniel/claude-blog
-/plugin install claude-blog@AgriciDaniel-claude-blog
+/plugin marketplace add promptmetrics/pm-blog
+/plugin install pm-blog@pm-blog
 ```
 
 ### Standalone Install (no marketplace)
 ```bash
-curl -sL https://raw.githubusercontent.com/AgriciDaniel/claude-blog/main/install.sh | bash
+curl -sL https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh | bash
 ```
-
-## Release Blog Post
-
-After cutting a new release (git tag + `gh release create`), run:
-
-```
-/release-blog
-```
-
-This generates a blog post on https://claude-blog.md/blog/, handles cover image generation, SEO metadata, FAQ schema, internal linking, sitemap/llms.txt updates, Vercel deployment, and Google indexing.

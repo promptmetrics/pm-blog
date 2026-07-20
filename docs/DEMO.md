@@ -1,4 +1,4 @@
-# claude-blog v1.7.1: Demo Runbook
+# pm-blog v1.7.1: Demo Runbook
 
 End-to-end demo flow that exercises every wired integration: YouTube
 embedding (blog-google), keyword research (DataForSEO MCP), AI image
@@ -21,7 +21,7 @@ populated by sourcing the gitignored `.env.local`. Restart Claude Code
 after sourcing so the MCP subprocess inherits the values.
 
 ```bash
-cd /home/agricidaniel/Desktop/claude-blog
+cd /home/agricidaniel/Desktop/pm-blog
 source .env.local
 echo "GOOGLE_AI_API_KEY length: ${#GOOGLE_AI_API_KEY}"     # should print 39
 echo "DATAFORSEO_USERNAME set:  ${DATAFORSEO_USERNAME:+yes}"  # should print yes
