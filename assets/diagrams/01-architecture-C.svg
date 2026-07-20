@@ -31,7 +31,7 @@
 
   <path d="M 0 10 Q 0 0 10 0 L 1190 0 Q 1200 0 1200 10 L 1200 48 L 0 48 Z" fill="#2A2520"/>
   <line x1="0" y1="48" x2="1200" y2="48" stroke="#3A312A" stroke-width="1"/>
-  <text x="20" y="29.0" font-family="JetBrains Mono, monospace" font-size="15" fill="#E0D2C4" font-weight="600">claude-blog.app — 01 · system architecture · C</text>
+  <text x="20" y="29.0" font-family="JetBrains Mono, monospace" font-size="15" fill="#E0D2C4" font-weight="600">pm-blog.app — 01 · system architecture · C</text>
   <circle cx="1116"   cy="24.0" r="9" fill="#fbbf24" stroke="#3A312A" stroke-width="0.7"/>
   <circle cx="1144"   cy="24.0" r="9" fill="#10b981"  stroke="#3A312A" stroke-width="0.7"/>
   <circle cx="1172" cy="24.0" r="9" fill="#ef4444"    stroke="#3A312A" stroke-width="0.7"/>
