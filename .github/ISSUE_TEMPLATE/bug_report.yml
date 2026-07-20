@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug in claude-blog
+description: Report a bug in pm-blog
 labels: ["bug"]
 body:
   - type: markdown

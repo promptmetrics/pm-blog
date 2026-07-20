@@ -63,7 +63,7 @@ output/
 demo-output/
 
 # Working documents
-definitive-resesarch-blueprint-for-claude-blog.md
+definitive-resesarch-blueprint-for-pm-blog.md
 .github-audit/
 
 # Obsidian vault metadata (root only, not nested .obsidian dirs in skills)

@@ -1,5 +1,5 @@
 name: Feature Request
-description: Suggest a new feature or improvement for claude-blog
+description: Suggest a new feature or improvement for pm-blog
 labels: ["enhancement"]
 body:
   - type: markdown
@@ -29,7 +29,7 @@ body:
     id: area
     attributes:
       label: Area
-      description: Which part of claude-blog does this affect?
+      description: Which part of pm-blog does this affect?
       options:
         - Writing (/blog write)
         - Rewriting (/blog rewrite)
