@@ -12,7 +12,7 @@ license: MIT
 compatibility: Requires Claude Code and Python 3.11+ for the sync script
 metadata:
   author: PromptMetrics
-  version: "0.1.0"
+  version: "0.1.1"
   category: blog
 ---
 

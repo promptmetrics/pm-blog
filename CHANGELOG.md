@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 _No unreleased changes._
 
+## [0.1.1] - 2026-07-20
+
+### Changed
+- Rewrote `README.md` to a tighter, honest-fork narrative and replaced the
+  hand-authored branded banner/diagram embeds with three diagrams rendered
+  directly from mermaid source via `@mermaid-js/mermaid-cli`:
+  `assets/diagrams/architecture.svg`, `delivery-contract.svg`, and
+  `sub-skill-map.svg`. Rendered with `htmlLabels: false` so labels are native
+  SVG `<text>` (GitHub strips `<foreignObject>` from `<img>`-embedded SVGs),
+  themed to the brand-orange palette, on a solid `#1F1B16` canvas for
+  legibility in both GitHub light and dark modes. The blocking Content Review
+  gate is highlighted in brand orange with dark text.
+
 ## [0.1.0] - 2026-07-20
 
 PromptMetrics forked `claude-blog` at v1.9.1 (`AgriciDaniel/claude-blog`)
