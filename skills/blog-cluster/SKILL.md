@@ -15,7 +15,7 @@ license: MIT
 compatibility: Requires Claude Code and pm-blog (provides blog-write, blog-chart, blog-image)
 metadata:
   author: PromptMetrics
-  version: "1.9.1"
+  version: "0.1.0"
   category: blog
 user-invokable: true
 argument-hint: "[plan|execute] [seed-keyword|cluster-plan.json]"

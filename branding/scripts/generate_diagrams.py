@@ -162,7 +162,7 @@ def line_only(x1, y1, x2, y2, klass="conn-soft"):
 
 
 # ============================================================================
-# CLAUDE-BLOG CONTENT
+# PM-BLOG CONTENT
 # ============================================================================
 # 29 sub-skills grouped into 8 categories. (The orchestrator at skills/blog/
 # is the hub — total surface = 30 skills as advertised in plugin.json.)

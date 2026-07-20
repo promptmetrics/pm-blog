@@ -15,7 +15,7 @@ py-modules = []
 
 [project]
 name = "pm-blog"
-version = "1.9.1"
+version = "0.1.0"
 description = "AI-powered blog creation and optimization skill for Claude Code"
 readme = "README.md"
 license = {text = "MIT"}

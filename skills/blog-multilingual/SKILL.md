@@ -15,7 +15,7 @@ license: MIT
 compatibility: Requires pm-blog (blog-write). Optional integration with claude-seo (seo-hreflang) for richer hreflang validation.
 metadata:
   author: PromptMetrics
-  version: "1.9.1"
+  version: "0.1.0"
   category: blog
 ---
 

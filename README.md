@@ -161,7 +161,7 @@ Restart Claude Code after installation to activate.
 </p>
 
 <p align="center">
-  <img src="assets/diagrams/03-sub-skill-map-B.svg" alt="claude-blog sub-skill ecosystem: orchestrator hub at the center with 30 sub-skills organized into 8 thematic clusters (writing, strategy, quality, AI and search, multilingual, research, media, distribution); panel sizes auto-scale to skill counts" width="100%">
+  <img src="assets/diagrams/03-sub-skill-map-B.svg" alt="pm-blog sub-skill ecosystem: orchestrator hub at the center with 30 sub-skills organized into 8 thematic clusters (writing, strategy, quality, AI and search, multilingual, research, media, distribution); panel sizes auto-scale to skill counts" width="100%">
 </p>
 
 | Command | Description |
@@ -319,7 +319,7 @@ Hero image ladder: Banana MCP, direct Gemini API, premium stock (Unsplash, Pexel
 ## Architecture
 
 <p align="center">
-  <img src="assets/diagrams/01-architecture-B.svg" alt="claude-blog system architecture: left-to-right pipeline from user command through orchestrator routing, sub-skill execution, and agent dispatch to the 5-gate delivery contract before reaching the user" width="100%">
+  <img src="assets/diagrams/01-architecture-B.svg" alt="pm-blog system architecture: left-to-right pipeline from user command through orchestrator routing, sub-skill execution, and agent dispatch to the 5-gate delivery contract before reaching the user" width="100%">
 </p>
 
 pm-blog ships as one orchestrator plus 29 sub-skills, 5 agents, 21 references, 12 templates, and 9 root-level scripts. The orchestrator routes user commands to sub-skills, which spawn agents and call scripts via Bash.
@@ -387,7 +387,7 @@ The installer ships only Python scripts and markdown files, never executes remot
 ## Roadmap
 
 <p align="center">
-  <img src="assets/diagrams/05-roadmap-A.svg" alt="claude-blog wave roadmap on a horizontal timeline: v1.6.0 foundation (Mar 2026), v1.7.0 FLOW framework (Apr 2026), v1.8.0 impeccable methodology (May 2026), v1.9.0 delivery contract (current, May 2026), v2.0.0 multi-CMS publishing (Q3 2026), v3.0.0 blog-as-code (Q1 2027)" width="100%">
+  <img src="assets/diagrams/05-roadmap-A.svg" alt="pm-blog wave roadmap on a horizontal timeline: v1.6.0 foundation (Mar 2026), v1.7.0 FLOW framework (Apr 2026), v1.8.0 impeccable methodology (May 2026), v1.9.0 delivery contract (current, May 2026), v2.0.0 multi-CMS publishing (Q3 2026), v3.0.0 blog-as-code (Q1 2027)" width="100%">
 </p>
 
 **v1.9.1 (next)**

@@ -1,7 +1,9 @@
 # pm-blog is a fork of claude-blog (https://github.com/AgriciDaniel/claude-blog),
-# forked at v1.9.1. The citation metadata below is preserved unmodified for the
-# original work; see https://github.com/promptmetrics/pm-blog for this fork's
-# own commit history and provenance.
+# forked at v1.9.1. The title/authors/repository-code/url fields below credit
+# the original work and are not reattributed to this fork. version/date-released
+# track pm-blog's own release cadence (required for tests/test_version_coherence.py
+# to hold across pyproject.toml, plugin.json, CITATION.cff, and SKILL.md).
+# See https://github.com/promptmetrics/pm-blog for this fork's own commit history.
 cff-version: 1.2.0
 title: claude-blog
 message: >-
@@ -15,8 +17,8 @@ authors:
 repository-code: "https://github.com/AgriciDaniel/claude-blog"
 url: "https://claude-blog.md"
 license: MIT
-version: 1.9.1
-date-released: "2026-05-18"
+version: 0.1.0
+date-released: "2026-07-20"
 keywords:
   - claude-code
   - blog

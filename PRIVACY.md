@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Claude Blog** is a Claude Code plugin that runs entirely on your local machine. It does not collect, store, transmit, or share any personal data or usage information.
+**pm-blog** is a Claude Code plugin that runs entirely on your local machine. It does not collect, store, transmit, or share any personal data or usage information.
 
 ## What This Plugin Does NOT Do
 
