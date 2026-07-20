@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `scripts/sync-brand.sh` + `scripts/brand-sync.example.json`: TTL-gated,
   non-blocking sync of `BRAND.md` from a private git repo into
   `${CLAUDE_PLUGIN_DATA}/BRAND.md`, for the multi-writer brand/voice layer.
+- `skills/blog-brand/SKILL.md`: new `/blog brand sync` sub-command and a
+  precedence rule so `init`/`update` never clobber a sync-managed BRAND.md.
+
+### Changed
+- **Breaking**: `skills/blog-persona/SKILL.md` drops `/blog persona list`
+  and `/blog persona use <name>`. One writer, resolved automatically by the
+  orchestrator, has exactly one evolving `persona.json`; there is no
+  library of named personas to list or switch between. The persona is
+  now saved at `${CLAUDE_PLUGIN_DATA}/personas/<writer>/persona.json`
+  instead of `skills/blog/references/personas/<name>.json`.
 
 ## [1.9.1] - 2026-05-18
 

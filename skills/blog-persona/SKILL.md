@@ -1,14 +1,15 @@
 ---
 name: blog-persona
 description: >
-  Create and manage writing personas with NNGroup 4-dimension tone framework
+  Create and manage a writer's persona with the NNGroup 4-dimension tone framework
   (Funny-Serious, Formal-Casual, Respectful-Irreverent, Enthusiastic-Matter-of-fact).
-  Personas define readability targets, sentence length distribution, vocabulary tier,
+  One writer, resolved by the orchestrator, has exactly one evolving persona:
+  readability targets, sentence length distribution, vocabulary tier,
   contraction frequency, and summary box label. Used by blog-write and blog-rewrite
   to enforce consistent voice. Use when user says "persona", "voice", "tone",
-  "writing style", "brand voice", "create persona", "use persona".
+  "writing style", "brand voice", "create persona".
 user-invokable: true
-argument-hint: "[create|list|use|show] [persona-name]"
+argument-hint: "[create|show]"
 license: MIT
 ---
 
@@ -22,10 +23,8 @@ blog content produced by blog-write and blog-rewrite.
 
 | Command | Purpose |
 |---------|---------|
-| `/blog persona create` | Interactive interview to build a new persona |
-| `/blog persona list` | Show all saved personas |
-| `/blog persona use <name>` | Set active persona for current session |
-| `/blog persona show <name>` | Display full persona profile |
+| `/blog persona create` | Interactive interview to build the writer's persona |
+| `/blog persona show` | Display the writer's full persona profile |
 
 ## Create Workflow
 
@@ -103,9 +102,11 @@ Compare extracted values with the persona settings and flag any mismatches.
 ### Save
 
 Write the completed persona as JSON to:
-`skills/blog/references/personas/<name>.json`
+`${CLAUDE_PLUGIN_DATA}/personas/<writer>/persona.json`
 
-Use kebab-case for the filename (e.g., `acme-saas.json`).
+Where `<writer>` is the kebab-case writer identity resolved per
+`## First-Run Writer Capture` below. One writer has exactly one
+`persona.json`; there is no separate name to pick.
 
 ## Persona Profile Schema
 
@@ -165,8 +166,11 @@ readability for explainer content).
 
 ## Integration with blog-write and blog-rewrite
 
-When a persona is active (via `/blog persona use <name>`), the writer agent loads
-the persona JSON and enforces these constraints during generation:
+There is no separate activation step. The active persona is always the
+resolved writer's own `persona.json` (see `## First-Run Writer Capture`),
+loaded by the orchestrator's Writer Resolution step before blog-write or
+blog-rewrite runs. The writer agent loads that persona JSON and enforces
+these constraints during generation:
 
 1. **Pre-generation** - Load persona, inject tone dimensions and style rules into
    the system prompt for the blog-writer agent.
@@ -180,31 +184,41 @@ the persona JSON and enforces these constraints during generation:
 
 If validation fails, flag the specific violations and suggest edits.
 
-## List Command
+## First-Run Writer Capture
 
-Glob `skills/blog/references/personas/*.json` and display a table:
+A writer's identity is cached at `${CLAUDE_PLUGIN_DATA}/.user-name`, resolved
+by the orchestrator's Writer Resolution step before this skill normally runs
+(see `skills/blog/SKILL.md`). On a machine's first `/blog` command:
 
-| Persona | Industry | Audience | Vocabulary |
-|---------|----------|----------|------------|
-| acme-saas | SaaS | Marketing managers | Professional |
+1. The orchestrator prompts once for the writer's name and normalizes it to
+   kebab-case (e.g. "Izzy Aly" becomes `izzy-aly`).
+2. The normalized name is cached at `${CLAUDE_PLUGIN_DATA}/.user-name` and
+   reused on every subsequent command; the writer is never asked again.
+3. `/blog persona create` and `/blog persona show` operate on
+   `${CLAUDE_PLUGIN_DATA}/personas/<writer>/persona.json` for that resolved
+   writer.
 
-If no personas exist, prompt the user to create one.
+There is no in-product "switch writer" command. To re-trigger the capture
+prompt (e.g. a shared machine changing hands), a human edits or deletes
+`${CLAUDE_PLUGIN_DATA}/.user-name` directly.
 
 ## Show Command
 
-Read the specified persona JSON and display it as a formatted summary with all
-tone dimensions, style rules, and do/dont lists.
+Read the resolved writer's `persona.json` and display it as a formatted
+summary with all tone dimensions, style rules, and do/dont lists.
 
 ## Use Command
 
-Read the persona JSON and confirm activation. Print a summary of the key constraints
-that will be enforced. The persona stays active for the current conversation session.
-Blog-write and blog-rewrite check for the active persona before generating content.
+(Removed in this fork.) One writer has exactly one persona, resolved
+automatically by the orchestrator's Writer Resolution step; there is no
+separate "which persona is active" state to set. See
+`## Integration with blog-write and blog-rewrite` above.
 
 ## Error Handling
 
 - **Invalid tone values**: If a user provides values outside 0.0-1.0, clamp to the nearest valid bound and warn
 - **Unreachable voice samples**: If a URL in voice_samples returns an error, skip it and note in the profile that the sample was unavailable
-- **Empty personas directory**: When running list or show with no personas saved, prompt the user to create one first
-- **Name conflicts**: If a persona name already exists during create, ask whether to overwrite or choose a different name
+- **No persona yet**: When running show with no `persona.json` for the resolved writer, prompt the user to run `/blog persona create` first
+- **Re-running create**: If a `persona.json` already exists for the resolved writer, ask whether to overwrite or run the interview with current values as defaults
+- **Writer-identity mismatch**: If `${CLAUDE_PLUGIN_DATA}/.user-name` looks stale (e.g. a different person is typing), point the user at deleting that file to re-trigger First-Run Writer Capture rather than guessing
 - **Malformed JSON**: If a persona file is corrupted, report the error and offer to recreate it from the interview
