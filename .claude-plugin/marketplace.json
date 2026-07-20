@@ -1,14 +1,15 @@
 {
-  "name": "agricidaniel-blog",
+  "name": "pm-blog",
   "owner": {
-    "name": "AgriciDaniel"
+    "name": "PromptMetrics",
+    "url": "https://github.com/promptmetrics"
   },
   "metadata": {
     "description": "Blog creation and optimization tools for Claude Code"
   },
   "plugins": [
     {
-      "name": "claude-blog",
+      "name": "pm-blog",
       "source": "./",
       "description": "AI-powered blog creation, optimization, and management with 30 sub-skills, 5 agents, FLOW framework integration, semantic topic-cluster execution, multilingual publishing, brand and discourse context auto-load, and 5-category scoring. Optimized for Google rankings and AI citations."
     }

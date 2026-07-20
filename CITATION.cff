@@ -1,3 +1,7 @@
+# pm-blog is a fork of claude-blog (https://github.com/AgriciDaniel/claude-blog),
+# forked at v1.9.1. The citation metadata below is preserved unmodified for the
+# original work; see https://github.com/promptmetrics/pm-blog for this fork's
+# own commit history and provenance.
 cff-version: 1.2.0
 title: claude-blog
 message: >-

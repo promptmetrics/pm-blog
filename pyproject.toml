@@ -14,22 +14,22 @@ build-backend = "setuptools.build_meta"
 py-modules = []
 
 [project]
-name = "claude-blog"
+name = "pm-blog"
 version = "1.9.1"
 description = "AI-powered blog creation and optimization skill for Claude Code"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.11"
 authors = [
-    {name = "AgriciDaniel"},
+    {name = "PromptMetrics"},
 ]
 
 [project.urls]
-homepage = "https://github.com/AgriciDaniel/claude-blog"
-repository = "https://github.com/AgriciDaniel/claude-blog"
-issues = "https://github.com/AgriciDaniel/claude-blog/issues"
-documentation = "https://github.com/AgriciDaniel/claude-blog/tree/main/docs"
-changelog = "https://github.com/AgriciDaniel/claude-blog/blob/main/CHANGELOG.md"
+homepage = "https://github.com/promptmetrics/pm-blog"
+repository = "https://github.com/promptmetrics/pm-blog"
+issues = "https://github.com/promptmetrics/pm-blog/issues"
+documentation = "https://github.com/promptmetrics/pm-blog/tree/main/docs"
+changelog = "https://github.com/promptmetrics/pm-blog/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 core = [
