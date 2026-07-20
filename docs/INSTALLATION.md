@@ -1,9 +1,19 @@
 # Installation Guide
 
-This guide covers all installation methods for `pm-blog`, a Claude Code skill
-ecosystem for blog content creation, optimization, and management.
+This guide covers all installation methods for `pm-blog`, a blog content
+creation, optimization, and management skill ecosystem for Claude Code and
+Claude Cowork.
 
-## Prerequisites
+## Install in Claude Cowork (recommended)
+
+1. Add the marketplace URL: `https://github.com/promptmetrics/pm-blog`
+2. Install the `pm-blog` plugin from the marketplace.
+3. Restart Cowork to activate.
+
+Cowork manages the plugin lifecycle for you; the manual/CLI methods below are
+for direct Claude Code CLI use instead of Cowork.
+
+## Prerequisites (CLI install)
 
 | Requirement | Version | Purpose |
 |-------------|---------|---------|

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Claude Blog: AI Blog Writing and SEO Optimization Skill for Claude Code. Animated terminal-style banner with pixel-art CLAUDE BLOG wordmark, breathing orange gradient, scanning command palette, and pulsing status indicators" width="100%">
+  <img src="assets/banner.svg" alt="pm-blog: AI Blog Writing and SEO Optimization Skill for Claude Code. Animated terminal-style banner with pixel-art PM BLOG wordmark, breathing orange gradient, scanning command palette, and pulsing status indicators" width="100%">
 </p>
 
 # AI Blog Writing & SEO Optimization Skill for Claude Code (`pm-blog`)
@@ -13,16 +13,6 @@
   <img src="https://img.shields.io/badge/Sub--Skills-30-orange" alt="Sub-Skills">
   <img src="https://img.shields.io/badge/Tests-187%20passing-brightgreen" alt="Tests: 187 passing">
 </p>
-
-<p align="center">
-  <a href="https://youtu.be/7Q4GaSgUFHo"><img src="https://img.youtube.com/vi/7Q4GaSgUFHo/maxresdefault.jpg" alt="Watch the Claude Blog v1.9.1 walkthrough on YouTube" width="640"></a>
-</p>
-
-<p align="center">
-  <strong><a href="https://youtu.be/7Q4GaSgUFHo">Watch the 12:48 v1.9.1 walkthrough on YouTube</a></strong> · See the 5-gate Blog Delivery Contract run live, including a 6-minute live demo of the <a href="https://claude-blog.md/blog/chatgpt-codex-vs-claude-code-2026">Codex vs Claude sample blog</a> being generated end-to-end.
-</p>
-
-> **Blog:** [See how claude-blog works](https://agricidaniel.com/blog/claude-code-blog-writer) (original author's writeup; this fork is maintained independently by PromptMetrics, see [Authors & Fork Notice](#authors--fork-notice)).
 
 **pm-blog is a Claude Code skill suite that writes, optimizes, and audits blog content at scale.** Every article is dual-optimized for Google rankings (December 2025 Core Update, E-E-A-T) and AI citation platforms (ChatGPT, Perplexity, AI Overviews). A v1.9.0 5-gate Delivery Contract scores every draft against a 100-point rubric and blocks anything below 90 from reaching you.
 
@@ -75,7 +65,6 @@ Alongside the `.md`, the contract also produces: rendered `.html` (XSS-safe JSON
 
 ## Table of Contents
 
-- [Demo](#demo)
 - [Quick Start](#quick-start)
 - [Commands](#commands)
 - [How does pm-blog compare?](#how-does-pm-blog-compare)
@@ -84,7 +73,6 @@ Alongside the `.md`, the contract also produces: rendered `.html` (XSS-safe JSON
 - [Architecture](#architecture)
 - [Requirements](#requirements)
 - [Frequently Asked Questions](#frequently-asked-questions)
-- [Roadmap](#roadmap)
 - [Uninstall](#uninstall)
 - [Integration](#integration)
 - [Documentation](#documentation)
@@ -93,64 +81,23 @@ Alongside the `.md`, the contract also produces: rendered `.html` (XSS-safe JSON
 - [Contributing](#contributing)
 - [License](#license)
 - [Related projects](#related-projects)
-- [Author](#author)
-
-## Demo
-
-[Watch the Demo on YouTube](https://www.youtube.com/watch?v=AeLC4iutG8w)
-
-<p align="center">
-  <img src="assets/blog-command-demo.gif" alt="claude-blog command demo: routing /blog subcommands through the orchestrator" width="100%">
-</p>
+- [Authors & Fork Notice](#authors--fork-notice)
 
 ---
 
 ## Quick Start
 
-**Plugin Install (Claude Code 1.0.33+):**
+**Install in Claude Cowork:**
 
-```bash
-# Add marketplace (one-time)
-/plugin marketplace add promptmetrics/pm-blog
+1. Add the marketplace URL:
 
-# Install plugin
-/plugin install pm-blog@pm-blog
-```
+   ```
+   https://github.com/promptmetrics/pm-blog
+   ```
 
-**Recommended: clone, verify, then install** (lets you inspect `install.sh` before running it):
+2. Install the `pm-blog` plugin from the marketplace.
 
-```bash
-git clone https://github.com/promptmetrics/pm-blog.git
-cd pm-blog
-chmod +x install.sh && ./install.sh
-```
-
-**One-Command Install (Unix/macOS):**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh | bash
-```
-
-**One-Command Install (Windows PowerShell):**
-
-```powershell
-irm https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.ps1 | iex
-```
-
-> Piping `curl` or `irm` to a shell gives the script execution authority on your machine. The clone-then-inspect flow is safer because you can review what runs before it does.
-
-**Verify installer integrity (recommended, VULN-IAC-001 hardening):**
-
-```bash
-# Download, verify SHA-256, then run if the hash matches.
-curl -fsSL -o install.sh https://raw.githubusercontent.com/promptmetrics/pm-blog/main/install.sh
-echo "69fa9814540bda4d2926b8240625737e71de22738e1022bed944f7c632cc7d32  install.sh" | sha256sum -c
-bash install.sh
-```
-
-The SHA-256 above is for the current `install.sh` at HEAD on `main`. Verify against [the canonical file](https://github.com/promptmetrics/pm-blog/blob/main/install.sh) before running. The `install.ps1` companion hash is `fed21d9e03dfefa42e3c69a495367d5874c6f4e35209bc2f86f59e89eec80fd6`. Hashes are updated in this README on every installer change.
-
-Restart Claude Code after installation to activate.
+Restart Cowork after installation to activate.
 
 ## Commands
 
@@ -338,7 +285,7 @@ Full directory tree, data flow diagrams, scoring methodology, and extension poin
 
 ## Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed and configured.
+- Claude Cowork, with the marketplace added per Quick Start above.
 - Python 3.11+ (for quality scoring, the 5-gate delivery contract runners, and lint).
 - Optional: `pip install -r requirements.txt` for advanced analysis (readability scoring, schema detection).
 
@@ -384,31 +331,12 @@ See the [How to cite](#how-to-cite) section below or the [`CITATION.cff`](CITATI
 ### Is pm-blog secure to install?
 The installer ships only Python scripts and markdown files, never executes remote code beyond what `pip install -r requirements.txt` brings in, and is reviewed against the project [`SECURITY.md`](SECURITY.md) policy on every change. The clone-then-checkout-tag install flow lets you inspect `install.sh` before running it. See [`SECURITY.md`](SECURITY.md) for the full threat model.
 
-## Roadmap
-
-<p align="center">
-  <img src="assets/diagrams/05-roadmap-A.svg" alt="pm-blog wave roadmap on a horizontal timeline: v1.6.0 foundation (Mar 2026), v1.7.0 FLOW framework (Apr 2026), v1.8.0 impeccable methodology (May 2026), v1.9.0 delivery contract (current, May 2026), v2.0.0 multi-CMS publishing (Q3 2026), v3.0.0 blog-as-code (Q1 2027)" width="100%">
-</p>
-
-**v1.9.1 (next)**
-- Shared `_count_body_words(html)` function between `blog_render` and `blog_preflight` to close the v1.9.0 audit residual.
-- `generate_hero.py` exit-code semantics: non-zero on no-image-gen-path (currently returns JSON error with exit 0).
-- Iteration-loop coverage test verifying the orchestrator escalates after 3 reviewer BLOCKS, not 4.
-- Sweep remaining docs (CONTRIBUTORS, NOTICE, SECURITY, PRIVACY, TEMPLATES, TROUBLESHOOTING, MCP-INTEGRATION, DEMO) for any residual v1.x stratum drift.
-
-**v1.10 (vision)**
-- Live SERP-informed outline refinement via DataForSEO mid-write.
-- Eval harness measuring blog quality across configurations (BRAND.md presence, persona variant, multilingual mode).
-- Code-enforced iteration counter (currently orchestrator-instruction; promote to script-level).
-
-**v2.0 (long-term)**
-- Headless preview server integration: the 5-gate contract runs against a real domain preview instead of local HTML.
-- Per-platform CMS publishing connectors (WordPress, Ghost, Sanity) with idempotent re-publish on rewrite.
-- Real-time AI-citation tracking dashboard (which posts get cited by ChatGPT, Perplexity, AI Overviews; visibility heatmap).
-
-Open an issue with the `roadmap` label if you want to propose or vote on something.
-
 ## Uninstall
+
+In Claude Cowork, remove `pm-blog` from your installed plugins list.
+
+If you installed via `install.sh`/`install.ps1` directly (bypassing Cowork's
+marketplace flow), the matching uninstaller is still available:
 
 Unix/macOS:
 ```bash
@@ -440,7 +368,7 @@ Detailed documentation is in [`docs/`](docs/):
 - [Installation Guide](docs/INSTALLATION.md): Unix, macOS, Windows, manual install.
 - [Command Reference](docs/COMMANDS.md): Full command reference with examples.
 - [Architecture](docs/ARCHITECTURE.md): System design and component overview.
-- [Publishing Workflow](docs/PUBLISHING.md): Private-to-public release flow (Pro maintainers).
+- [Publishing Workflow](docs/PUBLISHING.md): Version bump, CHANGELOG, tag, and GitHub release flow.
 - [Templates](docs/TEMPLATES.md): Template reference and customization.
 - [Troubleshooting](docs/TROUBLESHOOTING.md): Common issues and fixes.
 - [MCP Integration](docs/MCP-INTEGRATION.md): Optional MCP server setup.
@@ -482,20 +410,7 @@ MIT License. See [`LICENSE`](LICENSE) for details.
 
 ## Related projects
 
-- **[Rankenstein](https://rankenstein.pro)**: GUI-based content publishing workflow; research to publish in one platform.
 - **[FLOW framework](https://github.com/AgriciDaniel/flow)**: Evidence-led Find, Optimize, Win prompts (CC BY 4.0). Integrated as a sub-skill via `/blog flow`.
-
-## Star history
-
-<a href="https://star-history.com/#AgriciDaniel/claude-blog&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=AgriciDaniel/claude-blog&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=AgriciDaniel/claude-blog&type=Date" />
-    <img alt="Star history of AgriciDaniel/claude-blog on GitHub" src="https://api.star-history.com/svg?repos=AgriciDaniel/claude-blog&type=Date" />
-  </picture>
-</a>
-
-If claude-blog saves you time, a star on the [public repo](https://github.com/AgriciDaniel/claude-blog) is the easiest way to say thanks (and helps other content folks find it).
 
 ## Authors & Fork Notice
 

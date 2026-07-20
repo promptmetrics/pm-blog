@@ -2,10 +2,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 1680 768" width="100%"
      preserveAspectRatio="xMidYMid meet" role="img"
-     aria-label="Claude Blog — The Content Operating System"
+     aria-label="pm-blog — The Content Operating System"
      font-family="JetBrains Mono, monospace">
-<title>Claude Blog — AI-Powered Content Authority Skill for Claude Code</title>
-<desc>OS-window banner. Dark warm title bar with traffic lights. Dark CRT terminal inside with CLAUDE BLOG figlet logo in brand-orange vertical gradient, animated row-highlight scanner cycling through 7 /blog commands.</desc>
+<title>pm-blog — AI-Powered Content Authority Skill for Claude Code</title>
+<desc>OS-window banner. Dark warm title bar with traffic lights. Dark CRT terminal inside with PM BLOG figlet logo in brand-orange vertical gradient, animated row-highlight scanner cycling through 7 /blog commands.</desc>
 
 <defs>
   <style type="text/css"><![CDATA[
@@ -47,7 +47,7 @@
 <rect x="0.5" y="0.5" width="1679" height="767" rx="10" fill="#2A2520" stroke="#3A312A" stroke-width="1"/>
 <path d="M 0 10 Q 0 0 10 0 L 1670 0 Q 1680 0 1680 10 L 1680 48 L 0 48 Z" fill="#2A2520"/>
 <line x1="0" y1="48" x2="1680" y2="48" stroke="#3A312A" stroke-width="1"/>
-<text x="20" y="29" class="win-title">claude-blog.app — Terminal · /blog write</text>
+<text x="20" y="29" class="win-title">pm-blog.app — Terminal · /blog write</text>
 <circle cx="1596" cy="24" r="9" fill="#fbbf24" stroke="#3A312A" stroke-width="0.7"/>
 <circle cx="1624" cy="24" r="9" fill="#10b981" stroke="#3A312A" stroke-width="0.7"/>
 <circle cx="1652" cy="24" r="9" fill="#ef4444" stroke="#3A312A" stroke-width="0.7"/>
@@ -61,7 +61,7 @@
   <circle cx="26" cy="13" r="3" class="live-dot">
     <animate attributeName="opacity" values="0.4;1;0.4" dur="1.6s" repeatCount="indefinite"/>
   </circle>
-  <text x="38"   y="17" class="hud">SYS · CLAUDE-BLOG</text>
+  <text x="38"   y="17" class="hud">SYS · PM-BLOG</text>
   <text x="220"  y="17" class="hud">NODE 0x2B · ACTIVE</text>
   <text x="1660" y="17" class="hud-muted" text-anchor="end">UPTIME 04:12:08</text>
 
@@ -69,17 +69,17 @@
   <line x1="0" y1="694" x2="1680" y2="694" stroke="rgba(217,119,87,0.30)" stroke-width="1"/>
   <text x="20"   y="711" class="hud">● LINK · STABLE</text>
   <text x="180"  y="711" class="hud">BUF 1024K</text>
-  <text x="290"  y="711" class="hud">V1.9.0</text>
-  <text x="1450" y="711" class="hud-muted" text-anchor="end">208.140.MAINFRAME.AGRICIDANIEL</text>
+  <text x="290"  y="711" class="hud">V0.1.0</text>
+  <text x="1450" y="711" class="hud-muted" text-anchor="end">208.140.MAINFRAME.PROMPTMETRICS</text>
   <text x="1660" y="711" class="hud-muted" text-anchor="end">12:08:20 UTC</text>
 
   <text x="120" y="155" class="ascii" xml:space="preserve">
-    <tspan x="120" dy="0">  ██████╗██╗      █████╗ ██╗   ██╗██████╗ ███████╗</tspan>
-    <tspan x="120" dy="26">██╔════╝██║     ██╔══██╗██║   ██║██╔══██╗██╔════╝</tspan>
-    <tspan x="120" dy="26">██║     ██║     ███████║██║   ██║██║  ██║█████╗</tspan>
-    <tspan x="120" dy="26">██║     ██║     ██╔══██║██║   ██║██║  ██║██╔══╝</tspan>
-    <tspan x="120" dy="26">╚██████╗███████╗██║  ██║╚██████╔╝██████╔╝███████╗</tspan>
-    <tspan x="120" dy="26"> ╚═════╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝</tspan>
+    <tspan x="120" dy="0">██████╗  ███╗   ███╗</tspan>
+    <tspan x="120" dy="26">██╔══██╗ ████╗ ████║</tspan>
+    <tspan x="120" dy="26">██████╔╝ ██╔████╔██║</tspan>
+    <tspan x="120" dy="26">██╔═══╝  ██║╚██╔╝██║</tspan>
+    <tspan x="120" dy="26">██║      ██║ ╚═╝ ██║</tspan>
+    <tspan x="120" dy="26">╚═╝      ╚═╝     ╚═╝</tspan>
   </text>
 
   <text x="120" y="335" class="ascii" xml:space="preserve">
