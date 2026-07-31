@@ -48,7 +48,7 @@ Install as a Claude Code plugin, or in Claude Cowork through the marketplace.
 
 ```
 /plugin marketplace add promptmetrics/pm-blog
-/plugin install pm-blog@promptmetrics-pm-blog
+/plugin install pm-blog@pm-blog
 ```
 
 New here? Run these three first: `/blog strategy <niche>` to scope the blog, `/blog write <topic>` to generate your first article (the five-gate contract runs automatically), and `/blog analyze <file>` to score it on the 100-point rubric.
