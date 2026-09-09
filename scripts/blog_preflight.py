@@ -255,8 +255,59 @@ def gate_1_capability_discovery(draft_dir: Path) -> dict:
     return _gate_result(1, "Capability Discovery", not violations, violations, warnings, capabilities=capabilities)
 
 
+# Rich-text round-trip corruption (v1.9.1). A draft copied out of a rendered
+# preview or exported from a rich-text surface comes back re-serialized by a
+# markdown parser: the YAML frontmatter collapses into a setext heading
+# ("## title: ..." with every field on one line) and bare URLs are rewritten
+# as [url](url) links, including inside HTML/SVG attribute values, which
+# breaks inline charts at render time. Gate 2 rejects both signatures so a
+# mangled file cannot re-enter the pipeline (e.g. via /blog rewrite).
+MANGLED_TITLE_PATTERN = re.compile(r"^#{1,6}\s+title:", re.MULTILINE)
+ATTR_MDLINK_PATTERN = re.compile(r'[:=]\s*"\[[^\]"]+\]\([^)"]+\)"')
+FRONTMATTER_LINE_PATTERN = re.compile(r"^([A-Za-z_][\w.-]*:|\s|-)")
+FRONTMATTER_SCAN_LINES = 100
+
+
+def _md_integrity_violations(md: Path) -> list[str]:
+    """Detect rich-text round-trip corruption in one markdown source."""
+    text = md.read_text(encoding="utf-8", errors="replace")
+    violations: list[str] = []
+    lines = text.splitlines()
+
+    frontmatter_ok = False
+    if lines and lines[0].strip() == "---":
+        close = next(
+            (i for i in range(1, min(len(lines), FRONTMATTER_SCAN_LINES))
+             if lines[i].strip() == "---"),
+            None,
+        )
+        if close is not None:
+            block = [ln for ln in lines[1:close] if ln.strip()]
+            frontmatter_ok = bool(block) and all(
+                FRONTMATTER_LINE_PATTERN.match(ln) for ln in block
+            )
+    if not frontmatter_ok:
+        if MANGLED_TITLE_PATTERN.search(text):
+            violations.append(
+                f"{md.name}: frontmatter mangled into a heading ('## title:'): "
+                "rich-text round-trip corruption; recover the original draft file, "
+                "do not copy from a rendered preview"
+            )
+        else:
+            violations.append(f"{md.name}: no valid YAML frontmatter block (--- ... ---)")
+
+    attr_links = ATTR_MDLINK_PATTERN.findall(text)
+    if attr_links:
+        sample = "; ".join(match[:70] for match in attr_links[:3])
+        violations.append(
+            f"{md.name}: {len(attr_links)} markdown-link-wrapped URL(s) inside "
+            f"quoted values ({sample}); breaks frontmatter and SVG attributes at render time"
+        )
+    return violations
+
+
 def gate_2_format_completeness(draft_dir: Path) -> dict:
-    """Verify .md, .html, .pdf, hero.<ext> all exist."""
+    """Verify .md, .html, .pdf, hero.<ext> all exist and the .md is uncorrupted."""
     mds = list(draft_dir.glob("*.md"))
     htmls = list(draft_dir.glob("*.html"))
     pdfs = list(draft_dir.glob("*.pdf"))
@@ -266,6 +317,9 @@ def gate_2_format_completeness(draft_dir: Path) -> dict:
     violations = []
     if not mds:
         violations.append("no .md source found")
+    for md in mds:
+        if md.name != "review.md":
+            violations.extend(_md_integrity_violations(md))
     if not htmls:
         violations.append("no .html artifact found (run scripts/blog_render.py)")
     if not pdfs:
