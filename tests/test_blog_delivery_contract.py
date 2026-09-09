@@ -310,6 +310,49 @@ def test_preflight_gate_2_blocks_on_missing_hero(tmp_path: Path) -> None:
     assert "hero" in result.stdout.lower()
 
 
+def _gate2_fixture(tmp_path: Path, md_text: str) -> "subprocess.CompletedProcess[str]":
+    (tmp_path / "post.md").write_text(md_text, encoding="utf-8")
+    (tmp_path / "post.html").write_text("<html></html>", encoding="utf-8")
+    (tmp_path / "post.pdf").write_bytes(b"%PDF-1.4\n")
+    (tmp_path / "hero.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+    return subprocess.run(
+        [sys.executable, str(PREFLIGHT_PATH), "--draft", str(tmp_path),
+         "--gate", "2", "--no-strict"],
+        capture_output=True, text=True, check=False,
+    )
+
+
+def test_preflight_gate_2_passes_valid_frontmatter(tmp_path: Path) -> None:
+    """Gate 2 must not flag a well-formed draft with intact frontmatter."""
+    result = _gate2_fixture(tmp_path, _VALID_FRONTMATTER + "body\n")
+    assert "PASS" in result.stdout and "Gate 2" in result.stdout
+
+
+def test_preflight_gate_2_blocks_mangled_frontmatter(tmp_path: Path) -> None:
+    """Rich-text round-trip regression: frontmatter collapsed into a
+    '## title:' setext heading must FAIL Gate 2."""
+    mangled = (
+        "---\n\n"
+        '## title: "Fixture" seoTitle: "Fixture SEO" date: "2026-05-17" author: "x"\n\n'
+        "body\n"
+    )
+    result = _gate2_fixture(tmp_path, mangled)
+    assert "FAIL" in result.stdout and "Gate 2" in result.stdout
+    assert "mangled" in result.stdout.lower()
+
+
+def test_preflight_gate_2_blocks_mdlink_wrapped_attributes(tmp_path: Path) -> None:
+    """Rich-text round-trip regression: [url](url) inside quoted attribute
+    or frontmatter values must FAIL Gate 2 (it breaks SVG xmlns at render)."""
+    corrupted = (
+        _VALID_FRONTMATTER
+        + '<svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)"></svg>\n'
+    )
+    result = _gate2_fixture(tmp_path, corrupted)
+    assert "FAIL" in result.stdout and "Gate 2" in result.stdout
+    assert "markdown-link-wrapped" in result.stdout
+
+
 def test_preflight_gate_5_flags_non_http_scheme_as_violation(tmp_path: Path) -> None:
     """S3 regression: Gate 5 must flag file://, javascript:, data: links as
     violations rather than silently skipping them."""
