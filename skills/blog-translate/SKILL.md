@@ -18,7 +18,7 @@ license: MIT
 compatibility: Standalone within pm-blog. Invoked by blog-multilingual.
 metadata:
   author: PromptMetrics
-  version: "0.1.1"
+  version: "0.2.0"
   category: blog
 ---
 

@@ -341,6 +341,99 @@ def test_preflight_gate_2_blocks_mangled_frontmatter(tmp_path: Path) -> None:
     assert "mangled" in result.stdout.lower()
 
 
+def test_preflight_gate_2_placeholders_warn_by_default(tmp_path: Path) -> None:
+    """Measurement placeholders in a draft are warnings without --publish:
+    drafting with placeholders is the intended workflow."""
+    md = _VALID_FRONTMATTER + "Cost: \u27e8measured tokens\u27e9 <!-- MEASURE BEFORE PUBLISH -->\n"
+    result = _gate2_fixture(tmp_path, md)
+    assert "PASS" in result.stdout and "Gate 2" in result.stdout
+    assert "placeholder token" in result.stdout
+    assert "MEASURE BEFORE PUBLISH" in result.stdout
+
+
+def test_preflight_gate_2_placeholders_block_with_publish(tmp_path: Path) -> None:
+    """With --publish, surviving placeholders are blocking violations."""
+    md = _VALID_FRONTMATTER + "Cost: \u27e8measured tokens\u27e9\n"
+    (tmp_path / "post.md").write_text(md, encoding="utf-8")
+    (tmp_path / "post.html").write_text("<html></html>", encoding="utf-8")
+    (tmp_path / "post.pdf").write_bytes(b"%PDF-1.4\n")
+    (tmp_path / "hero.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+    result = subprocess.run(
+        [sys.executable, str(PREFLIGHT_PATH), "--draft", str(tmp_path),
+         "--gate", "2", "--no-strict", "--publish"],
+        capture_output=True, text=True, check=False,
+    )
+    assert "FAIL" in result.stdout and "Gate 2" in result.stdout
+    assert "placeholder token" in result.stdout
+
+
+_TWO_BLOCK_HTML = (
+    '<!DOCTYPE html><html><head>'
+    '<meta property="og:image" content="hero.png">'
+    '<link rel="canonical" href="https://example.com/post">'
+    '<script type="application/ld+json">'
+    '{"@context":"https://schema.org","@type":"BlogPosting","headline":"x",'
+    '"image":"hero.png","datePublished":"2026-05-17","author":{"name":"x"}}'
+    '</script>'
+    '<script type="application/ld+json">'
+    '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}'
+    '</script>'
+    '</head><body><article>word</article></body></html>'
+)
+
+
+def test_preflight_gate_5_accepts_multiple_jsonld_blocks(tmp_path: Path) -> None:
+    """Two valid JSON-LD blocks (renderer BlogPosting + skill FAQPage) are
+    valid and Google-supported; the old concatenate-then-parse approach
+    failed them with 'Extra data'."""
+    (tmp_path / "post.md").write_text(_VALID_FRONTMATTER + "body\n", encoding="utf-8")
+    (tmp_path / "post.html").write_text(_TWO_BLOCK_HTML, encoding="utf-8")
+    (tmp_path / "hero.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+    result = subprocess.run(
+        [sys.executable, str(PREFLIGHT_PATH), "--draft", str(tmp_path),
+         "--gate", "5", "--no-strict"],
+        capture_output=True, text=True, check=False,
+    )
+    assert "PASS" in result.stdout and "Gate 5" in result.stdout, result.stdout
+    assert "Extra data" not in result.stdout
+
+
+def test_preflight_gate_5_names_invalid_jsonld_block(tmp_path: Path) -> None:
+    """A malformed block fails Gate 5 with the block index in the message."""
+    bad = _TWO_BLOCK_HTML.replace(
+        '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}',
+        '{"@context":"https://schema.org","@type":"FAQPage",', 1)
+    (tmp_path / "post.md").write_text(_VALID_FRONTMATTER + "body\n", encoding="utf-8")
+    (tmp_path / "post.html").write_text(bad, encoding="utf-8")
+    (tmp_path / "hero.png").write_bytes(b"\x89PNG\r\n\x1a\n")
+    result = subprocess.run(
+        [sys.executable, str(PREFLIGHT_PATH), "--draft", str(tmp_path),
+         "--gate", "5", "--no-strict"],
+        capture_output=True, text=True, check=False,
+    )
+    assert "FAIL" in result.stdout and "Gate 5" in result.stdout
+    assert "JSON-LD block 2 invalid" in result.stdout
+
+
+def test_render_output_named_from_source_stem(tmp_path: Path) -> None:
+    """Outputs are named from the draft .md filename, not the slugified
+    title, so preview filenames never drift from the publish slug."""
+    md = tmp_path / "my-draft.md"
+    md.write_text(
+        '---\ntitle: "A Completely Different Title 2026"\ndescription: "x"\n'
+        'date: 2026-05-17\nauthor: "x"\n---\nbody\n',
+        encoding="utf-8",
+    )
+    result = subprocess.run(
+        [sys.executable, str(RENDER_PATH), "--md", str(md), "--out-dir", str(tmp_path),
+         "--pdf-engine", "none"],
+        capture_output=True, text=True, check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    emitted = sorted(f.name for f in tmp_path.iterdir() if f.suffix == ".html")
+    assert "my-draft.html" in emitted, f"expected my-draft.html, got: {emitted}"
+
+
 def test_preflight_gate_2_blocks_mdlink_wrapped_attributes(tmp_path: Path) -> None:
     """Rich-text round-trip regression: [url](url) inside quoted attribute
     or frontmatter values must FAIL Gate 2 (it breaks SVG xmlns at render)."""
@@ -461,7 +554,7 @@ def test_render_wordcount_matches_gate5_semantics(tmp_path: Path) -> None:
         capture_output=True, text=True, check=False,
     )
     assert result.returncode == 0, f"render failed: {result.stderr}"
-    html_path = out / "wordcount-coherence-fixture.html"
+    html_path = out / "with-code.html"  # outputs named from source stem (v0.2.0)
     assert html_path.exists(), f"render did not produce expected HTML: {list(out.iterdir())}"
     html = html_path.read_text(encoding="utf-8")
     m = re.search(r'"wordCount":\s*(\d+)', html)

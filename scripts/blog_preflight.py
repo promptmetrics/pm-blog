@@ -306,8 +306,38 @@ def _md_integrity_violations(md: Path) -> list[str]:
     return violations
 
 
-def gate_2_format_completeness(draft_dir: Path) -> dict:
-    """Verify .md, .html, .pdf, hero.<ext> all exist and the .md is uncorrupted."""
+# Unmeasured-number guard (v0.2.0). BRAND.md forbids unmeasured first-party
+# numbers; drafts mark them as U+27E8/U+27E9 placeholder tokens plus a
+# MEASURE BEFORE PUBLISH comment. Drafting with placeholders is the intended
+# workflow, so Gate 2 reports them as warnings by default and as blocking
+# violations under --publish (the publish flow must pass --publish).
+PLACEHOLDER_TOKEN_PATTERN = re.compile("[\u27e8\u27e9]")
+MEASURE_MARKER = "MEASURE BEFORE PUBLISH"
+
+
+def _placeholder_findings(md: Path) -> list[str]:
+    """Report unresolved measurement placeholders in one markdown source."""
+    text = md.read_text(encoding="utf-8", errors="replace")
+    findings: list[str] = []
+    tokens = PLACEHOLDER_TOKEN_PATTERN.findall(text)
+    if tokens:
+        findings.append(
+            f"{md.name}: {len(tokens)} unresolved placeholder token(s) "
+            "(U+27E8/U+27E9); measure and replace before publish"
+        )
+    if MEASURE_MARKER in text:
+        findings.append(
+            f"{md.name}: '{MEASURE_MARKER}' marker still present; "
+            "measure and remove before publish"
+        )
+    return findings
+
+
+def gate_2_format_completeness(draft_dir: Path, publish: bool = False) -> dict:
+    """Verify .md, .html, .pdf, hero.<ext> all exist and the .md is uncorrupted.
+
+    With publish=True, unresolved measurement placeholders block instead of
+    warn (see _placeholder_findings)."""
     mds = list(draft_dir.glob("*.md"))
     htmls = list(draft_dir.glob("*.html"))
     pdfs = list(draft_dir.glob("*.pdf"))
@@ -315,11 +345,17 @@ def gate_2_format_completeness(draft_dir: Path) -> dict:
     review = draft_dir / "review.md"
 
     violations = []
+    warnings = []
     if not mds:
         violations.append("no .md source found")
     for md in mds:
         if md.name != "review.md":
             violations.extend(_md_integrity_violations(md))
+            placeholder_findings = _placeholder_findings(md)
+            if publish:
+                violations.extend(placeholder_findings)
+            else:
+                warnings.extend(placeholder_findings)
     if not htmls:
         violations.append("no .html artifact found (run scripts/blog_render.py)")
     if not pdfs:
@@ -329,7 +365,7 @@ def gate_2_format_completeness(draft_dir: Path) -> dict:
         violations.append("no hero.<png|jpg|jpeg|webp> found (run scripts/generate_hero.py)")
 
     return _gate_result(
-        2, "Format Completeness", not violations, violations, [],
+        2, "Format Completeness", not violations, violations, warnings,
         artifacts={
             "md": [str(p.name) for p in mds],
             "html": [str(p.name) for p in htmls],
@@ -549,6 +585,34 @@ def _is_allowed_unreachable(url: str) -> bool:
     return any(part in parsed.netloc for part in URL_ALLOWLIST)
 
 
+def _find_blog_posting(parsed_blocks: list) -> Optional[dict]:
+    """Return the BlogPosting object among parsed JSON-LD blocks.
+
+    Looks for @type == BlogPosting at the top level or inside an @graph
+    array; falls back to the first object carrying a headline.
+    """
+    for obj in parsed_blocks:
+        if isinstance(obj, dict):
+            if obj.get("@type") == "BlogPosting":
+                return obj
+            graph = obj.get("@graph")
+            if isinstance(graph, list):
+                for entity in graph:
+                    if isinstance(entity, dict) and entity.get("@type") == "BlogPosting":
+                        return entity
+    for obj in parsed_blocks:
+        if isinstance(obj, dict) and obj.get("headline"):
+            return obj
+    return None
+
+
+def _network_available() -> bool:
+    """One cheap connectivity probe so offline/sandboxed runs skip the
+    per-URL HEAD checks instead of emitting one 'returned 0' warning per
+    link and burning HEAD_TIMEOUT seconds on each."""
+    return _http_head("https://www.google.com/generate_204") != 0
+
+
 def gate_5_asset_link_integrity(draft_dir: Path) -> dict:
     """Verify all <img> resolve, all <a> return 200, schema validates,
     word count within +/-5%."""
@@ -563,11 +627,16 @@ def gate_5_asset_link_integrity(draft_dir: Path) -> dict:
 
     violations = []
     warnings = []
+    network_ok = _network_available()
+    skipped_remote_checks = 0
 
     # img src resolution
     for src in parser.imgs:
         if src.startswith("http://") or src.startswith("https://"):
             if _is_allowed_unreachable(src):
+                continue
+            if not network_ok:
+                skipped_remote_checks += 1
                 continue
             if _http_head(src) != 200:
                 warnings.append(f"img src returned non-200: {src}")
@@ -596,6 +665,9 @@ def gate_5_asset_link_integrity(draft_dir: Path) -> dict:
         if href.startswith(("http://", "https://")):
             if _is_allowed_unreachable(href):
                 continue
+            if not network_ok:
+                skipped_remote_checks += 1
+                continue
             status = _http_head(href)
             if status == 0 or status >= 400:
                 warnings.append(f"link returned {status}: {href}")
@@ -605,22 +677,39 @@ def gate_5_asset_link_integrity(draft_dir: Path) -> dict:
                 f"non-http(s) URL scheme is not allowed in published links: {href}"
             )
 
-    # JSON-LD validation
+    if skipped_remote_checks:
+        warnings.append(
+            f"no network egress detected; {skipped_remote_checks} remote URL "
+            "check(s) skipped (re-run Gate 5 with network access before publish)"
+        )
+
+    # JSON-LD validation. Multiple <script type="application/ld+json"> blocks
+    # per page are valid and Google-supported (the renderer's own BlogPosting
+    # plus a skill-added FAQPage, per platform-guides.md); each block is
+    # parsed independently instead of concatenating them into invalid JSON.
     json_ld_ok = False
     declared_word_count: Optional[int] = None
-    if parser.json_ld_blocks:
+    parsed_blocks: list[Any] = []
+    for idx, block in enumerate(parser.json_ld_blocks, start=1):
         try:
-            obj = json.loads("".join(parser.json_ld_blocks))
-            json_ld_ok = True
+            parsed_blocks.append(json.loads(block))
+        except json.JSONDecodeError as e:
+            violations.append(f"JSON-LD block {idx} invalid: {e}")
+    if parser.json_ld_blocks and len(parsed_blocks) == len(parser.json_ld_blocks):
+        json_ld_ok = True
+    if not parser.json_ld_blocks:
+        violations.append("no JSON-LD <script> block present")
+    elif parsed_blocks:
+        posting = _find_blog_posting(parsed_blocks)
+        if posting is None:
+            violations.append("no BlogPosting JSON-LD block present")
+            json_ld_ok = False
+        else:
             required = ("headline", "image", "datePublished", "author")
-            missing = [k for k in required if not obj.get(k)]
+            missing = [k for k in required if not posting.get(k)]
             if missing:
                 violations.append(f"JSON-LD missing required fields: {missing}")
-            declared_word_count = obj.get("wordCount")
-        except json.JSONDecodeError as e:
-            violations.append(f"JSON-LD invalid: {e}")
-    else:
-        violations.append("no JSON-LD <script> block present")
+            declared_word_count = posting.get("wordCount")
 
     # word count match
     if declared_word_count is not None:
@@ -733,6 +822,12 @@ def main() -> int:
     parser.add_argument("--no-strict", dest="strict", action="store_false")
     parser.add_argument("--json", action="store_true", help="Emit report JSON to stdout")
     parser.add_argument(
+        "--publish", action="store_true",
+        help="Publish mode: unresolved measurement placeholders (U+27E8/U+27E9 "
+             "tokens, MEASURE BEFORE PUBLISH markers) become blocking Gate 2 "
+             "violations instead of warnings.",
+    )
+    parser.add_argument(
         "--reset-iterations",
         action="store_true",
         help="Reset the per-draft iteration counter to 1 (this run counts as the first).",
@@ -766,7 +861,7 @@ def main() -> int:
 
     gates = [
         (1, gate_1_capability_discovery),
-        (2, gate_2_format_completeness),
+        (2, lambda d: gate_2_format_completeness(d, publish=args.publish)),
         (3, gate_3_visual_verification),
         (4, gate_4_content_review),
         (5, gate_5_asset_link_integrity),

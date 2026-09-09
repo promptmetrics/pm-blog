@@ -17,7 +17,7 @@ argument-hint: "[generate|edit|setup] [description-or-path]"
 license: MIT
 metadata:
   author: PromptMetrics
-  version: "0.1.1"
+  version: "0.2.0"
   mcp-package: "@ycse/nanobanana-mcp"
 ---
 
