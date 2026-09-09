@@ -134,7 +134,7 @@ Mark zones where internal links should be placed:
 
 To avoid AI-detectable writing:
 - Vary sentence length deliberately (mix 8-word and 25-word sentences)
-- Inject rhetorical questions every 200-300 words
+- Use rhetorical questions only where they voice a real reader objection (1-2 per post max; never filler like "Sound familiar?")
 - Use contractions naturally ("it's", "we've", "don't")
 - Include hedging language: "in our experience", "we've found that"
 - NEVER use em dashes (-). Replace with commas, hyphens (-), colons, or periods.

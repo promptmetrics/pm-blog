@@ -20,9 +20,9 @@ Generates comprehensive content briefs that guide blog writing for maximum
 impact on both Google rankings and AI citation platforms.
 
 Reference documents:
-- `references/content-templates.md`: template selection criteria
-- `references/distribution-playbook.md`: channel-specific distribution tactics
-- `references/internal-linking.md`: link architecture patterns
+- `skills/blog/references/content-templates.md`: template selection criteria (cross-skill ref lives in the orchestrator's references dir)
+- `skills/blog/references/distribution-playbook.md`: channel-specific distribution tactics
+- `skills/blog/references/internal-linking.md`: link architecture patterns
 - `skills/blog/references/research-quality.md` - 5-dim quality rubric, pre-flight trap classes, freshness floors (v1.8.0; cross-skill ref lives in the orchestrator's references dir)
 - `skills/blog/references/synthesis-contract.md` - 6 LAWs for synthesis output (v1.8.0)
 
@@ -58,7 +58,7 @@ Using WebSearch:
 ### Step 2.5: Template Recommendation
 
 Analyze the topic, search intent, and competitive landscape to recommend one
-of 12 content templates. Load `references/content-templates.md` for selection
+of 12 content templates. Load `skills/blog/references/content-templates.md` for selection
 criteria.
 
 **Available templates:**
@@ -81,7 +81,7 @@ criteria.
 1. Match search intent to template strength
 2. Check what format top-ranking competitors use
 3. Consider the user's available assets (data, expertise, tools)
-4. Load the matching template file from `templates/[type].md`
+4. Load the matching template file from `skills/blog/templates/[type].md`
 5. Include the template name in the brief output
 
 ### Step 3: Competitive Analysis
@@ -113,7 +113,7 @@ Output format:
 
 ## Template
 **Recommended**: [template-name]: [1-sentence rationale]
-**Template file**: `templates/[type].md`
+**Template file**: `skills/blog/templates/[type].md`
 
 ## Target Keywords
 - **Primary**: [keyword]: [estimated monthly search volume if available]
@@ -151,6 +151,12 @@ Alternative titles:
 ## Information Gain Opportunities
 - **[ORIGINAL DATA]**: [Suggestion for proprietary data, survey, experiment,
   or benchmark the author can produce to differentiate this post]
+  Scope any benchmark so it never blocks the post. The proven pattern: a
+  one-afternoon protocol (build both versions, run each 10x, plan-math cost per
+  execution on one side, measured tokens with min/median/max on the other),
+  derive the cost-vs-run-volume crossover, state the explicit non-claim (e.g.
+  no reliability-over-time claim), and schedule a day-30 update that adds the
+  longitudinal data and doubles as the freshness refresh.
 - **[PERSONAL EXPERIENCE]**: [Suggestion for first-hand observation, test
   result, or case study to include: "When we tested X, we found Y"]
 - **[UNIQUE INSIGHT]**: [Suggestion for contrarian take, novel analysis,
@@ -194,6 +200,17 @@ Alternative titles:
 | 1 | [stat] | [source + URL] | 2025 | H2: Section 1 |
 | 2 | [stat] | [source + URL] | 2026 | H2: Section 2 |
 | ... | ... | ... | ... | ... |
+
+## Source Cluster Health (required)
+
+Apply the clustering procedure from `skills/blog/references/research-quality.md`
+(section 4) to the statistics above:
+- Mark every single-upstream chain explicitly (e.g. "vendor's own ARR and
+  adoption figures, via [aggregating analyst]": one source, not two).
+- Pair each load-bearing claim with at least one independent statistic from a
+  different upstream, or state that none exists.
+- Note retrieval dates for volatile facts (prices, plan tiers, star counts) and
+  flag them for re-verification at publish.
 
 ## Citation Capsule Plan
 For each H2, plan a 40-60 word self-contained passage optimized for AI

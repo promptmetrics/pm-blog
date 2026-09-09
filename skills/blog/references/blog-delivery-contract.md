@@ -88,7 +88,10 @@ BLOCKING: false (cleared all gates)
 
 Machine-readable by `scripts/blog_preflight.py` so the orchestrator does not have to parse the human-readable scorecard.
 
-Reviewer report saved to `<draft-folder>/review.md`. Shown to the user on success ("here is why this passed") and on final failure ("here is why this is still blocked after 3 iterations").
+The reviewer agent returns its scorecard as its response (the agent has
+Read/Grep/Glob only and cannot write files; it Reads `.review-nonce` and echoes
+the nonce inside the scorecard it returns). The orchestrator transcribes that
+returned scorecard verbatim into `<draft-folder>/review.md`. Shown to the user on success ("here is why this passed") and on final failure ("here is why this is still blocked after 3 iterations").
 
 ## Gate 5: Asset Existence + Link Integrity
 

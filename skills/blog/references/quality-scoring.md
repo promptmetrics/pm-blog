@@ -18,7 +18,7 @@ Score each blog post against this checklist. Used by `/blog analyze`.
 | Check | Points | Pass Criteria |
 |-------|--------|---------------|
 | Heading hierarchy with keywords | 5 | H1 → H2 → H3, no skips, keyword in 2-3 headings, H2 every 200-300 words |
-| Title tag (40-60 chars, keyword, power word) | 4 | Front-loaded keyword, positive sentiment, brackets if applicable |
+| Title tag (40-60 chars, keyword, power word) | 4 | Front-loaded keyword, positive sentiment, brackets if applicable; power word skipped if on the BRAND.md taboo list |
 | Keyword placement/density | 4 | Natural integration (0.5-2%), no stuffing, present in first 100 words |
 | Internal linking (3-10 contextual) | 4 | Descriptive anchor text, bidirectional, related content |
 | URL structure | 3 | Short, keyword-rich, no stop words, lowercase |

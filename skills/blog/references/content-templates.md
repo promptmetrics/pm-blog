@@ -229,6 +229,11 @@ H2: FAQ [FAQ]
 Conclusion (recommendation matrix)
 ```
 
+**Non-negotiables** (full detail in `templates/comparison.md`): pricing states the
+licensing shape (price, what one plan covers in seats, cost at N people); every
+category section answers its strongest counterargument; vendor conflict disclosed
+when the comparison touches a tool the company sells or builds on.
+
 **Visual plan**: Feature comparison radar chart + pricing bar chart.
 Product screenshots and UI comparisons.
 

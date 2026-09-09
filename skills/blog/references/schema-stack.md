@@ -555,7 +555,12 @@ signals and improve eligibility for the "Discussions and Forums" SERP feature.
 
 Combine all schema entities in a single `<script type="application/ld+json">`
 tag using the `@graph` array. This is the recommended approach for pages with
-multiple schema types.
+multiple schema types WHEN you control the page's entire schema by hand.
+
+Multiple separate script blocks are also valid and Google-supported. In the
+pm-blog pipeline, `scripts/blog_render.py` injects its own BlogPosting block,
+so a skill-added FAQPage block coexists with it as a second block; preflight
+Gate 5 validates each block independently.
 
 ### Benefits
 

@@ -5,6 +5,7 @@
 - [ ] Writing Style Learning (`/blog style learn` - analyze 5-10 posts to extract author voice profile)
 - [ ] Content Decay Detection (`/blog decay` - GSC integration to flag 20%+ QoQ decline)
 - [ ] Pre-commit hooks for quality gates (block commits with score < 70)
+- [ ] Persona calibration pairs: let personas store rejected/accepted before-after pairs and feed them to blog-write (better calibration than tone sliders; from the 2026-09-09 n8n-post handover, item 3.5)
 
 ## Phase 3 (Future)
 - [ ] MCP integrations (Ahrefs, Semrush)

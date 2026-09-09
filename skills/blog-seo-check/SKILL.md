@@ -41,7 +41,7 @@ the page and extract the relevant elements.
 |-------|---------------|
 | Character count | 40-60 characters (no truncation in SERPs) |
 | Keyword placement | Primary keyword in first half of title |
-| Power word | Contains at least one power word (e.g., Guide, Best, How, Why, Essential, Proven, Complete) |
+| Power word | Contains at least one power word (e.g., Guide, Best, How, Why, Essential, Proven, Complete); never a word on the BRAND.md taboo list - skip the power word rather than violate it |
 | Truncation risk | No critical meaning lost if truncated at 60 chars |
 | Uniqueness | Not generic - specific to the content |
 
@@ -179,7 +179,7 @@ Output a comprehensive SEO validation report in this format:
 |---|-------|--------|---------|-----|
 | 1 | Title length | PASS | 52 chars | - |
 | 2 | Title keyword | PASS | "keyword" in first half | - |
-| 3 | Title power word | FAIL | No power word found | Add "Guide", "Essential", or "Complete" |
+| 3 | Title power word | FAIL | No power word found | Add "Guide", "Essential", or "Complete" (only if not on the BRAND.md taboo list) |
 | 4 | Meta description length | PASS | 155 chars | - |
 | 5 | Meta description stat | FAIL | No number found | Add a key statistic from the post |
 | ... | ... | ... | ... | ... |

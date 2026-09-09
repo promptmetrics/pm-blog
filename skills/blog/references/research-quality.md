@@ -127,6 +127,8 @@ Document the decomposition at the top of the research output so reviewers can se
 
 When research returns five posts all citing the same upstream source (e.g. five articles all paraphrasing one McKinsey report), they are ONE source, not five. Synthesizing them as independent corroboration is synthesis echo and inflates apparent coverage.
 
+**Stat aggregators are downstream by definition.** Treat "X Statistics 2026" listicles, stat roundups, and aggregator domains as echo sources: never cite them. Resolve every number to its primary page: the vendor's own docs or pricing page, the original survey writeup, the researcher's publication, or the press release. When a primary docs URL 404s (vendors restructure their docs), search for the moved page and cite that, rather than falling back to a third party that quotes the old one.
+
 ### Clustering procedure
 
 1. For each retrieved source, identify the **upstream source** of the load-bearing claim (the statistic, the quote, the original analysis).

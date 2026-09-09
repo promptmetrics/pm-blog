@@ -60,6 +60,7 @@
 2. **The core tension** (1-2 sentences): What is the fundamental trade-off between these two options? Frame it as a genuine dilemma, not a strawman.
 3. **Scope statement** (1 sentence): What specific dimensions will this comparison cover?
 4. **Credibility anchor** (1 sentence): What qualifies you to make this comparison? (testing methodology, experience with both, etc.)
+5. **Conflict disclosure** (1-2 sentences, mandatory when it applies): If the comparison touches a tool the company sells, resells, or builds on commercially, say so plainly, and then be harder on your own side: the conflicted product gets no hedged losses, and the competitor gets unhedged category wins where it earns them.
 
 [STAT: Market context statistic: adoption rates, npm downloads, GitHub stars, survey data that frames both options]
 
@@ -113,8 +114,8 @@
 1. **Winner declaration** (1 sentence): "[Product A/B] wins on [category] because [specific reason]."
 2. **Product A evaluation** (2-3 sentences): How Product A performs in this category with specific details, metrics, or examples.
 3. **Product B evaluation** (2-3 sentences): How Product B performs in this category with specific details, metrics, or examples.
-4. **Nuance** (1-2 sentences): When does the losing product actually come close or even win in a sub-scenario?
-5. **Verdict** (bold, 1 sentence): Restate the winner with a qualifier.
+4. **Strongest counterargument** (2-3 sentences): Write the strongest one-sentence objection to your verdict ("Can't [losing product's feature] handle this?"), concede what the losing product CAN do, then draw the line where it stops. Answer the objection in this section, not in the FAQ.
+5. **Verdict** (bold, 1 sentence): Restate the winner with a qualifier. Frame it as a conditional trade the reader can re-run on their own stack ("the question is what you pay for it"), never as an absolute replacement claim.
 
 [STAT: Specific metric comparing both products in this category]
 
@@ -182,6 +183,7 @@
 - Security
 - Customization / Flexibility
 - Pricing / Value
+- Maintainability at month six (who maintains it after the person who built it leaves; how hard is it to hand to a teammate and build on)
 
 **Note:** Choose categories based on what your audience actually cares about, not what's easiest to compare. Survey your readers or check "People Also Ask" boxes for guidance.
 
@@ -192,18 +194,20 @@
 [ANSWER-FIRST] Open with the bottom line: "For [typical use case], [Product A] costs [X] and [Product B] costs [Y]."
 
 **Structure:**
-1. **Direct cost comparison** (2-3 sentences): Side-by-side pricing for the most common tier or usage pattern.
-2. **Free tier analysis** (1-2 sentences): What's actually usable in each free tier? What are the real limits?
+1. **Licensing-shape comparison** (3 named rows, mandatory): sticker prices are not comparable until the licensing shape is. State for each product: the **price**, **what one plan covers** (per-seat vs per-workspace vs unlimited users; a "per user" plan for a 3-person team is 3 subscriptions), and the **cost at N people** for the reader's typical team size. A comparison that skips the seat model is wrong for any B2B tool pair.
+2. **Free tier analysis** (2-3 sentences): What's actually usable in each free tier? Verify every "free" or "open source" claim against the vendor's own edition-comparison docs page, not pricing blogs. State the operator limits explicitly: single-operator restrictions, sharing/SSO/projects behind paid licenses, and for self-hosting, the VPS plus admin time it still costs.
 3. **Scaling costs** (2-3 sentences): How does pricing change as usage grows? Where are the inflection points?
-4. **Hidden costs** (1-2 sentences): Any costs not immediately obvious: migration effort, required add-ons, lock-in implications.
+4. **Hidden costs** (1-2 sentences): Any costs not immediately obvious: migration effort, required add-ons, lock-in implications. If either product has an AI feature, state who pays for the tokens (customer's own API key, billed per model call on every run, retries included).
 5. **Value verdict** (bold, 1 sentence): Which provides better value and for whom.
 
-[VISUAL: pricing-comparison-table] A simple table showing pricing tiers side by side.
+[VISUAL: pricing-comparison-table] A table showing pricing tiers side by side, with the licensing shape as its own rows.
 
-| Tier | [Product A] | [Product B] |
+| | [Product A] | [Product B] |
 |------|-------------|-------------|
-| Free | [Details] | [Details] |
-| Starter / Pro | [Price + details] | [Price + details] |
+| Price (common tier) | [Price] | [Price] |
+| What one plan covers | [Seats/users per plan] | [Seats/users per plan] |
+| Cost at [N] people | [Total] | [Total] |
+| Free tier limits | [Operator limits per vendor docs] | [Operator limits per vendor docs] |
 | Enterprise | [Price + details] | [Price + details] |
 
 [STAT: Total cost of ownership for a specific scenario (e.g., "For a 10-person team with 100K monthly users")]
@@ -308,9 +312,13 @@ Before publishing, verify:
 - [ ] Quick comparison table uses specific metrics, not vague ratings
 - [ ] Every category section opens by naming the winner (answer-first)
 - [ ] Every category section evaluates both products with comparable depth and fairness
-- [ ] Every category section includes a nuance statement (when the loser might win)
+- [ ] Every category section answers its strongest counterargument (concede what the loser CAN do, then draw the line)
+- [ ] Every category verdict is a conditional trade, not an absolute replacement claim
 - [ ] 5-7 categories cover the dimensions that matter most to the target audience
-- [ ] Pricing comparison includes free tiers, scaling costs, and hidden costs
+- [ ] Pricing comparison states the licensing shape: price, what one plan covers (seats), and cost at N people
+- [ ] Free/open-source claims verified against the vendor's edition-comparison docs page, with operator limits stated
+- [ ] Hidden costs name who pays for AI-feature tokens, if either product has one
+- [ ] Vendor conflict disclosed if the comparison touches a tool the company sells or builds on
 - [ ] "Who Should Choose What" provides clear persona-based recommendations
 - [ ] At least 3 [INFO-GAIN] elements with original testing data or observations
 - [ ] At least 5 [STAT] markers filled with sourced or first-party statistics
