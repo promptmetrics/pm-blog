@@ -1057,7 +1057,13 @@ exports.createPages = async ({ graphql, actions }) => {
 
 ### Inline JSON-LD Schema
 
-Place in `<head>` for BlogPosting:
+Note for the pm-blog pipeline: `scripts/blog_render.py` already injects the
+BlogPosting block automatically from frontmatter. When rendering through the
+pipeline, add ONLY the FAQPage block below; a hand-added BlogPosting duplicates
+the injected one. Multiple JSON-LD script blocks on one page are valid and
+Google-supported; preflight Gate 5 parses each block separately.
+
+Place in `<head>` for BlogPosting (only when NOT rendering via `blog_render.py`):
 ```html
 <script type="application/ld+json">
 {

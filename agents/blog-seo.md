@@ -27,7 +27,7 @@ rewrite content. You identify issues and prescribe fixes.
 ### 1. Title Tag
 - Length: 40-60 characters (truncation risk above 60)
 - Keyword: Primary keyword appears in first half
-- Power word: Contains engagement word (proven, ultimate, complete, essential, etc.)
+- Power word: Contains engagement word (proven, ultimate, complete, essential, etc.); never a word on the BRAND.md taboo list - skip it rather than violate the list
 - Uniqueness: Does not duplicate another page's title on the same site
 - **Pass criteria**: All 3 conditions met
 

@@ -35,6 +35,7 @@ amount, or named source. Build a claims list with these fields:
 | value | The numeric value (e.g., "42%", "$1.2M", "3x") |
 | attribution | Named source if present (e.g., "HubSpot", "Gartner 2025") |
 | url | Cited URL if present (from markdown link or parenthetical) |
+| retrieved_date | Date the source was fetched for verification (YYYY-MM-DD); volatile facts (prices, plan tiers, star counts) must carry it into the post's source block |
 | location | Heading or line number where the claim appears |
 
 ### Step 3: Verify Cited Claims
@@ -95,6 +96,15 @@ Identify claims matching these structures:
 - A claim citing a homepage when the stat lives on a subpage scores 0.3
 - A 404 or unreachable URL scores 0.0
 
+**Price claims (special check class: "price not printed on the page")**:
+- A specific price must appear verbatim on the vendor's live pricing page. "From
+  $100/mo" on the page does NOT verify a "$100/$200" claim in the post: score it
+  PARAPHRASE at best and correct the text to what the page prints.
+- A price sourced to any non-vendor page (blog, aggregator, community thread) caps
+  at 0.3 WEAK regardless of how confidently the community "knows" the number.
+- Never let a price claim pass on community knowledge; if the vendor page doesn't
+  print it, the post doesn't print it.
+
 ## Output Format
 
 ### Verification Report: [Post Title]
@@ -135,6 +145,10 @@ pm-blog inherits FLOW's evidence triple (year anchor in prose, inline citation w
 - **PDF sources**: WebFetch may not extract PDF text reliably. Flag PDF URLs for
   manual verification.
 - **Archived pages**: If a URL returns 404, suggest checking web.archive.org.
+- **Dynamic or geo-variable pricing**: Some vendors render prices client-side or
+  vary them by region/currency, so the fetched page may not show the price a
+  reader sees. Note the variance, verify against the vendor's most canonical
+  pricing surface, and add the retrieval date plus a re-check-at-publish note.
 - **Rate limits**: Process no more than 10 URLs per run to avoid overwhelming
   source servers. If a post has more than 10 cited URLs, verify the first 10 and
   list the remainder as SKIPPED.

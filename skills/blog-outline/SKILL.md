@@ -64,7 +64,7 @@ Create a structured outline with the following format:
 # Outline: [Topic]
 
 ## Title Suggestions
-1. [Primary title - 40-60 chars, front-loaded keyword, power word]
+1. [Primary title - 40-60 chars, front-loaded keyword, power word (never one on the BRAND.md taboo list)]
 2. [Alternative title - different angle]
 3. [Alternative title - question format]
 

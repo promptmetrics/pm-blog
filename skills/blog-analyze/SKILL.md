@@ -90,7 +90,7 @@ score differential). Average US adult reads at 7th-8th grade level.
 | Check | Points | Pass Criteria |
 |-------|--------|---------------|
 | Heading hierarchy with keywords | 5 | H1 -> H2 -> H3, no skips, keyword in 2-3 headings |
-| Title tag (40-60 chars, keyword, power word) | 4 | Front-loaded keyword, positive sentiment |
+| Title tag (40-60 chars, keyword, power word) | 4 | Front-loaded keyword, positive sentiment; power word skipped if on the BRAND.md taboo list |
 | Keyword placement/density | 4 | Natural integration, no stuffing, in first 100 words |
 | Internal linking (3-10 contextual) | 4 | Descriptive anchor text, bidirectional |
 | URL structure | 3 | Short, keyword-rich, no stop words, lowercase |

@@ -487,7 +487,7 @@ Before delivering, verify:
     - "multifaceted", "robust", "tapestry", "embark"
     - Full list in `agents/blog-writer.md`
 17. **Contractions** - Verify natural use of contractions ("it's", "we've", "don't", "isn't"). Formal AI prose avoids contractions; natural writing uses them.
-18. **Rhetorical questions** - Verify at least one rhetorical question every 200-300 words to break up declarative patterns.
+18. **Rhetorical questions** - Use only where a question voices a real reader objection ("Can't the built-in AI node do this?"), 1-2 per post maximum; never as cadence filler ("Sound familiar?"). A per-word-count question quota is itself an AI tell (see `references/ai-slop-detection.md`, wrap-up-question tic). Persona/VOICE.md settings override this default.
 19. **YouTube videos** - 2-3 embeds with lazy loading, aria-labels, and noscript fallback (see `skills/blog/references/video-embeds.md`)
 
 ### Phase 6.5: Delivery Contract Enforcement (v1.9.0)
@@ -546,7 +546,7 @@ Summary template:
 - Sentence length variance: [pass/fail]
 - AI phrase scan: [pass/fail]
 - Contractions used: [yes/no]
-- Rhetorical questions: [N] (target: 1 per 200-300 words)
+- Rhetorical questions: [N] (each voices a real objection; 1-2 per post max)
 
 ### Next Steps
 - Review and customize for your brand voice

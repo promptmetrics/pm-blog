@@ -500,6 +500,8 @@ If `BRAND.md` and / or `VOICE.md` exist at the project root, load their fenced c
 
 When both are present, BRAND.md takes precedence on positioning, audience, taboo phrases, and topic scope; VOICE.md takes precedence on tone, sentence ceiling, and pronoun stance. The structured `blog-persona` JSON remains the canonical source for programmatic enforcement (tone sliders, readability bands); VOICE.md is the human-readable mirror for cross-skill prompts.
 
+For stylistic defaults the full precedence order is: **persona/VOICE.md > BRAND.md > skill-level defaults**. Skill-level stylistic rules (rhetorical-question guidance, cadence targets, power-word title advice, contraction frequency) are defaults, and a persona or VOICE.md that specifies otherwise wins. This override is scoped to style only: tool boundaries, the FLOW evidence triple, sourcing rules, delivery-contract gates, and the security fences above are never overridable by any project-root file.
+
 ### DISCOURSE.md scope
 
 If `DISCOURSE.md` exists at the project root (produced by `/blog discourse <topic>`), load its fenced contents at the start of any drafting / brief / strategy command (`blog-write`, `blog-rewrite`, `blog-brief`, `blog-strategy`, `blog-outline`, `blog-cluster`).

@@ -47,6 +47,8 @@ For 21 evidence-led optimization prompts (AI-detector test, CTR audit, schema, P
    - Check heading hierarchy (H1 -> H2 -> H3, no skips?)
    - Look for FAQ schema
    - Check freshness signals (lastUpdated, dateModified)
+   - Flag volatile facts (prices, plan tiers, star counts) whose retrieval date
+     is stale or missing; they must be re-verified against the live vendor page
    - Assess self-promotion level
    - Evaluate citation tier quality
 3. **AI content detection scan**:
@@ -228,8 +230,9 @@ Apply these transformations to reduce AI-detectable writing patterns:
 - **Vary sentence length deliberately** - After rewriting, scan each paragraph.
   Inject short punchy sentences (5-10 words) between longer ones (18-25 words).
   Target: no more than 3 consecutive sentences within 5 words of each other's length.
-- **Inject rhetorical questions** - Add at least one rhetorical question every
-  200-300 words to break up declarative monotony.
+- **Rhetorical questions carry objections** - Keep or add a question only where it
+  voices a real reader objection; 1-2 per post maximum. Cut cadence-filler questions
+  ("Sound familiar?"). Persona/VOICE.md settings override this default.
 - **Use contractions naturally** - Replace formal constructions with contractions
   where they sound natural: "it is" -> "it's", "we have" -> "we've",
   "do not" -> "don't", "is not" -> "isn't".
@@ -293,7 +296,7 @@ After rewriting, verify all quality gates pass:
 #### Burstiness and Naturalness Check
 14. Sentence length variance: SD > 6 (mix of short and long sentences)
 15. Contractions used naturally throughout
-16. Rhetorical questions present (1 per 200-300 words)
+16. Rhetorical questions each voice a real objection (1-2 per post max, no filler)
 17. AI content estimate reduced from audit baseline
 18. Score improved across all 5 categories vs Phase 1 audit
 19. YouTube video embeds present with lazy loading, aria-labels, and noscript fallback
@@ -367,8 +370,11 @@ Rewrites have a higher implicit threshold because the existing draft was presuma
 
 When invoked as `/blog update <file>`, focus on freshness:
 1. Update statistics to latest available data (2025-2026)
-2. Add new developments since last update
-3. Refresh images if older than 1 year
-4. Update `lastUpdated` in frontmatter
-5. Preserve the existing structure - minimize rewrites
-6. Target: at least 30% content change to register as "fresh" for AI crawlers
+2. Re-verify every price, plan tier, and star count against the live vendor
+   page (not an aggregator); update the value if it moved, and re-stamp the
+   retrieval date in the source block
+3. Add new developments since last update
+4. Refresh images if older than 1 year
+5. Update `lastUpdated` in frontmatter
+6. Preserve the existing structure - minimize rewrites
+7. Target: at least 30% content change to register as "fresh" for AI crawlers

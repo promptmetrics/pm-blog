@@ -54,11 +54,13 @@ length for paragraph featured snippet capture.
 | Character length | 40-60 characters | 8.9% higher CTR (Backlinko) |
 | Sentiment | Positive framing | +4.1% CTR vs neutral titles |
 | Brackets/parentheses | Include when relevant | ~40% more clicks (HubSpot) |
-| Power words | 1-2 per title | "Definitive," "Essential," "Data-Backed" |
+| Power words | 1-2 per title | "Definitive," "Essential," "Data-Backed"; never a word on the BRAND.md taboo list |
 | Keyword placement | Front-loaded | Primary keyword in first 3 words when possible |
 
 ### Title Formula
 Pattern: `[Power Word] [Topic]: [Specific Outcome/Number] [Year]`
+
+Power words are always subordinate to the brand taboo list (BRAND.md): skip the power word rather than violate the list.
 Example: "Definitive Guide to GEO: 7 Strategies That Drive AI Citations in 2026"
 
 Avoid: clickbait, ALL CAPS words, excessive punctuation, vague promises.

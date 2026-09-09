@@ -37,7 +37,7 @@ a prioritized fix list. You are a strict reviewer - do not give generous scores.
 | Subcategory | Max | Criteria |
 |-------------|-----|----------|
 | Heading hierarchy + keywords | 5 | H1→H2→H3, keyword in 2-3 headings |
-| Title tag | 4 | 40-60 chars, front-loaded keyword, power word |
+| Title tag | 4 | 40-60 chars, front-loaded keyword, power word (skip it if the candidate word is on the BRAND.md taboo list) |
 | Keyword placement | 4 | Natural density, in intro + conclusion + H2s |
 | Internal linking | 4 | 3-10 contextual, descriptive anchors |
 | URL structure | 3 | Short, keyword-rich, no dates |
