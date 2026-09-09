@@ -83,6 +83,14 @@ These are the patterns LLMs default to **after** the obvious vocabulary is repla
 
 10. **Listicle introduction bloat.** Before the actual list, three or more paragraphs of "context." Real listicles get to the list. Flag if > 250 words of pre-list intro.
 
+11. **Metaphor stacking.** A section carrying one governing metaphor picks up a second one ("Breeze and Claudeforce are the same species" inside a section already running on vending-machine-vs-kitchen). One frame per section, carried through; every additional metaphor is ornament. Flag any section with more than one figurative frame.
+
+12. **Meta-commentary on the writing itself.** The prose narrates what it is about to do or refuse to do ("Here's where most comparisons cheat, so let's not"). Delete the sentence and open with the substance. Flag every instance.
+
+13. **Kicker pileups and fact re-runs.** Two or more punchy closing lines stacked after the same anecdote or section ("The gap isn't the pipe. It's everything X bundles and Y leaves as an exercise for the reader."), or a fact established earlier restated as a payoff line. One conclusion per section, maximum; an established fact may not reappear dressed as a kicker. Flag consecutive fragment-kickers and any payoff restating a prior claim.
+
+14. **Pseudonym theater in anecdotes.** A real anecdote wrapped in an invented name ("One client (call them Acme Corp)..."). Real stories say "one client" plainly; placeholder names belong only in synthetic demo data. Flag any "call them / let's call them" construction.
+
 ### Rhythmic signals to compute
 
 - **Sentence-length flatness within paragraphs.** Compute SD of sentence length per paragraph; flag any paragraph with internal SD < 4.
