@@ -9,6 +9,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 _No unreleased changes._
 
+## [0.2.0] - 2026-09-09
+
+Feedback batch from the first two full production pipeline runs (the
+claudeforce comparison and the n8n-vs-Claude-Code post): writer-agnostic
+editorial rules promoted to the shared layer, comparison-template licensing
+and counterargument requirements, factcheck price verification, and five
+preflight/render fixes.
+
+### Added
+- Comparison template: mandatory licensing-shape pricing rows (price, what
+  one plan covers in seats, cost at N people), free-tier verification against
+  vendor edition-comparison docs, AI-feature token-payer disclosure,
+  "strongest counterargument" step per category section, "maintainability at
+  month six" criterion, and vendor-conflict disclosure requirement.
+- `ai-slop-detection.md`: structural tics 11-14 (metaphor stacking,
+  meta-commentary on the writing, kicker pileups / fact re-runs, pseudonym
+  theater in anecdotes) with matching check-for items in editorial
+  heuristics 4 and 8.
+- `blog-factcheck`: "price not printed on the page" check class (vendor page
+  must print the price verbatim; non-vendor price sources cap at 0.3 WEAK)
+  and a `retrieved_date` column in the claims table.
+- `blog-brief`: required Source Cluster Health section (single-upstream
+  marking) and a same-day benchmark scoping protocol under [ORIGINAL DATA].
+- `research-quality.md`: stat-aggregator sites named as echo sources;
+  moved-docs-page rule (search for the moved page, never cite a third party).
+- `blog_preflight.py`: `--publish` flag; Gate 2 scans drafts for unresolved
+  measurement placeholders (U+27E8/U+27E9 tokens, MEASURE BEFORE PUBLISH
+  markers): warnings during drafting, blocking violations under `--publish`.
+- Explicit stylistic-precedence order in the orchestrator:
+  persona/VOICE.md > BRAND.md > skill-level defaults (style only; tool
+  boundaries and evidence rules stay non-overridable).
+
+### Changed
+- Rhetorical-question guidance: replaced the 1-per-200-300-words quota
+  (which contradicted the reviewer's own >2-wrap-up-questions slop check)
+  with objection-carrying questions only, 1-2 per post max, across
+  blog-write, blog-rewrite, and the blog-writer agent.
+- Power-word title advice is now explicitly subordinate to the BRAND.md
+  taboo list in all seven places it appears.
+- `blog_render.py` names `.html`/`.pdf` outputs from the source `.md` file
+  stem instead of the slugified title; frontmatter `slug:` is metadata-only.
+  Preview filenames no longer drift from the draft file.
+- `blog-rewrite` Update Mode re-verifies prices, plan tiers, and star counts
+  against live vendor pages and re-stamps retrieval dates; the Phase 1 audit
+  flags stale volatile facts.
+- Delivery contract: corrected Gate 4 wording (the orchestrator transcribes
+  the reviewer agent's returned scorecard into `review.md`; the agent has no
+  Write tool) and documented the renderer's unconditional BlogPosting
+  JSON-LD injection (skills add only the FAQPage block).
+
+### Fixed
+- Gate 5 JSON-LD check parsed all `application/ld+json` blocks as one
+  concatenated string, so any page with two valid blocks (the renderer's
+  BlogPosting plus a FAQPage) failed with "Extra data". Blocks now parse
+  independently; multiple blocks are valid and Google-supported.
+- Gate 5 link checker emitted one "link returned 0" warning per URL (and
+  burned a 10s timeout each) in sandboxed environments without egress. A
+  single connectivity probe now skips the per-URL checks with one warning.
+- Gate 2 rejects rich-text round-trip corruption in draft `.md` sources:
+  frontmatter collapsed into a `## title:` heading and `[url](url)`-wrapped
+  URLs inside quoted values (breaks SVG `xmlns` at render time).
+- `blog-brief` referenced `references/...` and `templates/...` paths relative
+  to itself; the files live under `skills/blog/`. All six references fixed.
+
 ## [0.1.1] - 2026-07-20
 
 ### Changed

@@ -15,7 +15,7 @@ argument-hint: "[setup|pagespeed|crux|crux-history|gsc|inspect|index|ga4|nlp|you
 license: MIT
 metadata:
   author: PromptMetrics
-  version: "0.1.1"
+  version: "0.2.0"
   category: blog
 ---
 

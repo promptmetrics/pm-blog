@@ -2,9 +2,9 @@
 """Render a blog post markdown to .html and .pdf deterministically.
 
 Reads a single .md file plus its frontmatter, emits:
-  <out-dir>/<slug>.html: self-contained, dark-mode-aware, JSON-LD,
+  <out-dir>/<source-stem>.html: self-contained, dark-mode-aware, JSON-LD,
     Open Graph + Twitter Card, references hero.<ext> from the same dir.
-  <out-dir>/<slug>.pdf: via patchright `page.pdf()` (preferred) or
+  <out-dir>/<source-stem>.pdf: via patchright `page.pdf()` (preferred) or
     weasyprint fallback (only if patchright is unavailable).
 
 This is the Gate 2 (Format Completeness) implementation of the v1.9.0
@@ -416,8 +416,10 @@ def _render_html(md_path: Path, out_dir: Path, hero_filename: str) -> Path:
         css=CSS,
     )
 
-    slug = fm.get("slug") or _slugify(title)
-    out_html = out_dir / f"{slug}.html"
+    # Name outputs from the source file's stem, not the slugified title, so
+    # preview filenames never drift from the draft file and Gate 2/5 artifact
+    # discovery stays deterministic. Frontmatter slug: remains metadata-only.
+    out_html = out_dir / f"{md_path.stem}.html"
     out_html.write_text(rendered, encoding="utf-8")
     return out_html
 
