@@ -98,3 +98,9 @@ definitive-resesarch-blueprint-for-pm-blog.md
 
 # Session-scoped audit evidence at repo root (regenerated per audit cycle)
 /audit-results.md
+
+# Materialized writer context at repo root only (personal; populated by the
+# orchestrator's Writer Resolution step when /blog runs inside this repo)
+/BRAND.md
+/VOICE.md
+/DISCOURSE.md

@@ -81,7 +81,7 @@ Long-form prose can trap the reader. Good blogs let them scan, jump, and bail wi
 
 Within a post, terminology, tone, formatting, and structural patterns must not drift.
 
-**Check for**: same term for same concept throughout (not "AI" then "LLM" then "model" arbitrarily); stable cadence; bullet vs prose decision applied consistently; citation format identical; heading capitalization consistent.
+**Check for**: same term for same concept throughout (not "AI" then "LLM" then "model" arbitrarily); stable cadence; bullet vs prose decision applied consistently; citation format identical; heading capitalization consistent; at most one governing metaphor per section, carried through rather than joined by a second frame; real anecdotes stated plainly ("one client"), never wrapped in invented pseudonyms ("call them Acme Corp"); placeholder names belong only in synthetic demo data.
 
 | Score | Criteria |
 |---|---|
@@ -137,7 +137,7 @@ The post should reward both modes: executive who scans, practitioner who reads e
 
 Long does not equal valuable. Every paragraph should earn its place; padding is a slop signal.
 
-**Check for**: no paragraph over 150 words; no intro delaying the first substantive claim by more than 150 words; no SEO-padded conclusion; no filler transitions ("Now, let's discuss..."); word count appropriate to topic.
+**Check for**: no paragraph over 150 words; no intro delaying the first substantive claim by more than 150 words; no SEO-padded conclusion; no filler transitions ("Now, let's discuss..."); no meta-commentary about the writing itself ("Here's where most comparisons cheat, so let's not"); no stacked kicker lines: one conclusion per anecdote or section, and no restating an already-established fact as a payoff; word count appropriate to topic.
 
 | Score | Criteria |
 |---|---|
